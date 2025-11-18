@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Marking</title>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+    body {
+      background-color: #f4f6fb;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 260px;
+      background-color: #ffffff;
+      border-right: 1px solid #e3e7f0;
+    }
+
+    .sidebar-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar-brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #4a90e2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .profile-img-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .sidebar .nav-link {
+      color: black;
+      font-weight: 500;
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .sidebar .nav-link.active {
+      background-color: #dbe9f9;
+      color: #629fe6;
+    }
+
+    .custom-topbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e3e7f0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .custom-search-input {
+      border-top: 20px;
+      border-bottom: 20px;
+      border-right: none;
+      border-color: #f0f2f5;
+      background-color: #f0f2f5;
+      padding-left: 15px;
+    }
+
+    .custom-search-btn {
+      border-top: 20px;
+      border-bottom: 20px;
+      background-color: #f0f2f5;
+      border: none;
+      color: #888;
+    }
+
+    .search-form-large{
+        width:60%;
+        max-width:700px;
+    }
+
+    .icon-btn {
+      color: #555;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+    }
+
+    .topbar-profile-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .btn-primary {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+}
+
+.btn-outline-primary {
+  border-color: #c9ddff;
+   background-color: #dbe9f9;
+      color: #3c90e2;
+}
+.btn-outline-primary:hover {
+  background-color: #2d6cdf;
+  color: #fff;
+}
+
+.cardbox{
+    padding:4px 20px;
+    border-radius:6px;
+    background-color: #dddbdb;
+}
+
+
+.present-pill label,
+.absent-pill label,
+.late-pill label {
+  border-radius: 999px;
+  padding: 4px 12px;
+  border: 1px solid ;
+  cursor: pointer;
+}
+.present-pill label {
+  color: #1da35a;
+  background-color: #e9f9f0;
+}
+.absent-pill label {
+  color: #d14343;
+  background-color: #fdecec;
+}
+
+.late-pill label {
+  color: #d99a1b;
+  background-color: #fff7e5;
+}
+
+.present-pill .form-check-input:checked + label {
+  background-color: #1da35a;
+  color: #ffffff;
+}
+
+.absent-pill .form-check-input:checked + label {
+  background-color: #d14343;
+  color: #ffffff;
+}
+
+.late-pill .form-check-input:checked + label {
+  background-color: #d99a1b;
+  color: #ffffff;
+}
+
+.absent-pill .form-check-input,
+.late-pill .form-check-input {
+  position: absolute;
+  opacity: 0;
+}
+  </style>
+</head>
+<body>
+     <div class="d-flex vh-100">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar d-flex flex-column p-3">
+      <div class="sidebar-brand text-center">
+        <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+        <span>Attendance Nepal</span>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-avatar text-center mb-4">
+          <img src="Teacher.png" alt="profileimage" class="profile-img-circle mb-2">
+          <div class="fw-semibold small">Rina Gurung</div>
+          <div class="text-muted" style="font-size: 0.8rem;">Science Teacher</div>
+        </div>
+      </div>
+
+      <nav class="nav flex-column mb-3">
+        <a class="nav-link" href="teacherdashboard.html">
+          <i class="bi bi-grid-1x2"></i> Dashboard
+        </a>
+        <a class="nav-link active" href="AttendanceMarking.html">
+          <i class="bi bi-list-check"></i> Attendance
+        </a>
+        <a class="nav-link" href="Classes.html">
+          <i class="bi bi-collection"></i> Classes
+        </a>
+        <a class="nav-link" href="#">
+          <i class="bi bi-people"></i> Students
+        </a>
+        <a class="nav-link" href="#">
+          <i class="bi bi-bar-chart"></i> Reports
+        </a>
+        <a class="nav-link" href="#">
+          <i class="bi bi-gear"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mt-auto pt-3">
+        <a class="nav-link" href="#">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <div class="flex-grow-1 d-flex flex-column">
+
+      <!-- TOP NAVBAR -->
+      <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+        <div class="container-fluid">
+          <a class="navbar-brand d-lg-none" href="#">
+            <i class="bi bi-box"></i>
+          </a>
+
+          <div class="d-none d-lg-block">
+            <h5 class="mb-0 fw-bold">Attendance Marking Overview</h5>
+          </div>
+
+          <div class="d-flex align-items-center ms-auto">
+            <form class="d-none d-md-flex me-3 search-form-large" role="search">
+              <div class="input-group">
+                <input type="search"
+                       class="form-control custom-search-input"
+                       placeholder="Search..."
+                       aria-label="Search">
+                <button class="btn custom-search-btn" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+
+            <div class="icon-group me-3">
+              <button class="btn icon-btn"><i class="bi bi-bell-fill"></i></button>
+            </div>
+
+            <div class="dropdown">
+              <a class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="Teacher.png" alt="Profile" class="topbar-profile-img me-2">
+                <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="main container-fluid py-4 px-4">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h3 class="fw-bold mb-1">Mark Attendance</h3>
+            <p class="text-muted">Select class and date to mark student attendance</p>
+          </div>
+
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary btn-md">Save as Draft</button>
+            <button class="btn btn-primary btn-md">Submit Attendance</button>
+          </div>
+        </div>
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body">
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Class</label>
+                <select class="form-select">
+                  <option>Grade 10 - Section A</option>
+                  <option>Grade 10 - Section B</option>
+                  <option>Grade 9 - Section A</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label small fw-semibold">Date</label>
+                <input type="date" class="form-control" value="2025-11-17">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary btn-sm">Mark All Present</button>
+                <button class="btn btn-outline-secondary btn-sm">Clear All</button>
+              </div>
+              <div class="small">
+                <span class="me-3"><strong>Summary:</strong></span>
+                <span class="text-success fw-semibold me-2">28 Present</span>
+                <span class="text-danger fw-semibold me-2">3 Absent</span>
+                <span class="text-warning fw-semibold me-2">1 Late</span>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th>Roll No.</th>
+                    <th>Student Name</th>
+                    <th>Attendance Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Aayush Shakya</td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <div class="form-check present-pill">
+                          <input class="form-check-input" type="radio" name="student1" id="s1Present" checked>
+                          <label class="form-check-label" for="s1Present">Present</label>
+                        </div>
+                        <div class="form-check absent-pill">
+                          <input class="form-check-input" type="radio" name="student1" id="s1Absent">
+                          <label class="form-check-label" for="s1Absent">Absent</label>
+                        </div>
+                        <div class="form-check late-pill">
+                          <input class="form-check-input" type="radio" name="student1" id="s1Late">
+                          <label class="form-check-label" for="s1Late">Late</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>2</td>
+                    <td>Abhisekh Shakya</td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <div class="form-check present-pill">
+                          <input class="form-check-input" type="radio" name="student2" id="s2Present">
+                          <label class="form-check-label" for="s2Present">Present</label>
+                        </div>
+                        <div class="form-check absent-pill">
+                          <input class="form-check-input" type="radio" name="student2" id="s2Absent" checked>
+                          <label class="form-check-label" for="s2Absent">Absent</label>
+                        </div>
+                        <div class="form-check late-pill">
+                          <input class="form-check-input" type="radio" name="student2" id="s2Late">
+                          <label class="form-check-label" for="s2Late">Late</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>3</td>
+                    <td>Chandan Giri</td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <div class="form-check present-pill">
+                          <input class="form-check-input" type="radio" name="student3" id="s3Present">
+                          <label class="form-check-label" for="s3Present">Present</label>
+                        </div>
+                        <div class="form-check absent-pill">
+                          <input class="form-check-input" type="radio" name="student3" id="s3Absent">
+                          <label class="form-check-label" for="s3Absent">Absent</label>
+                        </div>
+                        <div class="form-check late-pill">
+                          <input class="form-check-input" type="radio" name="student3" id="s3Late" checked>
+                          <label class="form-check-label" for="s3Late">Late</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>4</td>
+                    <td>Deepa Joshi</td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <div class="form-check present-pill">
+                          <input class="form-check-input" type="radio" name="student4" id="s4Present" checked>
+                          <label class="form-check-label" for="s4Present">Present</label>
+                        </div>
+                        <div class="form-check absent-pill">
+                          <input class="form-check-input" type="radio" name="student4" id="s4Absent">
+                          <label class="form-check-label" for="s4Absent">Absent</label>
+                        </div>
+                        <div class="form-check late-pill">
+                          <input class="form-check-input" type="radio" name="student4" id="s4Late">
+                          <label class="form-check-label" for="s4Late">Late</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>5</td>
+                    <td>Deepika Joshi</td>
+                    <td>
+                      <div class="d-flex gap-3">
+                        <div class="form-check present-pill">
+                          <input class="form-check-input" type="radio" name="student5" id="s5Present" checked>
+                          <label class="form-check-label" for="s5Present">Present</label>
+                        </div>
+                        <div class="form-check absent-pill">
+                          <input class="form-check-input" type="radio" name="student5" id="s5Absent">
+                          <label class="form-check-label" for="s5Absent">Absent</label>
+                        </div>
+                        <div class="form-check late-pill">
+                          <input class="form-check-input" type="radio" name="student5" id="s5Late">
+                          <label class="form-check-label" for="s5Late">Late</label>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    
+</body>
+</html>
