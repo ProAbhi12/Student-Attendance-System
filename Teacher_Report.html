@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<style>
+    body {
+      background-color: #f4f6fb;
+      margin: 0;
+    }
+
+    .sidebar {
+      width: 260px;
+      background-color: #ffffff;
+      border-right: 1px solid #e3e7f0;
+    }
+
+    .sidebar-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar-brand-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #4a90e2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .profile-img-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .sidebar .nav-link {
+      color: black;
+      font-weight: 500;
+      border-radius: 10px;
+      padding: 0.55rem 0.75rem;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .sidebar .nav-link.active {
+      background-color: #dbe9f9;
+      color: #629fe6;
+    }
+
+    .custom-topbar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #e3e7f0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .custom-search-input {
+      border-top: 20px;
+      border-bottom: 20px;
+      border-right: none;
+      border-color: #f0f2f5;
+      background-color: #f0f2f5;
+      padding-left: 15px;
+    }
+
+    .custom-search-btn {
+      border-top: 20px;
+      border-bottom: 20px;
+      background-color: #f0f2f5;
+      border: none;
+      color: #888;
+    }
+
+    .search-form-large{
+        width:60%;
+        max-width:700px;
+    }
+
+    .icon-btn {
+      color: #555;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+    }
+
+    .topbar-profile-img {
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .btn-primary {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+}
+
+.btn-outline-primary {
+  border-color: #c9ddff;
+   background-color: #dbe9f9;
+      color: #3c90e2;
+}
+.btn-outline-primary:hover {
+  background-color: #2d6cdf;
+  color: #fff;
+}
+
+.cardbox{
+    padding:4px 20px;
+    border-radius:6px;
+    background-color: #dddbdb;
+}
+
+      .summary-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+
+        .summary-label {
+            font-size: 1rem;
+            letter-spacing: 0.06em;
+        }
+
+        .summary-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border-radius: 999px; /* pill shape */
+        }
+
+        .badge-present {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-absent {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+  </style>
+</head>
+<body>
+  <!-- MAIN LAYOUT: sidebar + right content in one flex container -->
+  <div class="d-flex vh-100">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar d-flex flex-column p-3">
+      <div class="sidebar-brand text-center">
+        <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+        <span>Attendance Nepal</span>
+      </div>
+
+      <div class="teacher-card">
+        <div class="teacher-avatar text-center mb-4">
+          <img src="Teacher.png" alt="profileimage" class="profile-img-circle mb-2">
+          <div class="fw-semibold small">Rina Gurung</div>
+          <div class="text-muted" style="font-size: 0.8rem;">Science Teacher</div>
+        </div>
+      </div>
+
+      <nav class="nav flex-column mb-3">
+        <a class="nav-link" href="teacherdashboard.html">
+          <i class="bi bi-grid-1x2"></i> Dashboard
+        </a>
+        <a class="nav-link" href="AttendanceMarking.html">
+          <i class="bi bi-list-check"></i> Attendance
+        </a>
+        <a class="nav-link" href="Attendance_history.html">
+          <i class="bi bi-clock-history"></i> Attendance History
+        </a>
+        <a class="nav-link" href="Classes.html">
+          <i class="bi bi-collection"></i> Classes
+        </a>
+        <a class="nav-link" href="Students.html">
+          <i class="bi bi-people"></i> Students
+        </a>
+        <a class="nav-link active" href="Teacher_Report.html">
+          <i class="bi bi-bar-chart"></i> Reports
+        </a>
+        <a class="nav-link" href="Teacher_Leave.html">
+        <i class="bi bi-calendar-check"></i> Leaves
+    </a>
+        <a class="nav-link" href="#">
+          <i class="bi bi-gear"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mt-auto pt-3">
+        <a class="nav-link" href="#">
+          <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <div class="flex-grow-1 d-flex flex-column">
+
+      <!-- TOP NAVBAR -->
+      <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+        <div class="container-fluid">
+      
+          <div class="d-none d-lg-block">
+            <h5 class="mb-0 fw-bold">Attendance Report</h5>
+          </div>
+
+          <div class="d-flex align-items-center ms-auto">
+            <form class="d-none d-md-flex me-3 search-form-large" role="search">
+              <div class="input-group">
+                <input type="search"
+                       class="form-control custom-search-input"
+                       placeholder="Search..."
+                       aria-label="Search">
+                <button class="btn custom-search-btn" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </form>
+
+            <div class="icon-group me-3">
+              <button class="btn icon-btn"><i class="bi bi-bell-fill"></i></button>
+            </div>
+
+            <div class="dropdown">
+              <a class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="Teacher.png" alt="Profile" class="topbar-profile-img me-2">
+                <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+<!-- <div class="container-fluid py-3 px-4">
+  <div class="row g-4">
+   
+
+
+</div> -->
+<main class="p-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="h4 fw-bold mb-1">Attendance Report Generator</h1>
+                        <p class="text-muted mb-0">
+                            Generate various attendance reports for students and classes.
+                        </p>
+                    </div>
+                    <a href="#" class="btn btn-primary d-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Export as CSV
+                    </a>
+                </div>
+ <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-1">Customize your Report</h6>
+                                <p class="text-muted small mb-0">
+                                    Select the criteria below to generate a detailed attendance report.
+                                </p>
+                            </div>
+                            <div>
+                                <button class="btn btn-light btn-sm me-2">Reset Filters</button>
+                                <button class="btn btn-outline-primary btn-sm">Generate Report</button>
+                            </div>
+                        </div>
+
+             <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Report Type</label>
+                                <select class="form-select">
+                                    <option>Daily Summary</option>
+                                    <option>Weekly Summary</option>
+                                    <option>Monthly Summary</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Date</label>
+                                <input type="date" class="form-control" value="2025-11-17">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Select Class</label>
+                                <select class="form-select">
+                                    <option>Grade 10</option>
+                                    <option>Grade 9</option>
+                                    <option>Grade 8</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Attendance Status</label>
+                                <select class="form-select">
+                                    <option>All Statuses</option>
+                                    <option>Present</option>
+                                    <option>Absent</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-4 ">
+                    <div class="col-md-4 ">
+                        <div class="summary-card">
+                            <div class="summary-label fw-bold">Total Students</div>
+                            <div class="summary-value">42</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="summary-card">
+                            <div class="summary-label fw-bold">Overall Attendance</div>
+                            <div class="summary-value text-success">95.2%</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="summary-card">
+                            <div class="summary-label fw-bold">Total Absences</div>
+                            <div class="summary-value text-danger">2</div>
+                        </div>
+                    </div>
+                </div>
+
+    <div class="card border-0 shadow-sm">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Student Roll</th>
+                                        <th>Student Name</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Abhisekh Shakya</td>
+                                        <td>2025-11-17</td>
+                                        <td>
+                                            <span class="status-badge badge-present fw-bold">Present</span>
+                                        </td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Aarav Shakya</td>
+                                        <td>2025-11-17</td>
+                                        <td>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
+                                        </td>
+                                        <td>Sick Leave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>James Tamang</td>
+                                        <td>2025-11-18</td>
+                                        <td>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
+                                        </td>
+                                        <td>Sick Leave</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Ram Tamang</td>
+                                        <td>2025-11-18</td>
+                                        <td>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
+                                        </td>
+                                        <td>Sick Leave</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+</body>
+</html>
