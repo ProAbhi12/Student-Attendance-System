@@ -536,6 +536,20 @@
     })
 
 
+ 
+    window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
+        const openSection = params.get("open");
+
+        if (openSection === "attendance") {
+            // Run the same behavior as clicking the "My Attendance" button
+            document.getElementById("showmyattendance").click();
+        }
+    };
+
+
+
+
     
 
     const badges = ["absent", "late"];

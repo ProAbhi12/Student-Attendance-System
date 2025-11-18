@@ -11,84 +11,303 @@
 
 </head>
 <body>
+    <!-- Student -->
     <section id="Student" class="d-none">
-        <h3>Student,s Profile</h3>
-        <div class="card">
+
+        <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
+
+            <!-- Top Banner -->
+            <div class="bg-success text-white p-4 d-flex align-items-center">
+                <img src="https://tse3.mm.bing.net/th/id/OIP.kDN_tgpZ5SOiZFa-W9P5RwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
+                class="rounded-circle border border-3 border-white" 
+                    width="95" height="95" alt="Student Photo">
+
+                <div class="ms-3">
+                    <h3 class="mb-0">Pranil Barahi</h3>
+                    <small>Class 10 • Section B</small>
+                </div>
+            </div>
+
+            <!-- Body -->
             <div class="card-body">
-                <pre style="white-space: pre-line;">
-                    Student ID: STU1001
 
-                    Full Name: Pranil Barahi
+                <!-- Action Buttons -->
+                <div class="mb-4">
+                    <button class="btn btn-outline-primary btn-sm me-2">
+                        <i class="fa-solid fa-user-pen me-1"></i> Edit Profile
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm me-2">
+                        <i class="fa-solid fa-lock me-1"></i> Change Password
+                    </button>
+                    <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/student/student-side.html?open=attendance'">
+                        <i class="fa-solid fa-chart-line me-1"></i> View Attendance
+                    </button>
+                </div>
 
-                    Class: 10
+                <!-- Stats Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-body">
+                                <i class="fa-solid fa-calendar-check fa-xl mb-2 text-success"></i>
+                                <h6 class="fw-bold mb-0">92%</h6>
+                                <small class="text-muted">Attendance</small>
+                            </div>
+                        </div>
+                    </div>
 
-                    Section: B
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-check fa-xl mb-2 text-primary"></i>
+                                <h6 class="fw-bold mb-0">150</h6>
+                                <small class="text-muted">Days Present</small>
+                            </div>
+                        </div>
+                    </div>
 
-                    Gender: Male
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-xmark fa-xl mb-2 text-danger"></i>
+                                <h6 class="fw-bold mb-0">12</h6>
+                                <small class="text-muted">Days Absent</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    DOB: 2010-04-18
+                <!-- Personal Info -->
+                <h5 class="mb-2">Personal Information</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-id-badge me-2 text-primary"></i>
+                        <strong>Student ID:</strong> STU1001
+                    </li>
 
-                    Contact: 9812345678
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-cake-candles me-2 text-success"></i>
+                        <strong>DOB:</strong> 2010-04-18
+                    </li>
 
-                    Email: pranil.b@school.edu
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-venus-mars me-2 text-secondary"></i>
+                        <strong>Gender:</strong> Male
+                    </li>
 
-                    Address: Kalanki, Kathmandu
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-phone me-2 text-primary"></i>
+                        <strong>Contact:</strong> 9812345678
+                    </li>
 
-                    Parent Name: Milan Barahi
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-envelope me-2 text-danger"></i>
+                        <strong>Email:</strong> pranil.b@school.edu
+                    </li>
 
-                    Parent Contact: 9845678910
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-location-dot me-2 text-warning"></i>
+                        <strong>Address:</strong> Kalanki, Kathmandu
+                    </li>
+                </ul>
 
-                    Admission No.: AD1023
+                <!-- Academic Details -->
+                <h5 class="mb-2">Academic Details</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-school me-2 text-primary"></i>
+                        <strong>Class:</strong> 10
+                    </li>
 
-                    Admission Year: 2021
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-people-group me-2 text-info"></i>
+                        <strong>Section:</strong> B
+                    </li>
 
-                    Shift: Day
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-chalkboard-user me-2 text-success"></i>
+                        <strong>Class Teacher:</strong> Ms. Binita Sharma
+                    </li>
 
-                    Class Teacher: Ms. Binita Sharma
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-id-card me-2 text-secondary"></i>
+                        <strong>Admission No.:</strong> AD1023
+                    </li>
 
-                    Attendance %: 92%
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-calendar-day me-2 text-warning"></i>
+                        <strong>Admission Year:</strong> 2021
+                    </li>
 
-                    Total Presents: 150
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-clock me-2 text-primary"></i>
+                        <strong>Shift:</strong> Day
+                    </li>
+                </ul>
 
-                    Total Absents: 12
+                <!-- Parent Details -->
+                <h5 class="mb-2">Parent/Guardian Details</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-user me-2 text-primary"></i>
+                        <strong>Parent Name:</strong> Milan Barahi
+                    </li>
 
-                    Profile Photo: stu1001.jpg
-                </pre>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-phone-volume me-2 text-success"></i>
+                        <strong>Parent Contact:</strong> 9845678910
+                    </li>
+                </ul>
+
+                <!-- Activity Log -->
+                <h5 class="mb-2">Recent Activity</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-door-open text-success me-2"></i>
+                        Marked Present on last school day
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-book text-primary me-2"></i>
+                        Checked assignment updates
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-clipboard-list text-warning me-2"></i>
+                        Viewed monthly attendance summary
+                    </li>
+                </ul>
+
             </div>
         </div>
+
+
     </section>
 
+    <!-- Admin -->
     <section id="Admin" class="d-none">
-        <h3>Admin,s Profile</h3>
-        <div class="card">
-            <div class="card-body">
-                 <pre style="white-space: pre-line;">
-                    Admin ID: ADM001
+        <h3 class="mb-3">Admin Profile</h3>
 
-                    Name: Rojan Sharma
+        <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
 
-                    Email: rojan.sharma@school.edu
+                <!-- Top Banner -->
+                <div class="bg-primary text-white p-4 d-flex align-items-center">
+                    <img src="https://thumbs.dreamstime.com/z/admin-user-icon-account-has-virtually-unlimited-access-to-all-programs-isolated-background-vector-illustration-322126763.jpg" class="rounded-circle border border-3 border-white" 
+                        width="95" height="95" alt="Admin Photo">
 
-                    Phone: 9841234567
+                    <div class="ms-3">
+                        <h3 class="mb-0">Rojan Sharma</h3>
+                        <small>Super Admin</small>
+                    </div>
+                </div>
 
-                    Role: Super Admin
+                <div class="card-body">
+                    
+                    <!-- Action Buttons -->
+                    <div class="mb-4">
+                        <button class="btn btn-outline-primary btn-sm me-2">
+                            <i class="fa-solid fa-user-pen me-1"></i> Edit Profile
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm me-2">
+                            <i class="fa-solid fa-key me-1"></i> Change Password
+                        </button>
+                        <button class="btn btn-outline-danger btn-sm">
+                            <i class="fa-solid fa-power-off me-1"></i> Disable
+                        </button>
+                    </div>
 
-                    Username: rojan_admin
+                    <!-- Stats Cards -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-4">
+                            <div class="card text-center border-0 shadow-sm">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-users-gear fa-xl mb-2 text-primary"></i>
+                                    <h6 class="fw-bold mb-0">42</h6>
+                                    <small class="text-muted">Managed Staff</small>
+                                </div>
+                            </div>
+                        </div>
 
-                    Status: Active
+                        <div class="col-6 col-md-4">
+                            <div class="card text-center border-0 shadow-sm">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-user-check fa-xl mb-2 text-success"></i>
+                                    <h6 class="fw-bold mb-0">98%</h6>
+                                    <small class="text-muted">Attendance Accuracy</small>
+                                </div>
+                            </div>
+                        </div>
 
-                    Last Login: 2025-02-21 09:43 AM
+                        <div class="col-6 col-md-4">
+                            <div class="card text-center border-0 shadow-sm">
+                                <div class="card-body">
+                                    <i class="fa-solid fa-database fa-xl mb-2 text-warning"></i>
+                                    <h6 class="fw-bold mb-0">2 Years</h6>
+                                    <small class="text-muted">System Experience</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    Created On: 2023-06-01
+                    <!-- Profile Details -->
+                    <h5 class="mb-2">Personal Information</h5>
+                    <ul class="list-group mb-4">
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-id-badge me-2 text-primary"></i>
+                            <strong>Admin ID:</strong> ADM001
+                        </li>
 
-                    Profile Photo: admin1.jpg
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-envelope me-2 text-danger"></i>
+                            <strong>Email:</strong> rojan.sharma@school.edu
+                        </li>
 
-                </pre>
-            </div>
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-phone me-2 text-success"></i>
+                            <strong>Phone:</strong> 9841234567
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-user-lock me-2 text-secondary"></i>
+                            <strong>Username:</strong> rojan_admin
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                            <strong>Status:</strong>
+                            <span class="badge bg-success">Active</span>
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-clock me-2 text-warning"></i>
+                            <strong>Last Login:</strong> 2025-02-21 09:43 AM
+                        </li>
+
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-calendar-check me-2 text-primary"></i>
+                            <strong>Created On:</strong> 2023-06-01
+                        </li>
+                    </ul>
+
+                    <!-- Activity Log -->
+                    <h5 class="mb-2">Recent Activity</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-check text-success me-2"></i>
+                            Logged in from Kathmandu, Nepal
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-pen text-primary me-2"></i>
+                            Modified student attendance record
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fa-solid fa-folder-open text-warning me-2"></i>
+                            Reviewed monthly attendance reports
+                        </li>
+                    </ul>
+
+                </div>
         </div>
+
     </section>
-
-
 
 
 <script>
