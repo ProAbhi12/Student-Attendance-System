@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student DashBoard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body,html{
+            width: 100vw;
+        }
+
+        body{
+            background-color: #f4f6fb;
+            margin: 0px;
+            padding: 0px;
+        }
+        .fullwidth{
+            width: 100%;
+        }
+
+        @media (max-width: 575.98px) {
+            .wrap-sm-down {
+                flex-wrap: wrap !important;
+            }
+        }
+
+
+
+    </style>
+
+
+</head>
+<body >
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- SIDEBAR -->
+    <div  class="col-4 col-sm-4 col-lg-3 col-xxl-2 bg-white vh-100 p-3 border ">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex " >
+                <img src="https://thumbs.dreamstime.com/z/admin-user-icon-account-has-virtually-unlimited-access-to-all-programs-isolated-background-vector-illustration-322126763.jpg"
+                alt=""
+                width="50"
+                height="50"
+                class="rounded-circle">
+
+                <div class="d-flex flex-wrap">
+                    <p class="h5 ps-3 ">Admin Page</p>
+                    <p class="ps-4">Co-ordinator</p>
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="nav flex-column mb-3">
+            <ul class="list-unstyled mt-3 d-grid gap-3">
+                <li><button id="showOverviewBtn" class="btn ">Overview</button></li>
+                <li><button id="showStudentManagementBtn"  class="btn">Students</button></li>
+                <li><button id="showTeacherManagementBtn"  class="btn">Teachers</button></li>
+                <li><button id="showClassManagementBtn"  class="btn">Classes</button></li>
+                <li><button id="showSubjectManagementBtn"  class="btn">Subjects</button></li>
+                <li><button id="showAttendanceBtn"  class="btn">Attendance</button></li>
+            </ul>
+        </div>
+      
+            <div class="mt-auto pt-3">
+                <button onclick="window.location.href='/index.html'" class="btn btn-primary w-100 mt-5">
+                    Logout
+                </button>
+            </div>
+    </div>
+    
+
+    
+    <main class="col-8 col-sm-8 col-lg-9 col-xxl-10 d-block transition-all p-0 " >
+        <!-- Header -->
+        <header class=" p-0 border fullwidth"  >
+            <nav class="navbar bg-white  px-3">
+                <span class="navbar-brand mb-0 h1">My Page</span>
+                <div>
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle border-0 " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://thumbs.dreamstime.com/z/admin-user-icon-account-has-virtually-unlimited-access-to-all-programs-isolated-background-vector-illustration-322126763.jpg"
+                            alt=""
+                            width="50"
+                            height="50"
+                            class="rounded-circle">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="/generic/profile.html?show=Admin">Profile</a></li>
+                            <li><a class="dropdown-item" href="/Change-Password/changepassword.html">Change Password</a></li>
+                            <li><a class="dropdown-item" href="/index.html">Log Out</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </nav>
+        </header>
+                   
+        <!--Overview CONTENT -->
+        <div id="overview" class="col  p-1 fullwidth ">
+            <div class="container">
+                <h1> Daily Overview</h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 ">
+                    
+
+                    <div class="card  ">
+                        <div class="card-body text-center">
+                            <span> Total Students</span>
+                            <p class="h4">90</p>
+                        </div>
+                    </div>
+
+                    <div class="card col ">
+                        <div class="card-body text-center">
+                            <span>Student's Present</span>
+                            <p class="h4">81</p>
+                        </div>
+                    </div>
+
+                    <div class="card col ">
+                        <div class="card-body text-center">
+                            <span> Total Teachers</span>
+                            <p class="h4">10</p>
+                        </div>
+                    </div>
+
+                    <div class="card col ">
+                        <div class="card-body text-center">
+                            <span>  Teacher's Present</span>
+                            <p class="h4">10</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row ">
+
+                    <div class="card col">
+                        <div class="card-body text-center">
+                            <span>Total % of present Student</span>
+                            <p class="h4">90%</p>
+                        </div>
+                    </div>
+
+                    <div class="card col">
+                        <div class="card-body text-center">
+                            <span>Total % of present Teacher</span>
+                            <p class="h4">100%</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Student Management CONTENT -->
+        <div id="studentmanage" class="col d-none p-1 fullwidth " >
+            
+            <div class=" bg-white rounded-3">
+                <h1 class="mt-2">Student Management</h1>
+
+                <!-- filters -->
+                <div class="container">
+                <form action="#">
+                    <div class="row">
+
+                        <div class="col">
+                            <label class="fomr-label" for="">Search</label>
+                            <input class="form-control" type="text" name="" id="" placeholder="Search">
+                        </div>
+
+                        <div class="col">
+                            <label for="">Filter by Class</label>
+                            <div class="dropdown">
+                                <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filter by Class
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">SMBS</a></li>
+                                    <li><a class="dropdown-item" href="#">AIT_1</a></li>
+                                    <li><a class="dropdown-item" href="#">AIT-2</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                </div>
+
+                <!-- add Buttons -->
+                <button class="btn btn-primary w-100 mt-2"> Add New Student</button>
+                <div class="table-responsive mt-2">
+                <table class="table table-bordered mt-2 border w-100 rounded-5">
+                    <thead >
+                        <tr class="table-dark">
+                        <th scope="col">Roll No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>CSIT-1</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>SMBC</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>BCA-11</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">4</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>SMBC(A)</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">5</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>SMBC(B)</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">6</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>SMBC</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Teacher Management CONTENT -->
+        <div id="teachermanage" class="col d-none p-1 fullwidth " >
+            
+            <div class=" bg-white rounded-3">
+                <h1 class="mt-2">Teacher Management</h1>
+
+                <!-- filters -->
+                <div class="container">
+                <form action="#">
+                    <div class="row">
+
+                        <div class="col">
+                            <label class="fomr-label" for="">Search</label>
+                            <input class="form-control" type="text" name="" id="" placeholder="Search">
+                        </div>
+
+                        <div class="col">
+                            <label for="">Filter by Subject</label>
+                            <div class="dropdown">
+                                <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filter by Subject
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="#">Science</a></li>
+                                    <li><a class="dropdown-item" href="#">Mathematics</a></li>
+                                    <li><a class="dropdown-item" href="#">English</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                </div>
+
+                <!-- add Buttons -->
+                <button class="btn btn-primary w-100 mt-2"> Add New Teacher</button>
+                <div class="table-responsive mt-2">
+                <table class="table table-bordered mt-2 border w-100 rounded-5">
+                    <thead >
+                        <tr class="table-dark">
+                        <th scope="col">Roll No.</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Subject</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                        <th scope="row">1</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">2</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">3</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">4</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">5</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                         <tr>
+                        <th scope="row">6</th>
+                        <td>Pranil barahi</td>
+                        <td>Pranilbarahi@gmail.com</td>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            
+        </div>
+        
+        <!-- Class Management CONTENT -->
+        <div id="classmanage" class="col d-none p-1 fullwidth " >
+            
+            <div class=" bg-white rounded-3">
+                <h1 class="mt-2">Class Management</h1>
+
+                <!-- add Buttons -->
+                <button class="btn btn-primary w-100 mt-2"> Add New Classes</button>
+                <div class="table-responsive mt-2">
+                <table class="table table-bordered mt-2 border w-100 rounded-5">
+                    <thead >
+                        <tr class="table-dark">
+                        <th scope="col">Class</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                        <td>SMBC</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>AIT-1</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>BCA</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>AIT-10</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <!-- subject Management -->
+        <div id="subjectmanage" class="col d-none p-1 fullwidth " >
+            
+            <div class=" bg-white rounded-3">
+                <h1 class="mt-2">Class Management</h1>
+
+                <!-- add Buttons -->
+                <button class="btn btn-primary w-100 mt-2"> Add New Classes</button>
+                <div class="table-responsive mt-2">
+                <table class="table table-bordered mt-2 border w-100 rounded-5">
+                    <thead >
+                        <tr class="table-dark">
+                        <th scope="col">Sbuject</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                        <td>English</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Science</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Mathematics</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Social</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>Problem Solving</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            
+        </div>
+
+        <!-- attendance Management -->
+        <div id="attendance" class="col d-none p-1 fullwidth " >
+            
+            <div class=" bg-white rounded-3">
+                <h1 class="mt-2">Attendance Management</h1>
+
+                <!-- filters -->
+                <div class="container">
+                <form action="#">
+                    <div class="row">
+
+                        <div class="col-12 col-md-4 col-lg-6">
+                            <label class="fomr-label" for="">Search</label>
+                            <input class="form-control" type="datetime" name="" id="" placeholder="Search">
+                        </div>
+
+                        <div class="col-12 col-md-8 col-lg-6 d-flex wrap-sm-down gap-4">
+                            <div >
+                                <label for="">Filter by Class</label>
+                                <div class="dropdown">
+                                    <button class="btn border dropdown-toggle " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Filter by Class
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">SMBS</a></li>
+                                        <li><a class="dropdown-item" href="#">AIT_1</a></li>
+                                        <li><a class="dropdown-item" href="#">AIT-2</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div >
+                                <label for="">Filter by Status</label>
+                                <div class="dropdown">
+                                    <button class="btn border dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Filter by Status
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Present</a></li>
+                                        <li><a class="dropdown-item" href="#">Absent</a></li>
+                                        <li><a class="dropdown-item" href="#">Late</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+                </div>
+
+                <div class="table-responsive mt-2">
+                <table class="table table-bordered mt-2 border w-100 rounded-5">
+                    <thead >
+                        <tr class="table-dark">
+                        <th scope="col">Roll No.</th>
+                        <th scope="col">Student Name</th>
+                        <th scope="col">Present Days</th>
+                        <th scope="col">Absent Days</th>
+                        <th scope="col">Late Days</th>
+                        <th scope="col">Attendance %</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+                        <tr>
+                        <th scope="row">01</th>
+                        <td>Pranil barahi</td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>75%</td>
+                        <td class="d-flex flex-wrap gap-2 justify-content-center">
+                            <button class="btn btn-success">Edit</button>
+                        </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+    </main>
+  </div>
+</div>
+
+<!-- 
+<script>
+        const overview =document.getElementById("overview");
+        const studentmanage =document.getElementById("studentmanage");
+        const teachermanage =document.getElementById("teachermanage")
+        const classmanage =document.getElementById("classmanage");
+        const subjectmanage =document.getElementById("subjectmanage");
+        const attendance =document.getElementById("attendance");
+   
+
+     function showOverview(){
+        overview.classList.remove("d-none");
+
+        studentmanage.classList.add("d-none");
+        teachermanage.classList.add("d-none");
+        classmanage.classList.add("d-none");
+        subjectmanage.classList.add("d-none");
+        attendance.classList.add("d-none");
+    
+
+    }
+
+     function showStudentManage(){
+        studentmanage.classList.remove("d-none");
+
+        overview.classList.add("d-none");
+        teachermanage.classList.add("d-none");
+        classmanage.classList.add("d-none");
+        subjectmanage.classList.add("d-none");
+        attendance.classList.add("d-none");
+        
+
+    }
+
+    function showTeacherManage(){
+        teachermanage.classList.remove("d-none");
+
+        overview.classList.add("d-none");
+        studentmanage.classList.add("d-none");
+        classmanage.classList.add("d-none");
+        subjectmanage.classList.add("d-none");
+        attendance.classList.add("d-none");
+        
+
+    }
+
+
+    function showClassManage(){
+        classmanage.classList.remove("d-none");
+
+        overview.classList.add("d-none");
+        studentmanage.classList.add("d-none");
+        teachermanage.classList.add("d-none");
+        subjectmanage.classList.add("d-none");
+        attendance.classList.add("d-none");
+
+        
+
+    }
+    
+    function showSubjectManage(){
+        subjectmanage.classList.remove("d-none");
+
+        overview.classList.add("d-none");
+        studentmanage.classList.add("d-none");
+        teachermanage.classList.add("d-none");
+        classmanage.classList.add("d-none");
+        attendance.classList.add("d-none");
+        
+
+    }
+
+    function showAttendance(){
+        attendance.classList.remove("d-none");
+
+        overview.classList.add("d-none");
+        studentmanage.classList.add("d-none");
+        teachermanage.classList.add("d-none");
+        classmanage.classList.add("d-none");
+        subjectmanage.classList.add("d-none");
+        
+
+    }
+
+    showOverview();
+
+
+    showOverviewBtn.addEventListener("click",showOverview);
+    showStudentManagementBtn.addEventListener("click",showStudentManage);
+    showTeacherManagementBtn.addEventListener("click",showTeacherManage);
+    showClassManagementBtn.addEventListener("click",showClassManage);
+    showSubjectManagementBtn.addEventListener("click",showSubjectManage);
+    showAttendanceBtn.addEventListener("click",showAttendance);
+</script>
+ -->
+
+ <!-- JS SECTION -->
+<script>
+    function show(section){
+        document.querySelectorAll("main > div").forEach(el => el.classList.add("d-none"));
+        document.getElementById(section).classList.remove("d-none");
+    }
+
+    show("overview");
+
+    showOverviewBtn.onclick = () => show("overview");
+    showStudentManagementBtn.onclick = () => show("studentmanage");
+    showTeacherManagementBtn.onclick = () => show("teachermanage");
+    showClassManagementBtn.onclick = () => show("classmanage");
+    showSubjectManagementBtn.onclick = () => show("subjectmanage");
+    showAttendanceBtn.onclick = () => show("attendance");
+</script>
+
+
+
+<!-- BS5 Js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
