@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Attendance Dashboard</title>
+
+    <!-- Bootstrap + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body {
+        background-color: #f4f6fb;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .large-text {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: 260px;
+        background-color: #ffffff;
+        border-right: 1px solid #e3e7f0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+        height: 100vh;
+      }
+
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
+
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
+
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .custom-search-input {
+        border-top: 20px;
+        border-bottom: 20px;
+        border-right: none;
+        border-color: #f0f2f5;
+        background-color: #f0f2f5;
+        padding-left: 15px;
+      }
+
+      .custom-search-btn {
+        border-top: 20px;
+        border-bottom: 20px;
+        background-color: #f0f2f5;
+        border: none;
+        color: #888;
+      }
+
+      .search-form-large {
+        width: 60%;
+        max-width: 700px;
+      }
+
+      .icon-btn {
+        color: #555;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+
+      .topbar-profile-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .btn-primary {
+        background-color: #4a90e2;
+        border-color: #4a90e2;
+      }
+
+      .btn-outline-primary {
+        border-color: #c9ddff;
+        background-color: #dbe9f9;
+        color: #3c90e2;
+      }
+
+      .btn-outline-primary:hover {
+        background-color: #2d6cdf;
+        color: #fff;
+      }
+
+      .card-rounded {
+        border-radius: 10px;
+      }
+
+      .cardbox {
+        padding: 4px 20px;
+        border-radius: 6px;
+        background-color: #dddbdb;
+      }
+
+      /* ---------- My Attendance specific styles ---------- */
+
+      .today-card {
+        border-radius: 16px;
+      }
+
+      .today-status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .today-status-checked-in {
+        background-color: #e0f7ec;
+        color: #15803d;
+      }
+
+      .today-status-not-marked {
+        background-color: #e5e7eb;
+        color: #374151;
+      }
+
+      .summary-mini-card {
+        border-radius: 14px;
+        padding: 0.75rem 1rem;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+      }
+
+      .summary-label {
+        font-size: 0.8rem;
+        color: #6b7280;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .summary-value {
+        font-size: 1.4rem;
+        font-weight: 700;
+      }
+
+      .summary-present {
+        color: #16a34a;
+      }
+
+      .summary-absent {
+        color: #ef4444;
+      }
+
+      .summary-late {
+        color: #f97316;
+      }
+
+      .summary-leave {
+        color: #2563eb;
+      }
+
+      .status-badge {
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      .status-present {
+        background-color: #dcfce7;
+        color: #15803d;
+      }
+
+      .status-absent {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .status-late {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .status-leave {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      /* Calendar */
+      .calendar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .calendar-month-label {
+        font-weight: 600;
+      }
+
+      .calendar-nav-btn {
+        border: none;
+        background-color: transparent;
+        color: #6b7280;
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+      }
+
+      .calendar-nav-btn:hover {
+        background-color: #e5e7eb;
+      }
+
+      .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        font-size: 0.75rem;
+        color: #9ca3af;
+        text-align: center;
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+      }
+
+      .calendar-day {
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        cursor: default;
+        color: #4b5563;
+      }
+
+      .calendar-day-empty {
+        background-color: transparent;
+        cursor: default;
+      }
+
+      .calendar-day-today {
+        border: 2px solid #4a90e2;
+      }
+
+      .calendar-day-present {
+        background-color: #dcfce7;
+        color: #15803d;
+      }
+
+      .calendar-day-absent {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .calendar-day-late {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .calendar-day-leave {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .recent-leave-status {
+        font-size: 0.75rem;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+
+      .recent-approve {
+        background-color: #dcfce7;
+        color: #16a34a;
+      }
+
+      .recent-reject {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .recent-pending {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+
+      .attendance-history-table th,
+      .attendance-history-table td {
+        font-size: 0.86rem;
+        vertical-align: middle;
+      }
+
+      .small-muted {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      <!-- ========== SIDEBAR (same structure, new "My Attendance" item) ========== -->
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+          <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="teacher-card">
+          <div class="teacher-avatar text-center mb-4">
+            <img
+              src="Teacher.png"
+              alt="profileimage"
+              class="profile-img-circle mb-2"
+            />
+            <div class="fw-semibold small">Rina Gurung</div>
+            <div class="text-muted" style="font-size: 0.8rem">Teacher</div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link" href="teacherdashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+          </a>
+          <a class="nav-link" href="AttendanceMarking.html">
+            <i class="bi bi-list-check"></i> Attendance
+          </a>
+          <a class="nav-link" href="Attendance_history.html">
+            <i class="bi bi-clock-history"></i> Attendance History
+          </a>
+          <a class="nav-link" href="Classes.html">
+            <i class="bi bi-collection"></i> Classes
+          </a>
+          <a class="nav-link" href="Students.html">
+            <i class="bi bi-people"></i> Students
+          </a>
+          <a class="nav-link" href="Teacher_Report.html">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <a class="nav-link" href="Teacher_Leave.html">
+            <i class="bi bi-calendar-check"></i> Leaves
+          </a>
+          <!-- New: My Attendance link -->
+          <a class="nav-link active" href="Teacher_Self_Attendance.html">
+            <i class="bi bi-person-check"></i> My Attendance
+          </a>
+          <a class="nav-link" href="#">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="#">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- ========== MAIN AREA ========== -->
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- TOPBAR: same structure, title text adapted -->
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold">My Attendance Dashboard</h5>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+              <form
+                class="d-none d-md-flex me-3 search-form-large"
+                role="search"
+              >
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control custom-search-input"
+                    placeholder="Search..."
+                    aria-label="Search"
+                  />
+                  <button class="btn custom-search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
+
+              <div class="icon-group me-3">
+                <button class="btn icon-btn">
+                  <i class="bi bi-bell-fill"></i>
+                </button>
+              </div>
+
+              <div class="dropdown">
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="Teacher.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- ========== PAGE CONTENT ========== -->
+        <div class="container-fluid py-3 px-4">
+          <!-- Header row: title + request leave button -->
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+          >
+            <div>
+              <h3 class="fw-bold mb-1">My Attendance Dashboard</h3>
+              <div class="small text-muted">
+                View and manage your personal attendance records.
+              </div>
+            </div>
+            <div class="mt-2 mt-md-0">
+              <a href="Teacher_Leave.html" class="btn btn-primary">
+                <i class="bi bi-calendar-plus me-2"></i>Request Leave
+              </a>
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- LEFT COLUMN -->
+            <div class="col-lg-8">
+              <!-- Today status card -->
+              <div class="card border-0 shadow-sm today-card mb-4">
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-md-8">
+                      <div class="d-flex align-items-center mb-2">
+                        <span
+                          id="todayStatusLabel"
+                          class="today-status-badge today-status-not-marked me-2"
+                          >Not Checked In</span
+                        >
+                      </div>
+                      <h5 class="fw-semibold mb-1" id="todayTitleText">
+                        You are not checked in yet
+                      </h5>
+                      <div class="small-muted mb-2" id="todayDateText">
+                        <!-- filled by JS -->
+                      </div>
+
+                      <div class="row g-2 small-muted mb-3">
+                        <div class="col-6">
+                          <span class="fw-semibold text-dark">Checked in at:</span>
+                          <span class="d-block" id="todayCheckIn">—</span>
+                        </div>
+                        <div class="col-6">
+                          <span class="fw-semibold text-dark">Current time:</span>
+                          <span class="d-block" id="todayCurrentTime">—</span>
+                        </div>
+                        <div class="col-6 mt-2">
+                          <span class="fw-semibold text-dark">Check-out time:</span>
+                          <span class="d-block" id="todayCheckOut">—</span>
+                        </div>
+                      </div>
+
+                      <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-success" id="btnCheckIn">
+                          <i class="bi bi-box-arrow-in-right me-1"></i>Check In
+                        </button>
+                        <button
+                          class="btn btn-outline-danger"
+                          id="btnCheckOut"
+                          disabled
+                        >
+                          <i class="bi bi-box-arrow-right me-1"></i>Check Out
+                        </button>
+                      </div>
+
+                      <div class="small-muted mt-2">
+                        Note: This is a front-end demo. In the real system,
+                        check-in/out will be saved to the database by the
+                        backend.
+                      </div>
+                    </div>
+
+                    <!-- Optional side illustration -->
+                    <div class="col-md-4 d-none d-md-flex justify-content-end">
+                      <div
+                        class="bg-light rounded-4 d-flex align-items-center justify-content-center p-3"
+                      >
+                        <i
+                          class="bi bi-alarm"
+                          style="
+                            font-size: 2.5rem;
+                            color: #4a90e2;
+                          "
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Summary mini cards -->
+              <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3">
+                  <div class="summary-mini-card">
+                    <div class="summary-label">Days Present</div>
+                    <div
+                      class="summary-value summary-present"
+                      id="summaryPresent"
+                    >
+                      0
+                    </div>
+                    <div class="small-muted">This month</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="summary-mini-card">
+                    <div class="summary-label">Days Absent</div>
+                    <div
+                      class="summary-value summary-absent"
+                      id="summaryAbsent"
+                    >
+                      0
+                    </div>
+                    <div class="small-muted">Without leave</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="summary-mini-card">
+                    <div class="summary-label">Late Arrivals</div>
+                    <div class="summary-value summary-late" id="summaryLate">
+                      0
+                    </div>
+                    <div class="small-muted">Marked as late</div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="summary-mini-card">
+                    <div class="summary-label">Leaves Taken</div>
+                    <div
+                      class="summary-value summary-leave"
+                      id="summaryLeave"
+                    >
+                      0
+                    </div>
+                    <div class="small-muted">Approved leave</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Attendance history table -->
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <div>
+                      <h6 class="fw-semibold mb-0">Attendance History</h6>
+                      <div class="small-muted">
+                        Recent records for this month.
+                      </div>
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary">
+                      <i class="bi bi-file-earmark-text me-1"></i> View Full
+                      Report
+                    </button>
+                  </div>
+
+                  <div class="table-responsive mt-2">
+                    <table
+                      class="table table-hover attendance-history-table mb-0"
+                    >
+                      <thead class="table-light">
+                        <tr>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th>Check-in Time</th>
+                          <th>Check-out Time</th>
+                          <th>Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody id="historyTableBody">
+                        <!-- Filled by JS -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="col-lg-4">
+              <!-- Calendar card -->
+              <div class="card border-0 shadow-sm card-rounded mb-4">
+                <div class="card-body">
+                  <div class="calendar-header">
+                    <button
+                      class="calendar-nav-btn"
+                      id="btnPrevMonth"
+                      title="Previous month"
+                    >
+                      <i class="bi bi-chevron-left"></i>
+                    </button>
+                    <div class="calendar-month-label" id="calendarMonthLabel">
+                      <!-- filled by JS -->
+                    </div>
+                    <button
+                      class="calendar-nav-btn"
+                      id="btnNextMonth"
+                      title="Next month"
+                    >
+                      <i class="bi bi-chevron-right"></i>
+                    </button>
+                  </div>
+
+                  <div class="calendar-weekdays mt-2">
+                    <div>Su</div>
+                    <div>Mo</div>
+                    <div>Tu</div>
+                    <div>We</div>
+                    <div>Th</div>
+                    <div>Fr</div>
+                    <div>Sa</div>
+                  </div>
+                  <div class="calendar-grid" id="calendarGrid"></div>
+
+                  <div class="mt-3 small-muted">
+                    <span class="status-badge status-present me-1">P</span>
+                    Present
+                    <span class="status-badge status-late ms-2 me-1">L</span>
+                    Late
+                    <span class="status-badge status-leave ms-2 me-1">Lv</span>
+                    Leave
+                    <span class="status-badge status-absent ms-2 me-1">A</span>
+                    Absent
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent leave requests -->
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-3">Recent Leave Requests</h6>
+
+                  <div class="mb-3">
+                    <div class="small text-muted">Oct 23, 2023</div>
+                    <div class="fw-semibold small">Sick Leave</div>
+                    <div
+                      class="recent-leave-status recent-approve d-inline-block mt-1"
+                    >
+                      Approved
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small text-muted">Sep 15, 2023</div>
+                    <div class="fw-semibold small">Personal Errand</div>
+                    <div
+                      class="recent-leave-status recent-pending d-inline-block mt-1"
+                    >
+                      Pending
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <div class="small text-muted">Aug 2, 2023</div>
+                    <div class="fw-semibold small">Family Emergency</div>
+                    <div
+                      class="recent-leave-status recent-reject d-inline-block mt-1"
+                    >
+                      Rejected
+                    </div>
+                  </div>
+
+                  <a
+                    href="Teacher_Leave.html"
+                    class="small text-decoration-none"
+                  >
+                    View all leave requests
+                    <i class="bi bi-arrow-right-short"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- ========== PAGE LOGIC (DEMO ONLY) ========== -->
+    <script>
+      // Sample attendance data for the current month (UI demo only)
+      // status: 'Present', 'Absent', 'Late', 'Leave'
+      const defaultAttendanceRecords = [
+        {
+          date: "2025-11-01",
+          status: "Present",
+          checkIn: "09:02 AM",
+          checkOut: "04:10 PM",
+          remarks: "",
+        },
+        {
+          date: "2025-11-02",
+          status: "Present",
+          checkIn: "08:55 AM",
+          checkOut: "04:05 PM",
+          remarks: "",
+        },
+        {
+          date: "2025-11-03",
+          status: "Leave",
+          checkIn: "",
+          checkOut: "",
+          remarks: "Sick leave",
+        },
+        {
+          date: "2025-11-04",
+          status: "Absent",
+          checkIn: "",
+          checkOut: "",
+          remarks: "",
+        },
+        {
+          date: "2025-11-05",
+          status: "Late",
+          checkIn: "09:18 AM",
+          checkOut: "04:02 PM",
+          remarks: "Traffic delay",
+        },
+        {
+          date: "2025-11-06",
+          status: "Present",
+          checkIn: "09:03 AM",
+          checkOut: "04:05 PM",
+          remarks: "",
+        },
+      ];
+
+      let attendanceRecords = [];
+      let currentMonth;
+      let currentYear;
+
+      function loadAttendanceRecords() {
+        const saved = localStorage.getItem("teacherAttendanceRecords");
+        if (saved) {
+          try {
+            attendanceRecords = JSON.parse(saved);
+          } catch (e) {
+            attendanceRecords = [...defaultAttendanceRecords];
+          }
+        } else {
+          attendanceRecords = [...defaultAttendanceRecords];
+        }
+      }
+
+      function saveAttendanceRecords() {
+        localStorage.setItem(
+          "teacherAttendanceRecords",
+          JSON.stringify(attendanceRecords)
+        );
+      }
+
+      function formatDate(dateStr) {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString("en-GB", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        });
+      }
+
+      function getStatusClass(status) {
+        if (status === "Present") return "status-present";
+        if (status === "Absent") return "status-absent";
+        if (status === "Late") return "status-late";
+        if (status === "Leave") return "status-leave";
+        return "";
+      }
+
+      function renderSummary() {
+        const now = new Date();
+        const month = now.getMonth();
+        const year = now.getFullYear();
+
+        const filtered = attendanceRecords.filter((r) => {
+          const d = new Date(r.date);
+          return d.getMonth() === month && d.getFullYear() === year;
+        });
+
+        const present = filtered.filter((r) => r.status === "Present").length;
+        const absent = filtered.filter((r) => r.status === "Absent").length;
+        const late = filtered.filter((r) => r.status === "Late").length;
+        const leave = filtered.filter((r) => r.status === "Leave").length;
+
+        document.getElementById("summaryPresent").textContent = present;
+        document.getElementById("summaryAbsent").textContent = absent;
+        document.getElementById("summaryLate").textContent = late;
+        document.getElementById("summaryLeave").textContent = leave;
+      }
+
+      function renderHistoryTable() {
+        const tbody = document.getElementById("historyTableBody");
+        tbody.innerHTML = "";
+
+        // sort by date desc
+        const sorted = [...attendanceRecords].sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+
+        if (!sorted.length) {
+          tbody.innerHTML =
+            '<tr><td colspan="5" class="text-center text-muted">No attendance records yet.</td></tr>';
+          return;
+        }
+
+        sorted.forEach((r) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${formatDate(r.date)}</td>
+            <td><span class="status-badge ${getStatusClass(
+              r.status
+            )}">${r.status}</span></td>
+            <td>${r.checkIn || "—"}</td>
+            <td>${r.checkOut || "—"}</td>
+            <td>${r.remarks || "—"}</td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // Calendar
+      function renderCalendar() {
+        const monthLabel = document.getElementById("calendarMonthLabel");
+        const grid = document.getElementById("calendarGrid");
+
+        const firstDay = new Date(currentYear, currentMonth, 1).getDay(); // 0=Sun
+        const daysInMonth = new Date(
+          currentYear,
+          currentMonth + 1,
+          0
+        ).getDate();
+
+        const monthName = new Date(
+          currentYear,
+          currentMonth,
+          1
+        ).toLocaleString("en-GB", {
+          month: "long",
+          year: "numeric",
+        });
+        monthLabel.textContent = monthName;
+
+        grid.innerHTML = "";
+
+        // empty cells before day 1
+        for (let i = 0; i < firstDay; i++) {
+          const div = document.createElement("div");
+          div.className = "calendar-day calendar-day-empty";
+          grid.appendChild(div);
+        }
+
+        const today = new Date();
+        const todayStr = today.toISOString().slice(0, 10);
+
+        for (let day = 1; day <= daysInMonth; day++) {
+          const date = new Date(currentYear, currentMonth, day);
+          const dateStr = date.toISOString().slice(0, 10);
+          const record = attendanceRecords.find((r) => r.date === dateStr);
+
+          let cls = "calendar-day";
+          if (record) {
+            if (record.status === "Present") cls += " calendar-day-present";
+            else if (record.status === "Absent")
+              cls += " calendar-day-absent";
+            else if (record.status === "Late") cls += " calendar-day-late";
+            else if (record.status === "Leave") cls += " calendar-day-leave";
+          }
+
+          if (
+            date.getFullYear() === today.getFullYear() &&
+            date.getMonth() === today.getMonth() &&
+            date.getDate() === today.getDate()
+          ) {
+            cls += " calendar-day-today";
+          }
+
+          const div = document.createElement("div");
+          div.className = cls;
+          div.textContent = day;
+          grid.appendChild(div);
+        }
+      }
+
+      function initCalendarNav() {
+        document
+          .getElementById("btnPrevMonth")
+          .addEventListener("click", () => {
+            currentMonth--;
+            if (currentMonth < 0) {
+              currentMonth = 11;
+              currentYear--;
+            }
+            renderCalendar();
+          });
+
+        document
+          .getElementById("btnNextMonth")
+          .addEventListener("click", () => {
+            currentMonth++;
+            if (currentMonth > 11) {
+              currentMonth = 0;
+              currentYear++;
+            }
+            renderCalendar();
+          });
+      }
+
+      // Today card & Check-in/out
+      function initTodayCard() {
+        const today = new Date();
+        const todayStr = today.toISOString().slice(0, 10);
+        const options = {
+          weekday: "long",
+          day: "2-digit",
+          month: "short",
+          year: "numeric",
+        };
+        document.getElementById("todayDateText").textContent =
+          today.toLocaleDateString("en-GB", options);
+
+        // update current time every second
+        function updateTime() {
+          document.getElementById("todayCurrentTime").textContent =
+            new Date().toLocaleTimeString("en-GB", {
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+            });
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        const statusLabel = document.getElementById("todayStatusLabel");
+        const titleText = document.getElementById("todayTitleText");
+        const checkInEl = document.getElementById("todayCheckIn");
+        const checkOutEl = document.getElementById("todayCheckOut");
+        const btnCheckIn = document.getElementById("btnCheckIn");
+        const btnCheckOut = document.getElementById("btnCheckOut");
+
+        let record = attendanceRecords.find((r) => r.date === todayStr);
+
+        function refreshTodayUI() {
+          record = attendanceRecords.find((r) => r.date === todayStr);
+
+          if (record && (record.status === "Present" || record.status === "Late")) {
+            statusLabel.className =
+              "today-status-badge today-status-checked-in";
+            statusLabel.textContent = "You are checked in";
+            titleText.textContent = "Have a great teaching day!";
+            checkInEl.textContent = record.checkIn || "—";
+            checkOutEl.textContent = record.checkOut || "—";
+            btnCheckIn.disabled = true;
+            btnCheckOut.disabled = false;
+          } else {
+            statusLabel.className =
+              "today-status-badge today-status-not-marked";
+            statusLabel.textContent = "Not Checked In";
+            titleText.textContent = "You are not checked in yet";
+            checkInEl.textContent = "—";
+            checkOutEl.textContent = "—";
+            btnCheckIn.disabled = false;
+            btnCheckOut.disabled = true;
+          }
+        }
+
+        btnCheckIn.addEventListener("click", () => {
+          const timeStr = new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          if (!record) {
+            record = {
+              date: todayStr,
+              status: "Present",
+              checkIn: timeStr,
+              checkOut: "",
+              remarks: "",
+            };
+            attendanceRecords.push(record);
+          } else {
+            record.status = "Present";
+            record.checkIn = timeStr;
+          }
+
+          saveAttendanceRecords();
+          refreshTodayUI();
+          renderSummary();
+          renderHistoryTable();
+          renderCalendar();
+        });
+
+        btnCheckOut.addEventListener("click", () => {
+          if (!record) return;
+
+          const timeStr = new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+          record.checkOut = timeStr;
+
+          saveAttendanceRecords();
+          refreshTodayUI();
+          renderHistoryTable();
+        });
+
+        refreshTodayUI();
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        loadAttendanceRecords();
+
+        const now = new Date();
+        currentMonth = now.getMonth();
+        currentYear = now.getFullYear();
+
+        renderSummary();
+        renderHistoryTable();
+        renderCalendar();
+        initCalendarNav();
+        initTodayCard();
+      });
+    </script>
+  </body>
+</html>

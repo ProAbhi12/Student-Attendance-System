@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Attendance | Attendance Nepal</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+      body {
+        background-color: #f4f6fb;
+        margin: 0;
+        overflow: hidden;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      /* --- SIDEBAR & TOPBAR STYLES (From your existing code) --- */
+      .large-text { font-size: 20px; }
+      
+      .sidebar {
+        width: 260px;
+        background-color: #ffffff;
+        border-right: 1px solid #e3e7f0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0; 
+        height: 100vh;
+      }
+
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
+
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .sidebar .nav-link:hover {
+        background-color: #f0f4f8;
+      }
+
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
+
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .topbar-profile-img {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      /* --- NEW STYLES FOR MY ATTENDANCE PAGE --- */
+      
+      /* 1. Hero Card (Check-in Section) */
+      .hero-card {
+        background-color: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .hero-illustration {
+        background: #eef2ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 200px;
+      }
+
+      .digital-clock {
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: 700;
+        color: #4a90e2;
+      }
+
+      /* 2. Status Cards */
+      .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        height: 100%;
+        border: 1px solid #f0f0f0;
+        transition: transform 0.2s;
+      }
+      .stat-card:hover { transform: translateY(-3px); }
+      .stat-value { font-size: 2rem; font-weight: 800; margin-bottom: 5px; }
+      .text-success-custom { color: #10b981; }
+      .text-danger-custom { color: #ef4444; }
+      .text-warning-custom { color: #f59e0b; }
+      .text-primary-custom { color: #3b82f6; }
+
+      /* 3. Custom Mini Calendar */
+      .calendar-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        text-align: center;
+        margin-top: 15px;
+      }
+      .cal-day-header {
+        font-size: 0.8rem;
+        color: #9ca3af;
+        font-weight: 600;
+        margin-bottom: 5px;
+      }
+      .cal-day {
+        font-size: 0.9rem;
+        padding: 6px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+      }
+      .cal-day:hover { background-color: #f3f4f6; }
+      .cal-day.today { background-color: #dbe9f9; color: #2563eb; font-weight: bold; }
+      
+      /* Calendar Dots */
+      .cal-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .dot-green { background-color: #10b981; }
+      .dot-red { background-color: #ef4444; }
+      .dot-orange { background-color: #f59e0b; }
+
+      /* 4. History Table */
+      .history-table th {
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        color: #6b7280;
+        font-weight: 600;
+        background-color: #f9fafb;
+      }
+      .status-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+      .bg-soft-success { background-color: #d1fae5; color: #065f46; }
+      .bg-soft-danger { background-color: #fee2e2; color: #991b1b; }
+      .bg-soft-warning { background-color: #fef3c7; color: #92400e; }
+      .bg-soft-blue { background-color: #dbeafe; color: #1e40af; }
+
+      /* 5. Recent Leaves */
+      .leave-item {
+        border-left: 4px solid transparent;
+        transition: all 0.2s;
+      }
+      .leave-item:hover { background-color: #f9fafb; }
+      .leave-item.approved { border-left-color: #10b981; }
+      .leave-item.rejected { border-left-color: #ef4444; }
+      .leave-item.pending { border-left-color: #f59e0b; }
+
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      
+      <!-- SIDEBAR (Consistent with your Dashboard) -->
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+          <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="teacher-card">
+          <div class="teacher-avatar text-center mb-4">
+            <img src="Teacher.png" alt="profile" class="profile-img-circle mb-2" />
+            <div class="fw-semibold small">Rina Gurung</div>
+            <div class="text-muted" style="font-size: 0.8rem">Teacher</div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link" href="teacherdashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+          </a>
+          <a class="nav-link active" href="Teacher_Self_Attendance.html">
+            <i class="bi bi-fingerprint"></i> My Attendance
+          </a>
+          <a class="nav-link" href="AttendanceMarking.html">
+            <i class="bi bi-list-check"></i> Attendance
+          </a>
+          <a class="nav-link" href="Attendance_history.html">
+            <i class="bi bi-clock-history"></i> Attendance History
+          </a>
+          <a class="nav-link" href="Classes.html">
+            <i class="bi bi-collection"></i> Classes
+          </a>
+          <a class="nav-link" href="Students.html">
+            <i class="bi bi-people"></i> Students
+          </a>
+          <a class="nav-link" href="Teacher_Report.html">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <a class="nav-link" href="Teacher_Leave.html">
+            <i class="bi bi-calendar-check"></i> Leaves
+          </a>
+<a class="nav-link" href="Teacher_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="#">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        
+        <!-- TOPBAR -->
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid px-4">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold">My Attendance Dashboard</h5>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+                <button class="btn btn-primary btn-sm me-3 d-flex align-items-center shadow-sm">
+                    <i class="bi bi-plus-circle me-2"></i> Request Leave
+                </button>
+
+              <div class="dropdown">
+                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                  <img src="Teacher.png" alt="Profile" class="topbar-profile-img me-2" />
+                  <span class="d-none d-md-block fw-semibold small">Rina Gurung</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="Teacher_Profile.html">Profile</a></li>
+                  <li><a class="dropdown-item" href="Teacher_Settings.html">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- PAGE CONTENT -->
+        <div class="container-fluid py-4 px-4">
+          
+          <div class="row g-4">
+            
+            <!-- LEFT/CENTER COLUMN -->
+            <div class="col-lg-8">
+              
+              <!-- 1. HERO SECTION (Check In/Out) -->
+              <div class="card border-0 shadow-sm hero-card mb-4">
+                <div class="row g-0">
+                  <div class="col-md-4 d-none d-md-block">
+                    <div class="hero-illustration">
+                        <!-- Illustration Icon -->
+                        <i class="bi bi-clock-history text-primary" style="font-size: 5rem; opacity: 0.5;"></i>
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body p-4 d-flex flex-column justify-content-center h-100">
+                      
+                      <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h4 class="fw-bold mb-1" id="statusTitle">You are not Checked In</h4>
+                            <p class="text-muted small mb-0">Please check in to mark your attendance for today.</p>
+                        </div>
+                        <span class="badge bg-light text-dark border" id="dateBadge">Nov 18, 2025</span>
+                      </div>
+
+                      <div class="d-flex align-items-center justify-content-between mt-2">
+                        <div class="digital-clock fs-3" id="liveClock">00:00:00 AM</div>
+                        
+                        <!-- Action Button -->
+                        <button id="btnAction" class="btn btn-success btn-lg px-4 shadow-sm" onclick="toggleAttendance()">
+                            <i class="bi bi-box-arrow-in-right me-2"></i> Check In
+                        </button>
+                      </div>
+
+                      <div class="mt-3 pt-3 border-top d-flex gap-4 text-muted small">
+                         <div><i class="bi bi-geo-alt me-1"></i> School Premises</div>
+                         <div><i class="bi bi-wifi me-1"></i> IP: 192.168.1.45</div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. STATS CARDS -->
+              <div class="row g-3 mb-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-value text-success-custom">18</div>
+                        <div class="text-muted small fw-semibold">Days Present</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-value text-danger-custom">01</div>
+                        <div class="text-muted small fw-semibold">Days Absent</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-value text-warning-custom">03</div>
+                        <div class="text-muted small fw-semibold">Late Arrivals</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-value text-primary-custom">02</div>
+                        <div class="text-muted small fw-semibold">Leaves Taken</div>
+                    </div>
+                </div>
+              </div>
+
+              <!-- 3. ATTENDANCE HISTORY TABLE -->
+              <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white py-3 border-0">
+                    <h6 class="fw-bold mb-0">Attendance History (November)</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0 history-table">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">Date</th>
+                                <th>Status</th>
+                                <th>Check In</th>
+                                <th>Check Out</th>
+                                <th>Total Hrs</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyBody">
+                            <!-- Today (Dynamic Row) -->
+                            <tr class="bg-light" id="todayRow">
+                                <td class="ps-4 fw-semibold">Nov 18, 2025 <span class="badge bg-primary ms-2" style="font-size:0.6rem">TODAY</span></td>
+                                <td><span class="status-badge bg-secondary text-white" id="todayStatus">Not Marked</span></td>
+                                <td id="todayIn">--:--</td>
+                                <td id="todayOut">--:--</td>
+                                <td>-</td>
+                            </tr>
+                            <!-- Past Data -->
+                            <tr>
+                                <td class="ps-4">Nov 17, 2025</td>
+                                <td><span class="status-badge bg-soft-success">Present</span></td>
+                                <td>09:02 AM</td>
+                                <td>05:10 PM</td>
+                                <td>8h 08m</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4">Nov 16, 2025</td>
+                                <td><span class="status-badge bg-soft-warning">Late</span></td>
+                                <td>09:17 AM</td>
+                                <td>05:01 PM</td>
+                                <td>7h 44m</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4">Nov 15, 2025</td>
+                                <td><span class="status-badge bg-soft-danger">Absent</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td class="ps-4">Nov 14, 2025</td>
+                                <td><span class="status-badge bg-soft-blue">On Leave</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="col-lg-4">
+              
+              <!-- 1. MINI CALENDAR -->
+              <div class="card border-0 shadow-sm calendar-card mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="fw-bold mb-0">November 2025</h6>
+                    <div class="text-muted small">
+                        <i class="bi bi-chevron-left me-2"></i>
+                        <i class="bi bi-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="calendar-grid">
+                    <div class="cal-day-header">S</div>
+                    <div class="cal-day-header">M</div>
+                    <div class="cal-day-header">T</div>
+                    <div class="cal-day-header">W</div>
+                    <div class="cal-day-header">T</div>
+                    <div class="cal-day-header">F</div>
+                    <div class="cal-day-header">S</div>
+
+                    <!-- Dates -->
+                    <div class="cal-day text-muted">29</div>
+                    <div class="cal-day text-muted">30</div>
+                    <div class="cal-day text-muted">31</div>
+                    <div class="cal-day">1</div>
+                    <div class="cal-day">2</div>
+                    <div class="cal-day">3</div>
+                    <div class="cal-day">4</div>
+                    
+                    <div class="cal-day">5</div>
+                    <div class="cal-day">6</div>
+                    <div class="cal-day">7</div>
+                    <div class="cal-day">8</div>
+                    <div class="cal-day">9</div>
+                    <div class="cal-day">10</div>
+                    <div class="cal-day">11</div>
+
+                    <div class="cal-day">12</div>
+                    <div class="cal-day">13</div>
+                    <div class="cal-day">
+                        14 <div class="cal-dot dot-blue"></div> <!-- Leave -->
+                    </div>
+                    <div class="cal-day">
+                        15 <div class="cal-dot dot-red"></div> <!-- Absent -->
+                    </div>
+                    <div class="cal-day">
+                        16 <div class="cal-dot dot-orange"></div> <!-- Late -->
+                    </div>
+                    <div class="cal-day">
+                        17 <div class="cal-dot dot-green"></div> <!-- Present -->
+                    </div>
+                    <div class="cal-day today">
+                        18 <!-- Today -->
+                    </div>
+                    
+                    <div class="cal-day">19</div>
+                    <div class="cal-day">20</div>
+                    <div class="cal-day">21</div>
+                    <div class="cal-day">22</div>
+                    <div class="cal-day">23</div>
+                    <div class="cal-day">24</div>
+                    <div class="cal-day">25</div>
+                </div>
+                
+                <div class="d-flex justify-content-center gap-3 mt-3 small text-muted">
+                    <div class="d-flex align-items-center"><div class="badge-dot badge-present me-1"></div> Present</div>
+                    <div class="d-flex align-items-center"><div class="badge-dot badge-absent me-1"></div> Absent</div>
+                    <div class="d-flex align-items-center"><div class="badge-dot badge-late me-1"></div> Late</div>
+                </div>
+              </div>
+
+              <!-- 2. RECENT LEAVE REQUESTS -->
+              <div class="card border-0 shadow-sm rounded-3">
+                <div class="card-header bg-white py-3 border-0">
+                    <h6 class="fw-bold mb-0">Recent Leave Requests</h6>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush">
+                        
+                        <div class="list-group-item leave-item approved p-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold small">Oct 23, 2023</span>
+                                <span class="badge bg-soft-success text-success-custom rounded-pill">Approved</span>
+                            </div>
+                            <div class="small text-muted">Sick Leave</div>
+                        </div>
+
+                        <div class="list-group-item leave-item approved p-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold small">Sep 15, 2023</span>
+                                <span class="badge bg-soft-success text-success-custom rounded-pill">Approved</span>
+                            </div>
+                            <div class="small text-muted">Personal</div>
+                        </div>
+
+                        <div class="list-group-item leave-item rejected p-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <span class="fw-semibold small">Aug 02, 2023</span>
+                                <span class="badge bg-soft-danger text-danger-custom rounded-pill">Rejected</span>
+                            </div>
+                            <div class="small text-muted">Family Emergency</div>
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Logic for Clock and Check-In -->
+    <script>
+        // 1. LIVE CLOCK
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById('liveClock').innerText = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 2. CHECK IN / CHECK OUT LOGIC
+        let isCheckedIn = false;
+
+        function toggleAttendance() {
+            const btn = document.getElementById('btnAction');
+            const statusTitle = document.getElementById('statusTitle');
+            const todayStatus = document.getElementById('todayStatus');
+            const todayIn = document.getElementById('todayIn');
+            const todayOut = document.getElementById('todayOut');
+            
+            const now = new Date();
+            const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+
+            if (!isCheckedIn) {
+                // Perform Check In
+                isCheckedIn = true;
+                
+                // Update Hero Section
+                statusTitle.innerText = "You are Checked In";
+                statusTitle.classList.add("text-success");
+                
+                btn.innerHTML = '<i class="bi bi-box-arrow-right me-2"></i> Check Out';
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-danger');
+
+                // Update Table
+                todayStatus.innerText = "Present";
+                todayStatus.className = "status-badge bg-soft-success";
+                todayIn.innerText = currentTime;
+
+                alert("Success: Checked in at " + currentTime);
+
+            } else {
+                // Perform Check Out
+                if(confirm("Are you sure you want to check out?")) {
+                    isCheckedIn = false; // In reality, you might lock this state
+                    
+                    // Update Hero Section
+                    statusTitle.innerText = "You have Checked Out";
+                    statusTitle.classList.remove("text-success");
+                    statusTitle.classList.add("text-muted");
+                    
+                    btn.disabled = true;
+                    btn.innerHTML = 'Shift Completed';
+                    btn.classList.remove('btn-danger');
+                    btn.classList.add('btn-secondary');
+
+                    // Update Table
+                    todayOut.innerText = currentTime;
+                    
+                    alert("Success: Checked out at " + currentTime);
+                }
+            }
+        }
+    </script>
+  </body>
+</html>

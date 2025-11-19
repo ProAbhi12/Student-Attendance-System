@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings - Attendance Nepal</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body {
+        background-color: #f4f6fb;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .large-text {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: 260px;
+        background-color: #ffffff;
+        border-right: 1px solid #e3e7f0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+        height: 100vh;
+      }
+
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
+
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
+
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .custom-search-input {
+        border-top: 20px;
+        border-bottom: 20px;
+        border-right: none;
+        border-color: #f0f2f5;
+        background-color: #f0f2f5;
+        padding-left: 15px;
+      }
+
+      .custom-search-btn {
+        border-top: 20px;
+        border-bottom: 20px;
+        background-color: #f0f2f5;
+        border: none;
+        color: #888;
+      }
+
+      .search-form-large {
+        width: 60%;
+        max-width: 700px;
+      }
+
+      .icon-btn {
+        color: #555;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+
+      .topbar-profile-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .card-rounded {
+        border-radius: 10px;
+      }
+
+      .section-title {
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #6b7280;
+      }
+
+      .small-muted {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+
+      .tag-pill {
+        display: inline-block;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        background-color: #eef2ff;
+        font-size: 0.75rem;
+        color: #4f46e5;
+        margin: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      <!-- ========== SIDEBAR ========== -->
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+          <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="teacher-card">
+          <div class="teacher-avatar text-center mb-4">
+            <img
+              src="Teacher.png"
+              alt="profileimage"
+              class="profile-img-circle mb-2"
+            />
+            <div class="fw-semibold small">Rina Gurung</div>
+            <div class="text-muted" style="font-size: 0.8rem">Teacher</div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link" href="teacherdashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+          </a>
+          <a class="nav-link" href="Teacher_Self_Attendance.html">
+            <i class="bi bi-fingerprint"></i> My Attendance
+          </a>
+          <a class="nav-link" href="AttendanceMarking.html">
+            <i class="bi bi-list-check"></i> Attendance
+          </a>
+          <a class="nav-link" href="Attendance_history.html">
+            <i class="bi bi-clock-history"></i> Attendance History
+          </a>
+          <a class="nav-link" href="Classes.html">
+            <i class="bi bi-collection"></i> Classes
+          </a>
+          <a class="nav-link" href="Students.html">
+            <i class="bi bi-people"></i> Students
+          </a>
+          <a class="nav-link" href="Teacher_Report.html">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <a class="nav-link" href="Teacher_Leave.html">
+            <i class="bi bi-calendar-check"></i> Leaves
+          </a>
+          <a class="nav-link active" href="Teacher_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="#">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- ========== MAIN AREA ========== -->
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold">Settings</h5>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+              <form
+                class="d-none d-md-flex me-3 search-form-large"
+                role="search"
+              >
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control custom-search-input"
+                    placeholder="Search..."
+                  />
+                  <button class="btn custom-search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
+
+              <div class="icon-group me-3">
+                <button class="btn icon-btn">
+                  <i class="bi bi-bell-fill"></i>
+                </button>
+              </div>
+
+              <div class="dropdown">
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="Teacher.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="Teacher_Profile.html">Profile</a></li>
+                  <li><a class="dropdown-item" href="Teacher_Settings.html">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Page content -->
+        <div class="container-fluid py-3 px-4">
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+          >
+            <div>
+              <h3 class="fw-bold mb-1">Settings</h3>
+              <div class="small-muted">
+                Customize how Attendance Nepal works for you.
+              </div>
+            </div>
+            <div class="mt-2 mt-md-0 small-muted">
+              These settings apply only to your account. School-wide rules are
+              managed by Admin.
+            </div>
+          </div>
+
+          <div class="row g-4">
+            <!-- LEFT COLUMN -->
+            <div class="col-lg-8">
+              <!-- Notifications -->
+              <div class="card border-0 shadow-sm card-rounded mb-3">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between mb-2">
+                    <div>
+                      <div class="section-title mb-1">Notifications</div>
+                      <div class="small-muted">
+                        Choose how you want to be notified about important
+                        updates.
+                      </div>
+                    </div>
+                    <span class="tag-pill">Teacher-level</span>
+                  </div>
+
+                  <hr />
+
+                  <div class="form-check form-switch mb-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="notifInApp"
+                      checked
+                    />
+                    <label class="form-check-label" for="notifInApp">
+                      In-app notifications
+                      <div class="small-muted">
+                        Show alerts in the bell icon (leave status, reminders,
+                        etc.).
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="form-check form-switch mb-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="notifEmail"
+                      checked
+                    />
+                    <label class="form-check-label" for="notifEmail">
+                      Email notifications
+                      <div class="small-muted">
+                        Receive emails when your leave is approved/rejected.
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="form-check form-switch mb-2">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="notifSms"
+                      disabled
+                    />
+                    <label class="form-check-label" for="notifSms">
+                      SMS notifications (future)
+                      <div class="small-muted">
+                        Optional integration with SMS gateway for student
+                        absence alerts.
+                        <strong>Planned for future version.</strong>
+                      </div>
+                    </label>
+                  </div>
+
+                  <div class="mt-3">
+                    <div class="section-title mb-1">Attendance reminders</div>
+                    <div class="small-muted mb-2">
+                      Remind me if I forget to mark student attendance.
+                    </div>
+
+                    <div class="row g-2">
+                      <div class="col-md-4">
+                        <select class="form-select form-select-sm">
+                          <option selected>On every class day</option>
+                          <option>Only on weekdays</option>
+                          <option>Only when missing</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4">
+                        <select class="form-select form-select-sm">
+                          <option selected>8:30 AM</option>
+                          <option>9:00 AM</option>
+                          <option>9:30 AM</option>
+                          <option>10:00 AM</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Display & Localization -->
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <div class="section-title mb-1">Display & Localization</div>
+                  <div class="small-muted mb-3">
+                    Control how dates, times and pages are shown to you.
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label class="form-label small-muted fw-semibold"
+                        >Default landing page</label
+                      >
+                      <select
+                        class="form-select form-select-sm"
+                        id="defaultPage"
+                      >
+                        <option value="dashboard" selected>
+                          Dashboard Overview
+                        </option>
+                        <option value="attendance">Mark Attendance</option>
+                        <option value="myAttendance">
+                          My Attendance Dashboard
+                        </option>
+                        <option value="students">Students List</option>
+                      </select>
+                      <div class="small-muted">
+                        After login, you will be redirected to this page.
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small-muted fw-semibold"
+                        >Theme (future)</label
+                      >
+                      <select class="form-select form-select-sm" disabled>
+                        <option>Light (current)</option>
+                        <option>Dark</option>
+                      </select>
+                      <div class="small-muted">
+                        Dark mode theme can be added as future enhancement.
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-6">
+                      <label class="form-label small-muted fw-semibold"
+                        >Date format</label
+                      >
+                      <div class="d-flex flex-wrap gap-2 small">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="dateFormat"
+                            id="df1"
+                            checked
+                          />
+                          <label class="form-check-label" for="df1">
+                            DD-MM-YYYY (16-11-2025)
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="dateFormat"
+                            id="df2"
+                          />
+                          <label class="form-check-label" for="df2">
+                            YYYY-MM-DD (2025-11-16)
+                          </label>
+                        </div>
+                      </div>
+                    </div> -->
+
+                    <div class="col-md-6">
+                      <label class="form-label small-muted fw-semibold"
+                        >Time format</label
+                      >
+                      <div class="d-flex flex-wrap gap-2 small">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="timeFormat"
+                            id="tf1"
+                            checked
+                          />
+                          <label class="form-check-label" for="tf1">
+                            12-hour (10:30 AM)
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="timeFormat"
+                            id="tf2"
+                          />
+                          <label class="form-check-label" for="tf2">
+                            24-hour (10:30)
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="form-label small-muted fw-semibold"
+                        >Language</label
+                      >
+                      <select class="form-select form-select-sm" disabled>
+                        <option>English (current)</option>
+                        <option>नेपाली (future)</option>
+                      </select>
+                      <div class="small-muted">
+                        Nepali localization can be implemented in future
+                        versions.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-end mt-3">
+                    <button
+                      class="btn btn-outline-secondary me-2"
+                      id="btnResetSettings"
+                    >
+                      <i class="bi bi-arrow-counterclockwise me-1"></i>Reset to
+                      Default
+                    </button>
+                    <button class="btn btn-primary" id="btnSaveSettings">
+                      <i class="bi bi-save me-1"></i>Save Settings
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: account/security summary -->
+            <div class="col-lg-4">
+              <div class="card border-0 shadow-sm card-rounded mb-3">
+                <div class="card-body">
+                  <div class="section-title mb-1">Account Summary</div>
+                  <div class="small-muted mb-3">
+                    Quick view of your account information.
+                  </div>
+
+                  <div class="mb-2 small d-flex justify-content-between">
+                    <span class="small-muted">Username</span>
+                    <span class="fw-semibold">rina.gurung</span>
+                  </div>
+                  <div class="mb-2 small d-flex justify-content-between">
+                    <span class="small-muted">Role</span>
+                    <span class="fw-semibold">Teacher</span>
+                  </div>
+                  <div class="mb-2 small d-flex justify-content-between">
+                    <span class="small-muted">Account status</span>
+                    <span class="fw-semibold text-success">Active</span>
+                  </div>
+                  <div class="mb-2 small d-flex justify-content-between">
+                    <span class="small-muted">Last password change</span>
+                    <span class="fw-semibold">3 months ago</span>
+                  </div>
+
+                  <hr />
+
+                  <div class="small-muted mb-2">
+                    For security, update your password regularly.
+                  </div>
+                  <a
+                    href="Teacher_Profile.html#account"
+                    class="btn btn-outline-primary btn-sm w-100"
+                  >
+                    <i class="bi bi-key-fill me-1"></i>Go to Change Password
+                  </a>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <div class="section-title mb-1">Shortcuts</div>
+                  <div class="small-muted mb-3">
+                    Common tasks related to your settings.
+                  </div>
+
+                  <div class="d-grid gap-2">
+                    <a
+                      href="Teacher_Self_Attendance.html"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      <i class="bi bi-person-check me-1"></i>My Attendance
+                    </a>
+                    <a
+                      href="Teacher_Leave.html"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      <i class="bi bi-calendar-check me-1"></i>My Leaves
+                    </a>
+                    <a
+                      href="Teacher_Report.html"
+                      class="btn btn-outline-primary btn-sm"
+                    >
+                      <i class="bi bi-file-earmark-bar-graph me-1"></i>My
+                      Reports
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="alert alert-success d-none mt-3 py-2 px-3"
+                id="settingsAlert"
+                role="alert"
+              >
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Your settings have been saved (demo). Backend will persist these
+                per teacher.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const settingsAlert = document.getElementById("settingsAlert");
+      function showSettingsSaved(msgOnlyReset) {
+        settingsAlert.classList.remove("d-none");
+        settingsAlert.querySelector("span")?.remove; // ignore
+        setTimeout(() => settingsAlert.classList.add("d-none"), 2500);
+      }
+
+      document
+        .getElementById("btnSaveSettings")
+        .addEventListener("click", () => showSettingsSaved(false));
+
+      document
+        .getElementById("btnResetSettings")
+        .addEventListener("click", () => {
+          // For now, just UI: you can also manually reset controls here if you want
+          showSettingsSaved(true);
+        });
+    </script>
+  </body>
+</html>

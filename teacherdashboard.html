@@ -1,415 +1,506 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teacher Dashboard</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Dashboard</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        crossorigin="anonymous">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <style>
-    body {
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <style>
+       body {
       background-color: #f4f6fb;
       margin: 0;
+      overflow: hidden;
     }
+
+    .large-text {
+  font-size: 20px; }
 
     .sidebar {
       width: 260px;
       background-color: #ffffff;
       border-right: 1px solid #e3e7f0;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0; 
+      height: 100vh;
     }
 
-    .sidebar-brand {
-      font-weight: 700;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
 
-    .sidebar-brand-icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: #4a90e2;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
 
-    .profile-img-circle {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
 
-    .sidebar .nav-link {
-      color: black;
-      font-weight: 500;
-      border-radius: 10px;
-      padding: 0.55rem 0.75rem;
-      margin-bottom: 0.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 1.1rem;
-    }
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
 
-    .sidebar .nav-link.active {
-      background-color: #dbe9f9;
-      color: #629fe6;
-    }
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
 
-    .custom-topbar {
-      background-color: #ffffff;
-      border-bottom: 1px solid #e3e7f0;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
 
-    .custom-search-input {
-      border-top: 20px;
-      border-bottom: 20px;
-      border-right: none;
-      border-color: #f0f2f5;
-      background-color: #f0f2f5;
-      padding-left: 15px;
-    }
+      .custom-search-input {
+        border-top: 20px;
+        border-bottom: 20px;
+        border-right: none;
+        border-color: #f0f2f5;
+        background-color: #f0f2f5;
+        padding-left: 15px;
+      }
 
-    .custom-search-btn {
-      border-top: 20px;
-      border-bottom: 20px;
-      background-color: #f0f2f5;
-      border: none;
-      color: #888;
-    }
+      .custom-search-btn {
+        border-top: 20px;
+        border-bottom: 20px;
+        background-color: #f0f2f5;
+        border: none;
+        color: #888;
+      }
 
-    .search-form-large{
-        width:60%;
-        max-width:700px;
-    }
+      .search-form-large {
+        width: 60%;
+        max-width: 700px;
+      }
 
-    .icon-btn {
-      color: #555;
-      font-size: 1.2rem;
-      padding: 0.5rem;
-    }
+      .icon-btn {
+        color: #555;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
 
-    .topbar-profile-img {
-      height: 50px;
-      width: 50px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+      .topbar-profile-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
 
-    .btn-primary {
-  background-color: #4a90e2;
-  border-color: #4a90e2;
-}
+      .btn-primary {
+        background-color: #4a90e2;
+        border-color: #4a90e2;
+      }
 
-.btn-outline-primary {
-  border-color: #c9ddff;
-   background-color: #dbe9f9;
-      color: #3c90e2;
-}
-.btn-outline-primary:hover {
-  background-color: #2d6cdf;
-  color: #fff;
-}
+      .btn-outline-primary {
+        border-color: #c9ddff;
+        background-color: #dbe9f9;
+        color: #3c90e2;
+      }
 
-.cardbox{
-    padding:4px 20px;
-    border-radius:6px;
-    
-    background-color: #dddbdb;
-}
+      .btn-outline-primary:hover {
+        background-color: #2d6cdf;
+        color: #fff;
+      }
 
-  </style>
-</head>
-<body>
-  <!-- MAIN LAYOUT: sidebar + right content in one flex container -->
-  <div class="d-flex vh-100">
+      .cardbox {
+        padding: 4px 20px;
+        border-radius: 6px;
+        background-color: #dddbdb;
+      }
 
-    <!-- SIDEBAR -->
-    <div class="sidebar d-flex flex-column p-3">
-      <div class="sidebar-brand text-center">
-        <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
-        <span>Attendance Nepal</span>
-      </div>
+      .card-rounded {
+        border-radius: 10px;
+      }
 
-      <div class="teacher-card">
-        <div class="teacher-avatar text-center mb-4">
-          <img src="Teacher.png" alt="profileimage" class="profile-img-circle mb-2">
-          <div class="fw-semibold small">Rina Gurung</div>
-          <div class="text-muted" style="font-size: 0.8rem;">Science Teacher</div>
+      /* Attendance overview styles */
+      .circle-progress {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e 0 295deg, #e5e7eb 295deg 360deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        position: relative;
+      }
+
+      .circle-progress-inner {
+        width: 115px;
+        height: 115px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .circle-progress-inner h2 {
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #16a34a;
+      }
+
+      .attendance-pill {
+        border-radius: 10px;
+        padding: 0.8rem;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        text-align: center;
+        height: 100%;
+      }
+
+      .attendance-pill strong {
+        display: block;
+        font-size: 1.2rem;
+        margin-top: 5px;
+        margin-bottom: 2px;
+      }
+
+      .attendance-pill.present strong { color: #16a34a; }
+      .attendance-pill.absent strong { color: #ef4444; }
+      .attendance-pill.late strong { color: #f97316; }
+
+      .badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+      }
+
+      .badge-present { background-color: #22c55e; }
+      .badge-absent { background-color: #ef4444; }
+      .badge-late { background-color: #f97316; }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+        <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="teacher-card">
+          <div class="teacher-avatar text-center mb-4">
+            <img
+              src="Teacher.png"
+              alt="profileimage"
+              class="profile-img-circle mb-2"
+            />
+            <div class="fw-semibold small">Rina Gurung</div>
+            <div class="text-muted" style="font-size: 0.8rem">Teacher</div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link active" href="teacherdashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+          </a>
+          <a class="nav-link" href="Teacher_Self_Attendance.html">
+            <i class="bi bi-fingerprint"></i> My Attendance
+          </a>
+          <a class="nav-link" href="AttendanceMarking.html">
+            <i class="bi bi-list-check"></i> Attendance
+          </a>
+          <a class="nav-link" href="Attendance_history.html">
+            <i class="bi bi-clock-history"></i> Attendance History
+          </a>
+          <a class="nav-link" href="Classes.html">
+            <i class="bi bi-collection"></i> Classes
+          </a>
+          <a class="nav-link" href="Students.html">
+            <i class="bi bi-people"></i> Students
+          </a>
+          <a class="nav-link" href="Teacher_Report.html">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <a class="nav-link" href="Teacher_Leave.html">
+            <i class="bi bi-calendar-check"></i> Leaves
+          </a>
+    <a class="nav-link" href="Teacher_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="#">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
         </div>
       </div>
 
-      <nav class="nav flex-column mb-3">
-        <a class="nav-link active" href="teacherdashboard.html">
-          <i class="bi bi-grid-1x2"></i> Dashboard
-        </a>
-        <a class="nav-link" href="AttendanceMarking.html">
-          <i class="bi bi-list-check"></i> Attendance
-        </a>
-        <a class="nav-link" href="Attendance_history.html">
-          <i class="bi bi-clock-history"></i> Attendance History
-        </a>
-        <a class="nav-link" href="Classes.html">
-          <i class="bi bi-collection"></i> Classes
-        </a>
-        <a class="nav-link" href="Students.html">
-          <i class="bi bi-people"></i> Students
-        </a>
-        <a class="nav-link" href="Teacher_Report.html">
-          <i class="bi bi-bar-chart"></i> Reports
-        </a>
-        <a class="nav-link" href="Teacher_Leave.html">
-        <i class="bi bi-calendar-check"></i> Leaves
-    </a>
-        <a class="nav-link" href="#">
-          <i class="bi bi-gear"></i> Settings
-        </a>
-      </nav>
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold">Dashboard Overview</h5>
+            </div>
 
-      <div class="mt-auto pt-3">
-        <a class="nav-link" href="#">
-          <i class="bi bi-box-arrow-right"></i> Logout
-        </a>
-      </div>
-    </div>
+            <div class="d-flex align-items-center ms-auto">
+              <form
+                class="d-none d-md-flex me-3 search-form-large"
+                role="search"
+              >
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control custom-search-input"
+                    placeholder="Search..."
+                    aria-label="Search"
+                  />
+                  <button class="btn custom-search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
 
-    <div class="flex-grow-1 d-flex flex-column">
-
-      <!-- TOP NAVBAR -->
-      <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
-        <div class="container-fluid">
-  
-          <div class="d-none d-lg-block">
-            <h5 class="mb-0 fw-bold">Dashboard Overview</h5>
-          </div>
-
-          <div class="d-flex align-items-center ms-auto">
-            <form class="d-none d-md-flex me-3 search-form-large" role="search">
-              <div class="input-group">
-                <input type="search"
-                       class="form-control custom-search-input"
-                       placeholder="Search..."
-                       aria-label="Search">
-                <button class="btn custom-search-btn" type="submit">
-                  <i class="bi bi-search"></i>
+              <div class="icon-group me-3">
+                <button class="btn icon-btn">
+                  <i class="bi bi-bell-fill"></i>
                 </button>
               </div>
-            </form>
 
-            <div class="icon-group me-3">
-              <button class="btn icon-btn"><i class="bi bi-bell-fill"></i></button>
-            </div>
-
-            <div class="dropdown">
-              <a class="d-flex align-items-center text-decoration-none dropdown-toggle"
-                 href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="Teacher.png" alt="Profile" class="topbar-profile-img me-2">
-                <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
-              </ul>
+              <div class="dropdown">
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="Teacher.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="Teacher_Profile.html">Profile</a></li>
+                  <li><a class="dropdown-item" href="Teacher_Settings.html">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-<div class="container-fluid py-3 px-4">
-  <div class="row g-4">
-
-    <!-- LEFT COLUMN -->
-    <div class="col-lg-8">
-      <!-- Welcome Section -->
-      <div class="mb-4">
-        <h3 class="fw-bold mb-1">Welcome back, Rina!</h3>
-        <div class="text-muted" style="font-size: 0.9rem;">
-          Sunday, 16 November 2025 | Kartik 30, 2082
-        </div>
-      </div>
-
-      <!-- My Classes Today -->
-      <div class="mb-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="fw-semibold mb-0">My Classes Today</h5>
-        </div>
-
-        <!-- Class Card 1 -->
-        <div class="card border-0 shadow-sm mb-3" style="border-radius: 16px;">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <div class="text-muted small">9:00 AM - 10:00 AM</div>
-              <i class="bi bi-three-dots text-muted"></i>
-            </div>
-            <div class="fw-semibold">Grade 8 - Section A</div>
-            <div class="text-muted small mb-3">Science</div>
-            <button class="btn btn-primary w-100">
-              Mark Attendance
-            </button>
-          </div>
-        </div>
-
-        <!-- Class Card 2 -->
-        <div class="card border-0 shadow-sm" style="border-radius: 16px;">
-          <div class="card-body">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-              <div class="text-muted small">10:00 AM - 11:00 AM</div>
-              <i class="bi bi-bookmark text-warning"></i>
-            </div>
-            <div class="fw-semibold">Grade 10 - Section B</div>
-            <div class="text-muted small mb-3">Math</div>
-            <button class="btn btn-primary w-100">
-              Mark Attendance
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Today's Attendance Overview -->
-      <div>
-        <h5 class="fw-semibold mb-3">Today's Attendance Overview</h5>
-        <div class="row g-3">
-
-          <!-- Present circle card -->
-          <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm text-center" style="border-radius: 16px;">
-              <div class="card-body">
-                <div class="mx-auto mb-2"
-                     style="width: 80px; height: 80px; border-radius: 50%;
-                            border: 8px solid #2ecc71; display:flex; align-items:center;
-                            justify-content:center; font-weight:700; color:#2ecc71;">
-                  82%
+        <div class="container-fluid py-3 px-4">
+          <div class="row g-4">
+            
+            <div class="col-lg-8">
+              
+              <div class="mb-4">
+                <h3 class="fw-bold mb-1">Welcome back, Rina!</h3>
+                <div class="text-muted" style="font-size: 0.9rem">
+                  Sunday, 16 November 2025 | Kartik 30, 2082
                 </div>
-                <div class="fw-semibold" style="font-size: 0.9rem;">Present</div>
+              </div>
+
+              <div class="card border-0 shadow-sm card-rounded mb-4">
+                <div class="card-header bg-white border-0 pt-3 pb-0">
+                  <h5 class="card-title fw-semibold">Today’s Attendance Overview</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row align-items-center">
+                    <div class="col-md-4 text-center mb-3 mb-md-0">
+                      <div class="circle-progress">
+                        <div class="circle-progress-inner">
+                          <h2>82%</h2>
+                          <div class="small text-muted">Present</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-8">
+                      <div class="row g-3">
+                        <div class="col-4">
+                          <div class="attendance-pill present">
+                            <div class="small text-muted mb-1">
+                              <span class="badge-dot badge-present"></span> Present
+                            </div>
+                            <strong>68</strong>
+                            <span class="small text-muted">students</span>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="attendance-pill absent">
+                            <div class="small text-muted mb-1">
+                              <span class="badge-dot badge-absent"></span> Absent
+                            </div>
+                            <strong>12</strong>
+                            <span class="small text-muted">students</span>
+                          </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="attendance-pill late">
+                            <div class="small text-muted mb-1">
+                              <span class="badge-dot badge-late"></span> Late
+                            </div>
+                            <strong>3</strong>
+                            <span class="small text-muted">students</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h5 class="fw-semibold mb-0">My Classes Today</h5>
+                  <span class="text-muted small">2 classes assigned</span>
+                </div>
+
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="card border-0 shadow-sm card-rounded h-100">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                          <div class="text-muted small">9:00 AM - 10:00 AM</div>
+                          <i class="bi bi-three-dots text-muted"></i>
+                        </div>
+                        <div class="fw-semibold">Grade 8 - Section A</div>
+                        <div class="text-muted small mb-3">Science</div>
+                        <a href="AttendanceMarking.html" class="btn btn-primary w-100">
+                          Mark Attendance
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="card border-0 shadow-sm card-rounded h-100">
+                      <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                          <div class="text-muted small">
+                            10:00 AM - 11:00 AM
+                          </div>
+                          <i class="bi bi-bookmark text-warning"></i>
+                        </div>
+                        <div class="fw-semibold">Grade 10 - Section B</div>
+                        <div class="text-muted small mb-3">Math</div>
+                        <a href="AttendanceMarking.html" class="btn btn-primary w-100">
+                          Mark Attendance
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Present count -->
-          <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm text-center" style="border-radius: 16px;">
-              <div class="card-body">
-                <div class="text-success fw-bold fs-5 mb-1">68</div>
-                <div class="text-muted small">Present</div>
+            <div class="col-lg-4">
+              
+              <div class="card border-0 shadow-sm mb-4 card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-3">Quick Actions</h6>
+                  <div class="d-grid gap-2">
+                    <a href="Students.html" class="btn btn-outline-primary fw-bold">
+                      <i class="bi bi-people me-2"></i> View All Students
+                    </a>
+                    <a href="Teacher_Report.html" class="btn btn-outline-primary fw-bold">
+                      <i class="bi bi-file-earmark-bar-graph me-2"></i> Generate Weekly Report
+                    </a>
+                    <button class="btn btn-outline-primary fw-bold">
+                      <i class="bi bi-chat-dots me-2"></i> Contact Parents
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-3">Upcoming Lessons</h6>
+
+                  <div class="d-flex mb-3">
+                    <div class="me-3 text-center cardbox">
+                      <div class="fw-bold">1:00</div>
+                      <div class="text-muted small">PM</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Grade 9 - Science</div>
+                      <div class="text-muted small">Physics Lab</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex mb-3">
+                    <div class="me-3 text-center cardbox">
+                      <div class="fw-bold">2:00</div>
+                      <div class="text-muted small">PM</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Grade 9 - Math</div>
+                      <div class="text-muted small">Trigonometry</div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex">
+                    <div class="me-3 text-center cardbox">
+                      <div class="fw-bold">3:00</div>
+                      <div class="text-muted small">PM</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold">Staff Meeting</div>
+                      <div class="text-muted small">Conference Room</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Absent count -->
-          <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm text-center" style="border-radius: 16px;">
-              <div class="card-body">
-                <div class="text-danger fw-bold fs-5 mb-1">12</div>
-                <div class="text-muted small">Absent</div>
-              </div>
-            </div>
           </div>
-
-          <!-- Late count -->
-          <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm text-center" style="border-radius: 16px;">
-              <div class="card-body">
-                <div class="text-warning fw-bold fs-5 mb-1">3</div>
-                <div class="text-muted small">Late</div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
-
-    <!-- RIGHT COLUMN -->
-    <div class="col-lg-4">
-      <!-- Quick Actions -->
-      <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px;">
-        <div class="card-body">
-          <h6 class="fw-semibold mb-3">Quick Actions</h6>
-          <div class="d-grid gap-2">
-            <button class="btn btn-outline-primary fw-bold">
-              <i class="bi bi-people me-2"></i> View All Students
-            </button>
-            <button class="btn btn-outline-primary fw-bold">
-              <i class="bi bi-file-earmark-bar-graph me-2"></i> Generate Weekly Report
-            </button>
-            <button class="btn btn-outline-primary fw-bold">
-              <i class="bi bi-chat-dots me-2"></i> Contact Parents
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Upcoming Lessons -->
-      <div class="card border-0 shadow-sm" style="border-radius: 16px;">
-        <div class="card-body">
-          <h6 class="fw-semibold mb-3">Upcoming Lessons</h6>
-
-          <!-- Lesson 1 -->
-          <div class="d-flex mb-3">
-            <div class="me-3 text-center cardbox">
-              <div class="fw-bold">1:00</div>
-              <div class="text-muted small">PM</div>
-            </div>
-            <div>
-              <div class="fw-semibold">Grade 9 - Science</div>
-              <div class="text-muted small">Physics Lab</div>
-            </div>
-          </div>
-
-          <!-- Lesson 2 -->
-          <div class="d-flex mb-3">
-            <div class="me-3 text-center cardbox">
-              <div class="fw-bold">2:00</div>
-              <div class="text-muted small">PM</div>
-            </div>
-            <div>
-              <div class="fw-semibold">Grade 9 - Math</div>
-              <div class="text-muted small">Trignometry</div>
-            </div>
-          </div>
-
-          <!-- Meeting -->
-          <div class="d-flex">
-            <div class="me-3 text-center cardbox">
-              <div class="fw-bold">3:00</div>
-              <div class="text-muted small">PM</div>
-            </div>
-            <div>
-              <div class="fw-semibold">Staff Meeting</div>
-              <div class="text-muted small">Conference Room</div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-    </div> 
-
-  </div> 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-          crossorigin="anonymous"></script>
-</body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
