@@ -1,0 +1,435 @@
+<!-- Student_Base_Layout.html : use this as starting point for all student pages -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal - Attendance Nepal</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      /* --- SAME BASE STYLES AS TEACHER LAYOUT --- */
+      body {
+        background-color: #f4f6fb;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .large-text {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: 260px;
+        background-color: #ffffff;
+        border-right: 1px solid #e3e7f0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+        height: 100vh;
+      }
+
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
+
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
+
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .custom-search-input {
+        border-top: 20px;
+        border-bottom: 20px;
+        border-right: none;
+        border-color: #f0f2f5;
+        background-color: #f0f2f5;
+        padding-left: 15px;
+      }
+
+      .custom-search-btn {
+        border-top: 20px;
+        border-bottom: 20px;
+        background-color: #f0f2f5;
+        border: none;
+        color: #888;
+      }
+
+      .search-form-large {
+        width: 60%;
+        max-width: 700px;
+      }
+
+      .icon-btn {
+        color: #555;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+
+      .topbar-profile-img {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .card-rounded {
+        border-radius: 10px;
+      }
+
+      .small-muted {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      <!-- SIDEBAR -->
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+          <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="user-card">
+          <div class="text-center mb-4">
+            <img
+              src="Student.png"
+              alt="Student profile"
+              class="profile-img-circle mb-2"
+            />
+            <div class="fw-semibold small">Aarav Sharma</div>
+            <div class="text-muted" style="font-size: 0.8rem">
+              Student, Grade 10 - A
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link active" href="Student_Dashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
+          </a>
+          <a class="nav-link" href="Student_My_Attendance.html">
+            <i class="bi bi-clipboard-check"></i> My Attendance
+          </a>
+          <a class="nav-link" href="Student_Leave.html">
+            <i class="bi bi-calendar-check"></i> My Leaves
+          </a>
+          <a class="nav-link" href="Student_Profile.html">
+            <i class="bi bi-person"></i> My Profile
+          </a>
+          <a class="nav-link" href="Student_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="#">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- MAIN AREA -->
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold" id="pageTitle">Student Dashboard</h5>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+              <form
+                class="d-none d-md-flex me-3 search-form-large"
+                role="search"
+              >
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control custom-search-input"
+                    placeholder="Search..."
+                  />
+                  <button class="btn custom-search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
+
+              <div class="icon-group me-3">
+                <button class="btn icon-btn">
+                  <i class="bi bi-bell-fill"></i>
+                </button>
+              </div>
+
+              <div class="dropdown">
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="Student.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold"
+                    >Aarav Sharma</span
+                  >
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="Student_Profile.html">Profile</a></li>
+                  <li><a class="dropdown-item" href="Student_Settings.html">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- PAGE-SPECIFIC CONTENT GOES HERE -->
+        <!-- <div class="container-fluid py-3 px-4"> -->
+          <!-- Replace this content for each student page -->
+          <!-- <h3 class="fw-bold">Student page content here…</h3>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="container-fluid py-3 px-4">
+  <script>
+    document.getElementById("pageTitle").textContent = "My Attendance";
+  </script>
+
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+    <div>
+      <h3 class="fw-bold mb-1">My Attendance</h3>
+      <div class="small-muted">
+        View your daily attendance records and monthly summary.
+      </div>
+    </div>
+    <a href="Student_Leaves.html" class="btn btn-primary mt-2 mt-md-0">
+      <i class="bi bi-calendar-plus me-1"></i> Apply for Leave
+    </a>
+  </div>
+
+  <div class="row g-4">
+    <!-- LEFT: Summary + table -->
+    <div class="col-lg-8">
+      <!-- Summary cards -->
+      <div class="row g-3 mb-3">
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm card-rounded">
+            <div class="card-body">
+              <div class="small-muted">This Month</div>
+              <div class="fw-bold fs-4 text-primary">78%</div>
+              <div class="small-muted">Attendance</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm card-rounded">
+            <div class="card-body">
+              <div class="small-muted">Present</div>
+              <div class="fw-bold fs-4 text-success">18</div>
+              <div class="small-muted">days</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm card-rounded">
+            <div class="card-body">
+              <div class="small-muted">Absent</div>
+              <div class="fw-bold fs-4 text-danger">2</div>
+              <div class="small-muted">days</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card border-0 shadow-sm card-rounded">
+            <div class="card-body">
+              <div class="small-muted">On Leave</div>
+              <div class="fw-bold fs-4 text-primary">1</div>
+              <div class="small-muted">approved</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- History table -->
+      <div class="card border-0 shadow-sm card-rounded">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div>
+              <h6 class="fw-semibold mb-0">Attendance History</h6>
+              <div class="small-muted">
+                Last few weeks (you can filter by month later).
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive mt-2">
+            <table class="table table-hover table-sm mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Day</th>
+                  <th>Status</th>
+                  <th>Remarks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nov 16, 2025</td>
+                  <td>Sunday</td>
+                  <td><span class="badge bg-success-subtle text-success">Present</span></td>
+                  <td>On time</td>
+                </tr>
+                <tr>
+                  <td>Nov 15, 2025</td>
+                  <td>Saturday</td>
+                  <td><span class="badge bg-warning-subtle text-warning">Late</span></td>
+                  <td>Bus delay</td>
+                </tr>
+                <tr>
+                  <td>Nov 14, 2025</td>
+                  <td>Friday</td>
+                  <td><span class="badge bg-danger-subtle text-danger">Absent</span></td>
+                  <td>Fever</td>
+                </tr>
+                <tr>
+                  <td>Nov 13, 2025</td>
+                  <td>Thursday</td>
+                  <td><span class="badge bg-primary-subtle text-primary">On Leave</span></td>
+                  <td>Sick leave (approved)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Calendar -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm card-rounded">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="fw-semibold">Monthly Calendar</div>
+            <div class="small-muted">Nov 2025</div>
+          </div>
+
+          <!-- Simple static calendar grid (you can replace by JS later) -->
+          <div class="small-muted mb-1">
+            <span class="badge bg-success-subtle text-success">P</span> Present
+            <span class="badge bg-warning-subtle text-warning ms-1">L</span> Late
+            <span class="badge bg-primary-subtle text-primary ms-1">Lv</span> Leave
+            <span class="badge bg-danger-subtle text-danger ms-1">A</span> Absent
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-bordered text-center mb-0" style="font-size: 0.8rem">
+              <thead class="table-light">
+                <tr>
+                  <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
+                </tr>
+                <tr>
+                  <td class="bg-success-subtle">4</td>
+                  <td class="bg-success-subtle">5</td>
+                  <td class="bg-success-subtle">6</td>
+                  <td class="bg-success-subtle">7</td>
+                  <td class="bg-success-subtle">8</td>
+                  <td class="bg-success-subtle">9</td>
+                  <td class="bg-primary-subtle">10</td>
+                </tr>
+                <tr>
+                  <td class="bg-success-subtle">11</td>
+                  <td class="bg-success-subtle">12</td>
+                  <td class="bg-success-subtle">13</td>
+                  <td class="bg-primary-subtle">14</td>
+                  <td class="bg-danger-subtle">15</td>
+                  <td class="bg-warning-subtle">16</td>
+                  <td>17</td>
+                </tr>
+                <!-- continue as needed -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="small-muted mt-2">
+            This calendar is for viewing only. Attendance is marked by your teachers.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -15,12 +15,19 @@
     body {
       background-color: #f4f6fb;
       margin: 0;
+      overflow: hidden;
     }
+
+    .large-text {
+  font-size: 20px; }
 
     .sidebar {
       width: 260px;
       background-color: #ffffff;
       border-right: 1px solid #e3e7f0;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+      flex-shrink: 0;
+      height: 100vh; 
     }
 
     .sidebar-brand {
@@ -30,6 +37,7 @@
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
+      padding-top: 5px;
     }
 
     .sidebar-brand-icon {
@@ -198,14 +206,14 @@
     <div class="sidebar d-flex flex-column p-3">
       <div class="sidebar-brand text-center">
         <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
-        <span>Attendance Nepal</span>
+        <span class="large-text">Attendance Nepal</span>
       </div>
 
       <div class="teacher-card">
         <div class="teacher-avatar text-center mb-4">
           <img src="Teacher.png" alt="profileimage" class="profile-img-circle mb-2">
           <div class="fw-semibold small">Rina Gurung</div>
-          <div class="text-muted" style="font-size: 0.8rem;">Science Teacher</div>
+          <div class="text-muted" style="font-size: 0.8rem;">Teacher</div>
         </div>
       </div>
 
@@ -216,6 +224,9 @@
         <a class="nav-link" href="AttendanceMarking.html">
           <i class="bi bi-list-check"></i> Attendance
         </a>
+        <a class="nav-link" href="Teacher_Self_Attendance.html">
+            <i class="bi bi-fingerprint"></i> My Attendance
+          </a>
         <a class="nav-link" href="Attendance_history.html">
           <i class="bi bi-clock-history"></i> Attendance History
         </a>
@@ -231,9 +242,9 @@
         <a class="nav-link" href="Teacher_Leave.html">
         <i class="bi bi-calendar-check"></i> Leaves
     </a>
-        <a class="nav-link" href="#">
-          <i class="bi bi-gear"></i> Settings
-        </a>
+        <a class="nav-link" href="Teacher_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>
       </nav>
 
       <div class="mt-auto pt-3">
@@ -243,7 +254,7 @@
       </div>
     </div>
 
-    <div class="flex-grow-1 d-flex flex-column">
+    <div class="flex-grow-1 d-flex flex-column overflow-auto">
 
       <!-- TOP NAVBAR -->
       <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
@@ -276,12 +287,12 @@
                 <img src="Teacher.png" alt="Profile" class="topbar-profile-img me-2">
                 <span class="d-none d-md-block fw-semibold">Rina Gurung</span>
               </a>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
-              </ul>
+             <ul class="dropdown-menu dropdown-menu-end">
+                  <li><a class="dropdown-item" href="Teacher_Profile.html">Profile</a></li>
+                  <li><a class="dropdown-item" href="Teacher_Settings.html">Settings</a></li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
             </div>
           </div>
         </div>
