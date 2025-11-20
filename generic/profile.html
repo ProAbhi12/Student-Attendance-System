@@ -4,22 +4,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
 
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+    <style>
+        /* Minimal custom CSS for enhanced appearance */
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+        }
+        .stats-card {
+            transition: all 0.3s ease;
+        }
+        .stats-card:hover {
+            transform: translateY(-3px);
+        }
+        .btn {
+            transition: all 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        .list-group-item {
+            transition: background-color 0.2s ease;
+        }
+        .list-group-item:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        .bg-success {
+            background: linear-gradient(135deg, #198754 0%, #20c997 100%) !important;
+        }
+        .bg-primary {
+            background: linear-gradient(135deg, #0d6efd 0%, #6ea8fe 100%) !important;
+        }
+        .profile-img {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .section-title {
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
     <!-- Student -->
-    <section id="Student" class="d-none">
-
+    <section id="Student">
         <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
-
             <!-- Top Banner -->
             <div class="bg-success text-white p-4 d-flex align-items-center">
                 <img src="https://tse3.mm.bing.net/th/id/OIP.kDN_tgpZ5SOiZFa-W9P5RwHaEK?cb=ucfimg2ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3"
-                class="rounded-circle border border-3 border-white" 
+                class="rounded-circle border border-3 border-white profile-img" 
                     width="95" height="95" alt="Student Photo">
 
                 <div class="ms-3">
@@ -30,16 +69,15 @@
 
             <!-- Body -->
             <div class="card-body">
-
                 <!-- Action Buttons -->
                 <div class="mb-4">
-                    <button class="btn btn-outline-primary btn-sm me-2">
+                    <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editStudentProfileModal">
                         <i class="fa-solid fa-user-pen me-1"></i> Edit Profile
                     </button>
                     <button class="btn btn-outline-secondary btn-sm me-2">
                         <i class="fa-solid fa-lock me-1"></i> Change Password
                     </button>
-                    <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/student/student-side.html?open=attendance'">
+                    <button class="btn btn-outline-info btn-sm" onclick="window.location.href='/StudentFolder/student-side.html?open=attendance'">
                         <i class="fa-solid fa-chart-line me-1"></i> View Attendance
                     </button>
                 </div>
@@ -47,7 +85,7 @@
                 <!-- Stats Cards -->
                 <div class="row g-3 mb-4">
                     <div class="col-6 col-md-4">
-                        <div class="card text-center border-0 shadow-sm">
+                        <div class="card text-center border-0 shadow-sm stats-card">
                             <div class="card-body">
                                 <i class="fa-solid fa-calendar-check fa-xl mb-2 text-success"></i>
                                 <h6 class="fw-bold mb-0">92%</h6>
@@ -57,7 +95,7 @@
                     </div>
 
                     <div class="col-6 col-md-4">
-                        <div class="card text-center border-0 shadow-sm">
+                        <div class="card text-center border-0 shadow-sm stats-card">
                             <div class="card-body">
                                 <i class="fa-solid fa-user-check fa-xl mb-2 text-primary"></i>
                                 <h6 class="fw-bold mb-0">150</h6>
@@ -67,7 +105,7 @@
                     </div>
 
                     <div class="col-6 col-md-4">
-                        <div class="card text-center border-0 shadow-sm">
+                        <div class="card text-center border-0 shadow-sm stats-card">
                             <div class="card-body">
                                 <i class="fa-solid fa-user-xmark fa-xl mb-2 text-danger"></i>
                                 <h6 class="fw-bold mb-0">12</h6>
@@ -78,89 +116,89 @@
                 </div>
 
                 <!-- Personal Info -->
-                <h5 class="mb-2">Personal Information</h5>
+                <h5 class="section-title">Personal Information</h5>
                 <ul class="list-group mb-4">
                     <li class="list-group-item">
                         <i class="fa-solid fa-id-badge me-2 text-primary"></i>
-                        <strong>Student ID:</strong> STU1001
+                        <strong>Student ID:</strong> <span id="studentId">STU1001</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-cake-candles me-2 text-success"></i>
-                        <strong>DOB:</strong> 2010-04-18
+                        <strong>DOB:</strong> <span id="studentDob">2010-04-18</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-venus-mars me-2 text-secondary"></i>
-                        <strong>Gender:</strong> Male
+                        <strong>Gender:</strong> <span id="studentGender">Male</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-phone me-2 text-primary"></i>
-                        <strong>Contact:</strong> 9812345678
+                        <strong>Contact:</strong> <span id="studentContact">9812345678</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-envelope me-2 text-danger"></i>
-                        <strong>Email:</strong> pranil.b@school.edu
+                        <strong>Email:</strong> <span id="studentEmail">pranil.b@school.edu</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-location-dot me-2 text-warning"></i>
-                        <strong>Address:</strong> Kalanki, Kathmandu
+                        <strong>Address:</strong> <span id="studentAddress">Kalanki, Kathmandu</span>
                     </li>
                 </ul>
 
                 <!-- Academic Details -->
-                <h5 class="mb-2">Academic Details</h5>
+                <h5 class="section-title">Academic Details</h5>
                 <ul class="list-group mb-4">
                     <li class="list-group-item">
                         <i class="fa-solid fa-school me-2 text-primary"></i>
-                        <strong>Class:</strong> 10
+                        <strong>Class:</strong> <span id="studentClass">10</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-people-group me-2 text-info"></i>
-                        <strong>Section:</strong> B
+                        <strong>Section:</strong> <span id="studentSection">B</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-chalkboard-user me-2 text-success"></i>
-                        <strong>Class Teacher:</strong> Ms. Binita Sharma
+                        <strong>Class Teacher:</strong> <span id="studentTeacher">Ms. Binita Sharma</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-id-card me-2 text-secondary"></i>
-                        <strong>Admission No.:</strong> AD1023
+                        <strong>Admission No.:</strong> <span id="studentAdmission">AD1023</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-calendar-day me-2 text-warning"></i>
-                        <strong>Admission Year:</strong> 2021
+                        <strong>Admission Year:</strong> <span id="studentAdmissionYear">2021</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-clock me-2 text-primary"></i>
-                        <strong>Shift:</strong> Day
+                        <strong>Shift:</strong> <span id="studentShift">Day</span>
                     </li>
                 </ul>
 
                 <!-- Parent Details -->
-                <h5 class="mb-2">Parent/Guardian Details</h5>
+                <h5 class="section-title">Parent/Guardian Details</h5>
                 <ul class="list-group mb-4">
                     <li class="list-group-item">
                         <i class="fa-solid fa-user me-2 text-primary"></i>
-                        <strong>Parent Name:</strong> Milan Barahi
+                        <strong>Parent Name:</strong> <span id="parentName">Milan Barahi</span>
                     </li>
 
                     <li class="list-group-item">
                         <i class="fa-solid fa-phone-volume me-2 text-success"></i>
-                        <strong>Parent Contact:</strong> 9845678910
+                        <strong>Parent Contact:</strong> <span id="parentContact">9845678910</span>
                     </li>
                 </ul>
 
                 <!-- Activity Log -->
-                <h5 class="mb-2">Recent Activity</h5>
+                <h5 class="section-title">Recent Activity</h5>
                 <ul class="list-group">
                     <li class="list-group-item">
                         <i class="fa-solid fa-door-open text-success me-2"></i>
@@ -175,152 +213,345 @@
                         Viewed monthly attendance summary
                     </li>
                 </ul>
-
             </div>
         </div>
-
-
     </section>
 
     <!-- Admin -->
     <section id="Admin" class="d-none">
-
         <div class="card shadow-sm border-0 rounded-3 overflow-hidden">
+            <!-- Top Banner -->
+            <div class="bg-primary text-white p-4 d-flex align-items-center">
+                <img src="https://thumbs.dreamstime.com/z/admin-user-icon-account-has-virtually-unlimited-access-to-all-programs-isolated-background-vector-illustration-322126763.jpg" 
+                    class="rounded-circle border border-3 border-white profile-img" 
+                    width="95" height="95" alt="Admin Photo">
 
-                <!-- Top Banner -->
-                <div class="bg-primary text-white p-4 d-flex align-items-center">
-                    <img src="https://thumbs.dreamstime.com/z/admin-user-icon-account-has-virtually-unlimited-access-to-all-programs-isolated-background-vector-illustration-322126763.jpg" class="rounded-circle border border-3 border-white" 
-                        width="95" height="95" alt="Admin Photo">
+                <div class="ms-3">
+                    <h3 class="mb-0">Rojan Sharma</h3>
+                    <small>Super Admin</small>
+                </div>
+            </div>
 
-                    <div class="ms-3">
-                        <h3 class="mb-0">Rojan Sharma</h3>
-                        <small>Super Admin</small>
+            <div class="card-body">
+                <!-- Action Buttons -->
+                <div class="mb-4">
+                    <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#editAdminProfileModal">
+                        <i class="fa-solid fa-user-pen me-1"></i> Edit Profile
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm me-2">
+                        <i class="fa-solid fa-key me-1"></i> Change Password
+                    </button>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="row g-3 mb-4">
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm stats-card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-users-gear fa-xl mb-2 text-primary"></i>
+                                <h6 class="fw-bold mb-0">42</h6>
+                                <small class="text-muted">Managed Staff</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm stats-card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-user-check fa-xl mb-2 text-success"></i>
+                                <h6 class="fw-bold mb-0">98%</h6>
+                                <small class="text-muted">Attendance Accuracy</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-4">
+                        <div class="card text-center border-0 shadow-sm stats-card">
+                            <div class="card-body">
+                                <i class="fa-solid fa-database fa-xl mb-2 text-warning"></i>
+                                <h6 class="fw-bold mb-0">2 Years</h6>
+                                <small class="text-muted">System Experience</small>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card-body">
-                    
-                    <!-- Action Buttons -->
-                    <div class="mb-4">
-                        <button class="btn btn-outline-primary btn-sm me-2">
-                            <i class="fa-solid fa-user-pen me-1"></i> Edit Profile
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm me-2">
-                            <i class="fa-solid fa-key me-1"></i> Change Password
-                        </button>
-                    </div>
+                <!-- Profile Details -->
+                <h5 class="section-title">Personal Information</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-id-badge me-2 text-primary"></i>
+                        <strong>Admin ID:</strong> ADM001
+                    </li>
 
-                    <!-- Stats Cards -->
-                    <div class="row g-3 mb-4">
-                        <div class="col-6 col-md-4">
-                            <div class="card text-center border-0 shadow-sm">
-                                <div class="card-body">
-                                    <i class="fa-solid fa-users-gear fa-xl mb-2 text-primary"></i>
-                                    <h6 class="fw-bold mb-0">42</h6>
-                                    <small class="text-muted">Managed Staff</small>
-                                </div>
-                            </div>
-                        </div>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-envelope me-2 text-danger"></i>
+                        <strong>Email:</strong> rojan.sharma@school.edu
+                    </li>
 
-                        <div class="col-6 col-md-4">
-                            <div class="card text-center border-0 shadow-sm">
-                                <div class="card-body">
-                                    <i class="fa-solid fa-user-check fa-xl mb-2 text-success"></i>
-                                    <h6 class="fw-bold mb-0">98%</h6>
-                                    <small class="text-muted">Attendance Accuracy</small>
-                                </div>
-                            </div>
-                        </div>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-phone me-2 text-success"></i>
+                        <strong>Phone:</strong> 9841234567
+                    </li>
 
-                        <div class="col-6 col-md-4">
-                            <div class="card text-center border-0 shadow-sm">
-                                <div class="card-body">
-                                    <i class="fa-solid fa-database fa-xl mb-2 text-warning"></i>
-                                    <h6 class="fw-bold mb-0">2 Years</h6>
-                                    <small class="text-muted">System Experience</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-user-lock me-2 text-secondary"></i>
+                        <strong>Username:</strong> rojan_admin
+                    </li>
 
-                    <!-- Profile Details -->
-                    <h5 class="mb-2">Personal Information</h5>
-                    <ul class="list-group mb-4">
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-id-badge me-2 text-primary"></i>
-                            <strong>Admin ID:</strong> ADM001
-                        </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-circle-check me-2 text-success"></i>
+                        <strong>Status:</strong>
+                        <span class="badge bg-success">Active</span>
+                    </li>
 
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-envelope me-2 text-danger"></i>
-                            <strong>Email:</strong> rojan.sharma@school.edu
-                        </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-clock me-2 text-warning"></i>
+                        <strong>Last Login:</strong> 2025-02-21 09:43 AM
+                    </li>
 
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-phone me-2 text-success"></i>
-                            <strong>Phone:</strong> 9841234567
-                        </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-calendar-check me-2 text-primary"></i>
+                        <strong>Created On:</strong> 2023-06-01
+                    </li>
+                </ul>
 
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-user-lock me-2 text-secondary"></i>
-                            <strong>Username:</strong> rojan_admin
-                        </li>
-
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-circle-check me-2 text-success"></i>
-                            <strong>Status:</strong>
-                            <span class="badge bg-success">Active</span>
-                        </li>
-
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-clock me-2 text-warning"></i>
-                            <strong>Last Login:</strong> 2025-02-21 09:43 AM
-                        </li>
-
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-calendar-check me-2 text-primary"></i>
-                            <strong>Created On:</strong> 2023-06-01
-                        </li>
-                    </ul>
-
-                    <!-- Activity Log -->
-                    <h5 class="mb-2">Recent Activity</h5>
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-check text-success me-2"></i>
-                            Logged in from Kathmandu, Nepal
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-pen text-primary me-2"></i>
-                            Modified student attendance record
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fa-solid fa-folder-open text-warning me-2"></i>
-                            Reviewed monthly attendance reports
-                        </li>
-                    </ul>
-
-                </div>
+                <!-- Activity Log -->
+                <h5 class="section-title">Recent Activity</h5>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-check text-success me-2"></i>
+                        Logged in from Kathmandu, Nepal
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-pen text-primary me-2"></i>
+                        Modified student attendance record
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fa-solid fa-folder-open text-warning me-2"></i>
+                        Reviewed monthly attendance reports
+                    </li>
+                </ul>
+            </div>
         </div>
-
     </section>
 
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editstudentProfileModal" tabindex="-1" aria-labelledby="editStudentProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editFullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="editFullName" value="Pranil Barahi">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editStudentId" class="form-label">Student ID</label>
+                                <input type="text" class="form-control" id="editStudentId" value="STU1001" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editDob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="editDob" value="2010-04-18">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editGender" class="form-label">Gender</label>
+                                <select class="form-select" id="editGender">
+                                    <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="editContact" value="9812345678">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="editEmail" value="pranil.b@school.edu">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="editAddress" class="form-label">Address</label>
+                            <textarea class="form-control" id="editAddress" rows="2">Kalanki, Kathmandu</textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editClass" class="form-label">Class</label>
+                                <input type="number" class="form-control" id="editClass" value="10">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editSection" class="form-label">Section</label>
+                                <input type="text" class="form-control" id="editSection" value="B">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editParentName" class="form-label">Parent Name</label>
+                                <input type="text" class="form-control" id="editParentName" value="Milan Barahi">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editParentContact" class="form-label">Parent Contact</label>
+                                <input type="tel" class="form-control" id="editParentContact" value="9845678910">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveProfileChanges">Request Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
-  // Read the ?show= parameter
-  const params = new URLSearchParams(window.location.search);
-  const section = params.get("show");
- console.log(params);
-  // If valid section exists, show it
-  if (section) {
-    const elem = document.getElementById(section);
-    if (elem) elem.classList.remove("d-none");
-  }
-</script>
+    <div class="modal fade" id="editAdminProfileModal" tabindex="-1" aria-labelledby="editAdminProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editFullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="editFullName" value="Pranil Barahi">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editStudentId" class="form-label">Student ID</label>
+                                <input type="text" class="form-control" id="editStudentId" value="STU1001" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editDob" class="form-label">Date of Birth</label>
+                                <input type="date" class="form-control" id="editDob" value="2010-04-18">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editGender" class="form-label">Gender</label>
+                                <select class="form-select" id="editGender">
+                                    <option value="Male" selected>Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editContact" class="form-label">Contact Number</label>
+                                <input type="tel" class="form-control" id="editContact" value="9812345678">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="editEmail" value="pranil.b@school.edu">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="editAddress" class="form-label">Address</label>
+                            <textarea class="form-control" id="editAddress" rows="2">Kalanki, Kathmandu</textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editClass" class="form-label">Class</label>
+                                <input type="number" class="form-control" id="editClass" value="10">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editSection" class="form-label">Section</label>
+                                <input type="text" class="form-control" id="editSection" value="B">
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="editParentName" class="form-label">Parent Name</label>
+                                <input type="text" class="form-control" id="editParentName" value="Milan Barahi">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="editParentContact" class="form-label">Parent Contact</label>
+                                <input type="tel" class="form-control" id="editParentContact" value="9845678910">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveProfileChanges">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    
-<!-- BS5 Js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Read the ?show= parameter
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get("show");
+        console.log(params);
+        
+        // If valid section exists, show it, otherwise show Student by default
+        if (section) {
+            const elem = document.getElementById(section);
+            if (elem) {
+                document.getElementById('Student').classList.add('d-none');
+                elem.classList.remove("d-none");
+            }
+        }
+        
+        // Edit Profile functionality
+        document.getElementById('saveProfileChanges').addEventListener('click', function() {
+            // Get values from form
+            const fullName = document.getElementById('editFullName').value;
+            const dob = document.getElementById('editDob').value;
+            const gender = document.getElementById('editGender').value;
+            const contact = document.getElementById('editContact').value;
+            const email = document.getElementById('editEmail').value;
+            const address = document.getElementById('editAddress').value;
+            const studentClass = document.getElementById('editClass').value;
+            const section = document.getElementById('editSection').value;
+            const parentName = document.getElementById('editParentName').value;
+            const parentContact = document.getElementById('editParentContact').value;
+            
+            // Update profile display
+            document.querySelector('.bg-success h3').textContent = fullName;
+            document.getElementById('studentDob').textContent = dob;
+            document.getElementById('studentGender').textContent = gender;
+            document.getElementById('studentContact').textContent = contact;
+            document.getElementById('studentEmail').textContent = email;
+            document.getElementById('studentAddress').textContent = address;
+            document.getElementById('studentClass').textContent = studentClass;
+            document.getElementById('studentSection').textContent = section;
+            document.getElementById('parentName').textContent = parentName;
+            document.getElementById('parentContact').textContent = parentContact;
+            
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editStudentProfileModal','editTeacherProfileModal'));
+            modal.hide();
+            
+            // Show success message
+            alert('Profile updated successfully!');
+        });
+    </script>
 
+    <!-- BS5 Js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -38,10 +38,33 @@
             border-color: lightblue;
         }
 
-
-
-
-
+        /* Minimal enhancements */
+        .sidebar-btn {
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            text-align: left;
+            padding: 10px 15px;
+        }
+        .sidebar-btn:hover, .sidebar-btn.active {
+            background-color: #e9ecef;
+            color: #0d6efd;
+        }
+        .stats-card {
+            transition: transform 0.2s ease;
+        }
+        .stats-card:hover {
+            transform: translateY(-3px);
+        }
+        .progress {
+            height: 8px;
+            border-radius: 4px;
+        }
+        .nav-link.active {
+            font-weight: 600;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
 
     </style>
 
@@ -65,19 +88,19 @@
                 height="50"
                 class="rounded-circle">
 
-                <div class="d-grid">
-                    <p class="h5">Pranil Barahi</p>
-                    <p class="">ID 210140</p>
+                <div class="d-grid ms-2">
+                    <p class="h5 mb-0">Pranil Barahi</p>
+                    <p class="small text-muted">ID 210140</p>
                 </div>
             </div>
     
         </div>
 
         <div class="nav flex-column mb-3">
-            <ul class="list-unstyled mt-3 d-grid gap-3">
-                <li><button id="showdash" class="btn">Dashboard</button></li>
-                <li><button id="showmyattendance"  class="btn">My Attendance</button></li>
-                <li><button id="showrequestleave"  class="btn"> Request Leave </button></li>
+            <ul class="list-unstyled mt-3 d-grid gap-2">
+                <li><button id="showdash" class="btn sidebar-btn active">Dashboard</button></li>
+                <li><button id="showmyattendance"  class="btn sidebar-btn">My Attendance</button></li>
+                <li><button id="showrequestleave"  class="btn sidebar-btn"> Request Leave </button></li>
             </ul>
         </div>
       
@@ -126,7 +149,7 @@
                     height="200"
                     class="rounded-circle">
                     <p class="h3 ps-3 ">Pranil Barahi</p>
-                    <p class="ps-5">ID 210140</p>
+                    <p class="ps-5 text-muted">ID 210140</p>
 
                 </div>
                 
@@ -146,16 +169,16 @@
                 </div>
             </div>
             <div class="my-2">
-                <div class="card">
-                    <div class="card-header">
-                    <p class="h3 text-center">NOTIFICATIONS</p>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                    <p class="h3 text-center mb-0">NOTIFICATIONS</p>
                     </div>
                     <div class="card-body">    
                         <div class="alert alert-success mb-2" role="alert">
-                            Assignment submission deadline: Nov 25, 2025.
+                            <i class="fas fa-info-circle me-2"></i>Assignment submission deadline: Nov 25, 2025.
                         </div>
                         <div class="alert alert-warning mb-0" role="alert">
-                            Parent-teacher meeting scheduled on Dec 1, 2025.
+                            <i class="fas fa-calendar-alt me-2"></i>Parent-teacher meeting scheduled on Dec 1, 2025.
                         </div>
                     </div>
 
@@ -169,7 +192,7 @@
                 <section class=" d-flex justify-content-between">
                     <div >
                         <h1>MY Attendance</h1>
-                        <small>View your attendance records,summaries,and subject-wise performance</small>
+                        <small class="text-muted">View your attendance records, summaries, and subject-wise performance</small>
                     </div>
                     <div class="" >
                         <button class="btn btn-primary mt-3"><i class="fa-regular fa-file-pdf"></i> Export as PDF</button>
@@ -178,17 +201,17 @@
 
                 <!-- Range -->
                 <section class=" mt-3 ">
-                    <button class="btn bg-white ">This Week</button>
-                    <button class="btn bg-white ">This Month</button>
-                    <button class="btn bg-white ">Last 6 Month</button>
-                    <button class="btn bg-white ">Custom Range <i class="fa-regular fa-calendar"></i> </button>
+                    <button class="btn bg-white border">This Week</button>
+                    <button class="btn bg-white border">This Month</button>
+                    <button class="btn bg-white border">Last 6 Month</button>
+                    <button class="btn bg-white border">Custom Range <i class="fa-regular fa-calendar"></i> </button>
                 </section>
                 
                 <!-- Overall Summary Data -->
                 <section class="row g-2  row-cols-2 row-cols-sm-3 row-cols-md-4 mt-3 px-2">
                     <div class="card bg-transparent border-0 col ">
-                        <div class="card-body text-center  border rounded-3 bg-white">
-                            <small> Overall Attendance</small>
+                        <div class="card-body text-center  border rounded-3 bg-white stats-card">
+                            <small class="text-muted"> Overall Attendance</small>
                             <div class="d-flex flex-wrap gap-3 justify-content-center">
                                 <h1>92% </h1>
                                 <small class="pt-3 text-success fw-bold">+2%</small>
@@ -196,24 +219,24 @@
                         </div>
                     </div>
                     <div class="card bg-transparent border-0 col">
-                        <div class="card-body text-center  border rounded-3 bg-white">
-                            <small> Total Days Present</small>
+                        <div class="card-body text-center  border rounded-3 bg-white stats-card">
+                            <small class="text-muted"> Total Days Present</small>
                             <div class="d-flex gap-3 justify-content-center">
                                 <h1>115 </h1>
                             </div> 
                         </div>
                     </div>
                     <div class="card bg-transparent border-0 col">
-                        <div class="card-body text-center  border rounded-3 bg-white">
-                            <small> Total Days Absent</small>
+                        <div class="card-body text-center  border rounded-3 bg-white stats-card">
+                            <small class="text-muted"> Total Days Absent</small>
                             <div class="d-flex gap-3 justify-content-center">
                                 <h1>8 </h1>
                             </div> 
                         </div>
                     </div>
                     <div class="card bg-transparent border-0 col">
-                        <div class="card-body text-center  border rounded-3 bg-white">
-                            <small> Total Days Late</small>
+                        <div class="card-body text-center  border rounded-3 bg-white stats-card">
+                            <small class="text-muted"> Total Days Late</small>
                             <div class="d-flex gap-3 justify-content-center">
                                 <h1>2 </h1>
                             </div> 
@@ -227,7 +250,7 @@
                 <section class="row d-flex gap-3 px-2 ">
 
                     <!-- Progress -->
-                    <div class="col px-5 py-3 d-grid gap-3 bg-white rounded mt-3">
+                    <div class="col px-5 py-3 d-grid gap-3 bg-white rounded mt-3 shadow-sm">
                         <h3>Attendance by Subject</h3>
                         <div>
                             <div class="d-flex justify-content-between">
@@ -235,7 +258,7 @@
                                 <small class="fw-bold">75%</small>
                             </div>
                             <div class="progress ">
-                                <div class="progress-bar w-75"></div>
+                                <div class="progress-bar w-75 bg-success"></div>
                             </div>
                         </div>
                         <div>
@@ -244,7 +267,7 @@
                                 <small class="fw-bold">75%</small>
                             </div>
                             <div class="progress ">
-                                <div class="progress-bar w-75"></div>
+                                <div class="progress-bar w-75 bg-info"></div>
                             </div>
                         </div>
                         <div>
@@ -253,7 +276,7 @@
                                 <small class="fw-bold">100%</small>
                             </div>
                             <div class="progress ">
-                                <div class="progress-bar w-100"></div>
+                                <div class="progress-bar w-100 bg-primary"></div>
                             </div>
                         </div>
                         <div>
@@ -262,7 +285,7 @@
                                 <small class="fw-bold">75%</small>
                             </div>
                             <div class="progress ">
-                                <div class="progress-bar w-75"></div>
+                                <div class="progress-bar w-75 bg-warning"></div>
                             </div>
                         </div>
                         <div>
@@ -278,23 +301,23 @@
                     </div>
 
                     <!-- Calender -->
-                    <div class="col-sm-12 col-md-12 col-lg-8 px-3 px-md-5 py-3 d-grid gap-3 bg-white rounded mt-3">
+                    <div class="col-sm-12 col-md-12 col-lg-8 px-3 px-md-5 py-3 d-grid gap-3 bg-white rounded mt-3 shadow-sm">
                         <h3>Monthly Overview</h3>
                         <div class="d-flex justify-content-between ">
-                            <button> <i class="fa-solid fa-angle-left"></i> </button>
+                            <button class="btn btn-outline-secondary"> <i class="fa-solid fa-angle-left"></i> </button>
                             <p class="fw-bold"> May 2024</p>
-                            <button> <i class="fa-solid fa-angle-right"></i> </button>
+                            <button class="btn btn-outline-secondary"> <i class="fa-solid fa-angle-right"></i> </button>
                         </div>
                         <div >
                         <table class="calendar-table w-100 ">
                             <tr>
-                                <th>Su</th>
-                                <th>Mo</th>
-                                <th>Tu</th>
-                                <th>We</th>
-                                <th>Th</th>
-                                <th>Fr</th>
-                                <th>Sa</th>
+                                <th class="text-muted">Su</th>
+                                <th class="text-muted">Mo</th>
+                                <th class="text-muted">Tu</th>
+                                <th class="text-muted">We</th>
+                                <th class="text-muted">Th</th>
+                                <th class="text-muted">Fr</th>
+                                <th class="text-muted">Sa</th>
                             </tr>
                             <tr>
                                 <td></td>
@@ -349,12 +372,12 @@
                 <!-- log -->
                 <section>
                     
-                        <div >
+                        <div class="mt-4">
                             <h5 class="mb-3">Daily Attendance Log</h5>
 
-                            <div class="rounded-4 overflow-hidden">
+                            <div class="rounded-4 overflow-hidden border">
                                 <table class="table table-hover mb-0 ">
-                                    <thead >
+                                    <thead class="table-light">
                                         <tr class="#">
                                             <th class="text-secondary small">Date</th>
                                             <th class="text-secondary small">Day</th>
@@ -444,7 +467,7 @@
                     <h1 class="form-label mb-5">
                             Leave Request
                     </h1>
-                    <section class="w-100 bg-white p-4 rounded-3">
+                    <section class="w-100 bg-white p-4 rounded-3 shadow-sm">
                         <form action="#">
                             <div class="d-flex gap-4">
                                
@@ -461,38 +484,38 @@
                                
                             </div>
 
-                            <div class=" d-flex flex-wrap gap-2 mt-3">
-                                <div>
-                                    <label for="">Leave From</label>
-                                    <input class="form-control" 
-                                    type="datetime-local">
+                            <!-- FIXED: Date inputs now responsive -->
+                            <div class="row mt-3">
+                                <div class="col-md-6 mb-3 mb-md-0">
+                                    <label for="" class="form-label">Leave From</label>
+                                    <input class="form-control" type="datetime-local">
                                 </div>
-                                <div>
-                                    <label for="">To</label>
-                                    <input class="form-control" 
-                                    type="datetime-local">
+                                <div class="col-md-6">
+                                    <label for="" class="form-label">To</label>
+                                    <input class="form-control" type="datetime-local">
                                 </div>
-                            </div>
-
-                            <div class="mt-3 d-grid">
-                                <label for="">Reasons for Leave</label>
-                                <textarea class="form-control p-2" rows="8" cols="30">I am Unfortunate to inform you that I won't be able to attend class in the stated days/time due to .............</textarea>
                             </div>
 
                             <div class="mt-3">
-                                <input class="form-control" type="file" >
-                                 <label class="text-muted"><small>If possible upload relevent documents ...</small></label>
+                                <label for="" class="form-label">Reasons for Leave</label>
+                                <textarea class="form-control p-2" rows="5" placeholder="I am Unfortunate to inform you that I won't be able to attend class in the stated days/time due to ............."></textarea>
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="formFile" class="form-label">Upload Relevant Documents</label>
+                                <input class="form-control" type="file" id="formFile">
+                                 <div class="form-text">If possible upload relevant documents ...</div>
                             </div>
                             
-                            <button class="btn btn-primary w-100 mt-5">Submit</button>
+                            <button class="btn btn-primary w-100 mt-4">Submit</button>
 
                             
                         </form>
                     </section>
 
-                    <section class="w-100 bg-white p-4 rounded-3 mt-3">
+                    <section class="w-100 bg-white p-4 rounded-3 mt-3 shadow-sm">
                         <div class="table-responsive mt-2">
-                        <table class="table table-bordered text-center mt-2 border w-100 rounded-5">
+                        <table class="table table-bordered text-center mt-2 border w-100">
                             <thead>
                                 <tr class="table-dark">
                                 <th scope="col">No.</th>
@@ -518,7 +541,7 @@
                                 <td>11/20/2025</td>
                                 <td>11/25/2025</td>
                                 <td>Sick Leave</td>
-                                <td><a href="#" class="btn btn-sm btn-secondary">View</a></td>
+                                <td><a href="#" class="btn btn-sm btn-outline-secondary">View</a></td>
                                 <td>
                                     <span  class="badge bg-secondary-subtle text-secondary fw-bold px-3 py-2 rounded-pill m-0 ">
                                     Pending
@@ -526,14 +549,14 @@
                                 </td>
                                 <td >
                                     <div class="d-flex flex-wrap gap-2 justify-content-center">
-                                        <button class="btn btn-success">Edit</button>
-                                        <button class="btn btn-danger">Cancel</button>
+                                        <button class="btn btn-outline-success btn-sm">Edit</button>
+                                        <button class="btn btn-outline-danger btn-sm">Cancel</button>
                                     </div>
                                 </td>
                                 </tr>
 
                                 <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">2</th>
                                 <td> 
                                     <span  class="badge bg-warning-subtle text-warning fw-bold px-3 py-2 rounded-pill m-0 ">
                                     Late
@@ -542,7 +565,7 @@
                                 <td>11/20/2025</td>
                                 <td>11/21/2025</td>
                                 <td>Medical Checkup</td>
-                                <td><a href="#" class="btn btn-sm btn-secondary">View</a></td>
+                                <td><a href="#" class="btn btn-sm btn-outline-secondary">View</a></td>
                                 <td>
                                     <span  class="badge bg-success-subtle text-success fw-bold px-3 py-2 rounded-pill m-0 ">
                                     Approved
@@ -552,7 +575,7 @@
                                 </tr>
 
                                 <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">3</th>
                                 <td> 
                                     <span  class="badge bg-warning-subtle text-warning fw-bold px-3 py-2 rounded-pill m-0 ">
                                     Late
@@ -561,7 +584,7 @@
                                 <td>11/20/2025</td>
                                 <td>01/20/2026</td>
                                 <td>Medical Checkup</td>
-                                <td><a href="#" class="btn btn-sm btn-secondary">View</a></td>
+                                <td><a href="#" class="btn btn-sm btn-outline-secondary">View</a></td>
                                 <td>
                                     <span  class="badge bg-dark-subtle text-dark fw-bold px-3 py-2 rounded-pill m-0 ">
                                     Rejected
@@ -590,8 +613,15 @@
     const dashboard =document.getElementById("dashboard");
     const myAttendance =document.getElementById("myAttendance");
     const requestleave =document.getElementById("requestleave");
+    const sidebarBtns = document.querySelectorAll('.sidebar-btn');
 
-   
+    function updateActiveButton(activeBtn) {
+        sidebarBtns.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        activeBtn.classList.add('active');
+    }
+
     showdash.addEventListener("click", function(){
         dashboard.classList.add("d-block");
         dashboard.classList.remove("d-none");
@@ -601,7 +631,8 @@
 
         requestleave.classList.add("d-none");
         requestleave.classList.remove("d-block");
-
+        
+        updateActiveButton(this);
     })
 
     showmyattendance.addEventListener("click", function(){
@@ -613,7 +644,8 @@
 
         requestleave.classList.add("d-none");
         requestleave.classList.remove("d-block");
-
+        
+        updateActiveButton(this);
     })
 
     showrequestleave.addEventListener("click", function(){
@@ -625,7 +657,8 @@
 
         myAttendance.classList.add("d-none");
         myAttendance.classList.remove("d-block");
-
+        
+        updateActiveButton(this);
     })
 
 
