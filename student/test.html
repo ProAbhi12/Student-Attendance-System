@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Attendance | Attendance Nepal</title>
+    <title>Notifications | Attendance Nepal</title>
 
     <!-- Bootstrap 5 CSS -->
     <link
@@ -20,18 +20,20 @@
         background-color: #f4f6fb;
         margin: 0;
         overflow: hidden;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       }
 
-      /* --- SIDEBAR & TOPBAR STYLES (From your existing code, slightly adapted for student) --- */
-      .large-text { font-size: 20px; }
-      
+      /* --- SIDEBAR & TOPBAR STYLES --- */
+      .large-text {
+        font-size: 20px;
+      }
+
       .sidebar {
         width: 260px;
         background-color: #ffffff;
         border-right: 1px solid #e3e7f0;
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-        flex-shrink: 0; 
+        flex-shrink: 0;
         height: 100vh;
       }
 
@@ -99,137 +101,62 @@
         border-radius: 50%;
         object-fit: cover;
       }
-
-      /* --- STUDENT-SPECIFIC STYLES --- */
-      
-      /* Overall Attendance Card */
-      .overall-attendance-card {
-        background: linear-gradient(135deg, #4a90e2 0%, #629fe6 100%);
-        color: white;
-        border-radius: 16px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        text-align: center;
-      }
-      .overall-percentage {
-        font-size: 4rem;
-        font-weight: 800;
-        line-height: 1;
-        margin-bottom: 10px;
-      }
-      .overall-label {
-        font-size: 1.2rem;
-        opacity: 0.9;
+      .card-rounded {
+        border-radius: 10px;
       }
 
-      /* Summary Stats Cards */
-      .stat-card {
-        background: white;
-        border-radius: 12px;
-        padding: 20px;
-        height: 100%;
-        border: 1px solid #f0f0f0;
-        transition: transform 0.2s;
-      }
-      .stat-card:hover { transform: translateY(-3px); }
-      .stat-value { font-size: 2rem; font-weight: 800; margin-bottom: 5px; }
-      .text-success-custom { color: #10b981; } /* Present */
-      .text-danger-custom { color: #ef4444; } /* Absent */
-      .text-warning-custom { color: #f59e0b; } /* Late */
-      .text-info-custom { color: #0ea5e9; } /* On Leave */
-
-      /* Custom Monthly Calendar */
-      .calendar-card {
-        background: white;
-        border-radius: 16px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      }
-      .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 8px;
-        text-align: center;
-        margin-top: 15px;
-      }
-      .cal-day-header {
+      .small-muted {
         font-size: 0.8rem;
-        color: #9ca3af;
-        font-weight: 600;
-        margin-bottom: 5px;
+        color: #6b7280;
       }
-      .cal-day {
-        font-size: 0.9rem;
-        padding: 6px;
-        border-radius: 50%;
-        cursor: pointer;
-        position: relative;
-        aspect-ratio: 1 / 1; /* Make squares */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .cal-day:hover { background-color: #f3f4f6; }
-      .cal-day.today { background-color: #dbe9f9; color: #2563eb; font-weight: bold; }
-      .cal-day.present { background-color: #d1fae5; color: #065f46; font-weight: 600;}
-      .cal-day.absent { background-color: #fee2e2; color: #991b1b; font-weight: 600;}
-      .cal-day.late { background-color: #fef3c7; color: #92400e; font-weight: 600;}
-      .cal-day.on-leave { background-color: #dbeafe; color: #1e40af; font-weight: 600;}
-      .cal-day.past-month { opacity: 0.5; }
-      
-      /* Recent Leave Requests */
-      .leave-item {
-        border-left: 4px solid transparent;
-        transition: all 0.2s;
-        border-radius: 8px;
-      }
-      .leave-item:hover { background-color: #f9fafb; }
-      .leave-item.approved { border-left-color: #10b981; }
-      .leave-item.rejected { border-left-color: #ef4444; }
-      .leave-item.pending { border-left-color: #f59e0b; }
-      .status-badge {
-        padding: 5px 12px;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-      }
-      .bg-soft-success { background-color: #d1fae5; color: #065f46; }
-      .bg-soft-danger { background-color: #fee2e2; color: #991b1b; }
-      .bg-soft-warning { background-color: #fef3c7; color: #92400e; }
     </style>
   </head>
   <body>
     <div class="d-flex vh-100">
-      
-      <!-- SIDEBAR (Consistent with your Dashboard) -->
+      <!-- SIDEBAR -->
       <div class="sidebar d-flex flex-column p-3">
         <div class="sidebar-brand text-center">
           <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
           <span class="large-text">Attendance Nepal</span>
         </div>
 
-        <div class="student-card">
-          <div class="student-avatar text-center mb-4">
-            <img src="student_avatar.png" alt="profile" class="profile-img-circle mb-2" />
+        <div class="user-card">
+          <div class="text-center mb-4">
+            <img
+              src="Student.png"
+              alt="Student profile"
+              class="profile-img-circle mb-2"
+            />
             <div class="fw-semibold small">Aarav Sharma</div>
-            <div class="text-muted" style="font-size: 0.8rem">Grade 10 - Section A | Roll No: 12</div>
+            <div class="text-muted" style="font-size: 0.8rem">
+              Student, Grade 10 - A
+            </div>
           </div>
         </div>
 
         <nav class="nav flex-column mb-3">
-          <a class="nav-link active" href="student_my_attendance.html">
-            <i class="bi bi-grid-1x2"></i> My Attendance
+          <a class="nav-link" href="Student_Dashboard.html">
+            <i class="bi bi-grid-1x2"></i> Dashboard
           </a>
-          <a class="nav-link" href="student_my_leaves.html">
+          <a class="nav-link" href="Student_My_Attendance.html">
+            <i class="bi bi-clipboard-check"></i> My Attendance
+          </a>
+          <a class="nav-link" href="Student_Leave.html">
             <i class="bi bi-calendar-check"></i> My Leaves
           </a>
-          <!-- Optional: Add a link to a student profile/settings page here later -->
-          <a class="nav-link" href="student_profile.html">
-            <i class="bi bi-person"></i> Profile
+          <a class="nav-link" href="Student_Profile.html">
+            <i class="bi bi-person"></i> My Profile
+          </a>
+          <a class="nav-link" href="Student_Notifications.html">
+            <i class="bi bi-bell"></i> Notifications
+          </a>
+          <a class="nav-link" href="Student_Settings.html">
+            <i class="bi bi-gear"></i> Settings
           </a>
         </nav>
 
         <div class="mt-auto pt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="../login.html">
             <i class="bi bi-box-arrow-right"></i> Logout
           </a>
         </div>
@@ -237,26 +164,42 @@
 
       <!-- MAIN CONTENT -->
       <div class="flex-grow-1 d-flex flex-column overflow-auto">
-        
         <!-- TOPBAR -->
         <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
           <div class="container-fluid px-4">
             <div class="d-none d-lg-block">
-              <h5 class="mb-0 fw-bold">My Attendance Dashboard</h5>
+              <h5 class="mb-0 fw-bold">Notifications</h5>
             </div>
             <div class="d-flex align-items-center ms-auto">
-                <button class="btn btn-primary btn-sm me-3 d-flex align-items-center shadow-sm">
-                    <i class="bi bi-plus-circle me-2"></i> Apply for Leave
-                </button>
               <div class="dropdown">
-                <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                  <img src="student_avatar.png" alt="Profile" class="topbar-profile-img me-2" />
-                  <span class="d-none d-md-block fw-semibold small">Aarav Sharma</span>
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="Student.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold small"
+                    >Aarav Sharma</span
+                  >
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="student_profile.html">Profile</a></li>
+                  <li>
+                    <a class="dropdown-item" href="Student_Profile.html"
+                      >Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="Student_Settings.html"
+                      >Settings</a
+                    >
+                  </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  <li><a class="dropdown-item" href="../login.html">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -265,169 +208,43 @@
 
         <!-- PAGE CONTENT -->
         <div class="container-fluid py-4 px-4">
-          
-          <div class="row g-4">
-            
-            <!-- LEFT COLUMN (Overall % and Calendar) -->
-            <div class="col-lg-8">
-              
-              <!-- Overall Attendance Percentage -->
-              <div class="card overall-attendance-card p-4 mb-4">
-                <div class="card-body">
-                  <p class="mb-2 overall-label">Overall Attendance (Current Academic Year)</p>
-                  <h1 class="overall-percentage">88<small>%</small></h1>
-                  <p class="mb-0 small opacity-75">Keep up the great work!</p>
-                </div>
-              </div>
-
-              <!-- Summary Stats Cards -->
-              <div class="row g-3 mb-4">
-                <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-value text-success-custom">180</div>
-                        <div class="text-muted small fw-semibold">Days Present</div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-value text-danger-custom">15</div>
-                        <div class="text-muted small fw-semibold">Days Absent</div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-value text-warning-custom">05</div>
-                        <div class="text-muted small fw-semibold">Late Entries</div>
-                    </div>
-                </div>
-                <div class="col-6 col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-value text-info-custom">10</div>
-                        <div class="text-muted small fw-semibold">Days on Leave</div>
-                    </div>
-                </div>
-              </div>
-
-              <!-- Monthly Calendar View -->
-              <div class="card shadow-sm border-0 calendar-card">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="fw-bold mb-0">Attendance History - November 2025</h6>
-                    <div class="text-muted small">
-                        <i class="bi bi-chevron-left me-2"></i>
-                        <i class="bi bi-chevron-right"></i>
-                    </div>
-                </div>
-                
-                <div class="calendar-grid">
-                    <div class="cal-day-header">S</div>
-                    <div class="cal-day-header">M</div>
-                    <div class="cal-day-header">T</div>
-                    <div class="cal-day-header">W</div>
-                    <div class="cal-day-header">T</div>
-                    <div class="cal-day-header">F</div>
-                    <div class="cal-day-header">S</div>
-
-                    <!-- Past month days (example) -->
-                    <div class="cal-day past-month">29</div>
-                    <div class="cal-day past-month">30</div>
-                    <div class="cal-day past-month">31</div>
-
-                    <!-- Current month days with status -->
-                    <div class="cal-day present">1</div>
-                    <div class="cal-day present">2</div>
-                    <div class="cal-day absent">3</div>
-                    <div class="cal-day present">4</div>
-                    
-                    <div class="cal-day present">5</div>
-                    <div class="cal-day present">6</div>
-                    <div class="cal-day on-leave">7</div>
-                    <div class="cal-day present">8</div>
-                    <div class="cal-day present">9</div>
-                    <div class="cal-day present">10</div>
-                    <div class="cal-day late">11</div>
-
-                    <div class="cal-day present">12</div>
-                    <div class="cal-day present">13</div>
-                    <div class="cal-day present">14</div>
-                    <div class="cal-day absent">15</div>
-                    <div class="cal-day present">16</div>
-                    <div class="cal-day present">17</div>
-                    <div class="cal-day today">18</div> <!-- Today -->
-                    
-                    <div class="cal-day">19</div>
-                    <div class="cal-day">20</div>
-                    <div class="cal-day">21</div>
-                    <div class="cal-day">22</div>
-                    <div class="cal-day">23</div>
-                    <div class="cal-day">24</div>
-                    <div class="cal-day">25</div>
-                    
-                    <div class="cal-day">26</div>
-                    <div class="cal-day">27</div>
-                    <div class="cal-day">28</div>
-                    <div class="cal-day">29</div>
-                    <div class="cal-day">30</div>
-                </div>
-                
-                <div class="d-flex justify-content-center flex-wrap gap-3 mt-4 small text-muted">
-                    <div class="d-flex align-items-center"><span class="badge-dot bg-success rounded-circle me-1" style="width: 10px; height: 10px;"></span> Present</div>
-                    <div class="d-flex align-items-center"><span class="badge-dot bg-danger rounded-circle me-1" style="width: 10px; height: 10px;"></span> Absent</div>
-                    <div class="d-flex align-items-center"><span class="badge-dot bg-warning rounded-circle me-1" style="width: 10px; height: 10px;"></span> Late</div>
-                    <div class="d-flex align-items-center"><span class="badge-dot bg-info rounded-circle me-1" style="width: 10px; height: 10px;"></span> On Leave</div>
-                </div>
-              </div>
-
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+          >
+            <div>
+              <h3 class="fw-bold mb-1">Notifications</h3>
+              <div class="small-muted">Here are your recent updates.</div>
             </div>
+          </div>
 
-            <!-- RIGHT COLUMN (Recent Leave Requests) -->
-            <div class="col-lg-4">
-              
-              <!-- Recent Leave Requests -->
-              <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-header bg-white py-3 border-0">
-                    <h6 class="fw-bold mb-0">Recent Leave Requests</h6>
-                </div>
-                <div class="card-body p-0">
-                    <div class="list-group list-group-flush">
-                        
-                        <div class="list-group-item leave-item approved p-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span class="fw-semibold small">Nov 07, 2025</span>
-                                <span class="status-badge bg-soft-success">Approved</span>
-                            </div>
-                            <div class="small text-muted">Reason: Family Function</div>
-                        </div>
-
-                        <div class="list-group-item leave-item pending p-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span class="fw-semibold small">Nov 14, 2025</span>
-                                <span class="status-badge bg-soft-warning">Pending</span>
-                            </div>
-                            <div class="small text-muted">Reason: Doctor's Appointment</div>
-                        </div>
-
-                        <div class="list-group-item leave-item rejected p-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span class="fw-semibold small">Oct 29, 2025</span>
-                                <span class="status-badge bg-soft-danger">Rejected</span>
-                            </div>
-                            <div class="small text-muted">Reason: Travel (No Prior Notice)</div>
-                        </div>
-
-                        <div class="list-group-item leave-item approved p-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <span class="fw-semibold small">Oct 10, 2025</span>
-                                <span class="status-badge bg-soft-success">Approved</span>
-                            </div>
-                            <div class="small text-muted">Reason: Sick Leave</div>
-                        </div>
-
-                    </div>
-                </div>
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">Leave Request Approved</h6>
+                <small>2 days ago</small>
               </div>
-
-            </div>
-
+              <p class="mb-1">
+                Your leave request for Nov 03-04, 2025 has been approved.
+              </p>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1">Leave Request Pending</h6>
+                <small>5 days ago</small>
+              </div>
+              <p class="mb-1">
+                Your leave request for Oct 20, 2025 is still pending.
+              </p>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1 text-danger">Leave Request Rejected</h6>
+                <small>3 weeks ago</small>
+              </div>
+              <p class="mb-1">
+                Your leave request for Sep 05, 2025 has been rejected.
+              </p>
+            </a>
           </div>
         </div>
       </div>

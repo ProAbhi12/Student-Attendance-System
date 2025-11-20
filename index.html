@@ -1,18 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body style="">
+    <title>Attendance Nepal | Smart Attendance Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #4a90e2 0%, #629fe6 100%);
+            color: white;
+            padding: 100px 0;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: #4a90e2;
+        }
+    </style>
+</head>
+<body>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="#">
+                <i class="bi bi-box-fill text-primary"></i>
+                Attendance Nepal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#roles">For Whom?</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                <a href="login.html" class="btn btn-primary ms-lg-3">Login</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Modernize Your School's Attendance</h1>
+            <p class="lead my-4">A simple, powerful, and reliable system to manage student and staff attendance in real-time. Say goodbye to manual registers.</p>
+            <a href="login.html" class="btn btn-light btn-lg fw-bold">Get Started / Sign In</a>
+        </div>
+    </header>
 
-    <button> <a href="teacherdashboard.html">Teacher</a></button>
-    <br><br><br><br>
-    <button><a href="/student/student-dash.html">Student</a></button>
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <i class="bi bi-clipboard-check feature-icon mb-3"></i>
+                    <h4 class="fw-semibold">Real-time Tracking</h4>
+                    <p class="text-muted">Teachers mark attendance in seconds. Admins get instant visibility across the entire school.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-calendar-check feature-icon mb-3"></i>
+                    <h4 class="fw-semibold">Integrated Leave Management</h4>
+                    <p class="text-muted">Students and teachers can apply for leaves online, with a clear approval workflow for admins.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-file-earmark-bar-graph feature-icon mb-3"></i>
+                    <h4 class="fw-semibold">Powerful Reports</h4>
+                    <p class="text-muted">Generate daily, weekly, or monthly reports for any class, student, or teacher with a single click.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    
-  </body>
+    <!-- Roles Section -->
+    <section id="roles" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-5">Built for Everyone in Your School</h2>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h4 class="fw-semibold">For Admins</h4>
+                            <p>Get a complete overview of school operations. Manage classes, subjects, students, and staff with ease. Approve leaves and generate school-wide reports.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h4 class="fw-semibold">For Teachers</h4>
+                            <p>Spend less time on paperwork. Mark attendance for your classes quickly, manage student leaves, and view your own attendance history in one place.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h4 class="fw-semibold">For Students</h4>
+                            <p>Stay informed about your attendance. View your history, check your percentage, and apply for leaves directly from your personal dashboard.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 Attendance Nepal. All Rights Reserved.</p>
+            <p>Contact us: info@attendancenepal.com</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

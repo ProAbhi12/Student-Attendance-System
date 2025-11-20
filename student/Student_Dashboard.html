@@ -1,10 +1,9 @@
-<!-- Student_Base_Layout.html : use this as starting point for all student pages -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Portal - Attendance Nepal</title>
+    <title>Student Dashboard | Attendance Nepal</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -17,7 +16,6 @@
     />
 
     <style>
-      /* --- SAME BASE STYLES AS TEACHER LAYOUT --- */
       body {
         background-color: #f4f6fb;
         margin: 0;
@@ -134,11 +132,114 @@
         font-size: 0.8rem;
         color: #6b7280;
       }
+
+      .circle-progress {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e 0 270deg, #e5e7eb 270deg 360deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        position: relative;
+      }
+
+      .circle-progress-inner {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .circle-progress-inner h2 {
+        margin: 0;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #16a34a;
+      }
+
+      .mini-stat {
+        padding: 0.7rem 0.9rem;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+        height: 100%;
+      }
+
+      .badge-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+
+      .dot-present {
+        background-color: #22c55e;
+      }
+      .dot-absent {
+        background-color: #ef4444;
+      }
+      .dot-leave {
+        background-color: #2563eb;
+      }
+      .dot-late {
+        background-color: #f97316;
+      }
+
+      .period-pill {
+        border-radius: 10px;
+        padding: 0.6rem 0.8rem;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+      }
+
+      .status-chip {
+        font-size: 0.7rem;
+        border-radius: 999px;
+        padding: 0.15rem 0.5rem;
+      }
+
+      .status-present {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+      .status-absent {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+      .status-late {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+      .status-leave {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .notif-pill {
+        border-radius: 999px;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      .cardbox {
+        padding: 4px 16px;
+        border-radius: 6px;
+        background-color: #e5e7eb;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
     <div class="d-flex vh-100">
-      <!-- SIDEBAR -->
+      <!-- ========== SIDEBAR (Student) ========== -->
       <div class="sidebar d-flex flex-column p-3">
         <div class="sidebar-brand text-center">
           <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
@@ -172,48 +273,36 @@
           <a class="nav-link" href="Student_Profile.html">
             <i class="bi bi-person"></i> My Profile
           </a>
+          <a class="nav-link" href="Student_Notifications.html">
+            <i class="bi bi-bell"></i> Notifications
+          </a>
           <a class="nav-link" href="Student_Settings.html">
             <i class="bi bi-gear"></i> Settings
           </a>
         </nav>
 
         <div class="mt-auto pt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="../login.html">
             <i class="bi bi-box-arrow-right"></i> Logout
           </a>
         </div>
       </div>
 
-      <!-- MAIN AREA -->
+      <!-- ========== MAIN AREA ========== -->
       <div class="flex-grow-1 d-flex flex-column overflow-auto">
         <!-- Topbar -->
         <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
           <div class="container-fluid">
             <div class="d-none d-lg-block">
-              <h5 class="mb-0 fw-bold" id="pageTitle">Student Dashboard</h5>
+              <h5 class="mb-0 fw-bold">Student Dashboard</h5>
             </div>
 
             <div class="d-flex align-items-center ms-auto">
-              <form
-                class="d-none d-md-flex me-3 search-form-large"
-                role="search"
-              >
-                <div class="input-group">
-                  <input
-                    type="search"
-                    class="form-control custom-search-input"
-                    placeholder="Search..."
-                  />
-                  <button class="btn custom-search-btn" type="submit">
-                    <i class="bi bi-search"></i>
-                  </button>
-                </div>
-              </form>
 
               <div class="icon-group me-3">
-                <button class="btn icon-btn">
+                <a href="Student_Notifications.html" class="btn icon-btn">
                   <i class="bi bi-bell-fill"></i>
-                </button>
+                </a>
               </div>
 
               <div class="dropdown">
@@ -236,197 +325,349 @@
                   <li><a class="dropdown-item" href="Student_Profile.html">Profile</a></li>
                   <li><a class="dropdown-item" href="Student_Settings.html">Settings</a></li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  <li><a class="dropdown-item" href="../login.html">Logout</a></li>
                 </ul>
               </div>
             </div>
           </div>
         </nav>
 
-        <!-- PAGE-SPECIFIC CONTENT GOES HERE -->
-        <!-- <div class="container-fluid py-3 px-4"> -->
-          <!-- Replace this content for each student page -->
-          <!-- <h3 class="fw-bold">Student page content here…</h3>
-        </div>
-      </div>
-    </div> -->
+        <!-- CONTENT -->
+        <div class="container-fluid py-3 px-4">
+          <!-- Welcome & date -->
+          <div class="row g-4">
+            <div class="col-lg-8">
+              <div class="mb-3">
+                <h3 class="fw-bold mb-1">Welcome back, Aarav!</h3>
+                <div class="small-muted">
+                  Sunday, 16 November 2025 | Kartik 30, 2082 | Grade 10 - A
+                </div>
+              </div>
 
+              <!-- Attendance overview -->
+              <div class="card border-0 shadow-sm card-rounded mb-4">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+                  >
+                    <div>
+                      <h6 class="fw-semibold mb-1">Attendance Overview</h6>
+                      <div class="small-muted">
+                        Current academic year summary.
+                      </div>
+                    </div>
+                    <a
+                      href="Student_My_Attendance.html"
+                      class="btn btn-sm btn-outline-primary"
+                    >
+                      <i class="bi bi-clipboard-check me-1"></i> View Details
+                    </a>
+                  </div>
 
-    <div class="container-fluid py-3 px-4">
-  <script>
-    document.getElementById("pageTitle").textContent = "My Attendance";
-  </script>
+                  <div class="row align-items-center g-3">
+                    <div class="col-md-4 text-center mb-3 mb-md-0">
+                      <div class="circle-progress">
+                        <div class="circle-progress-inner">
+                          <h2>75%</h2>
+                          <div class="small-muted">Overall Attendance</div>
+                        </div>
+                      </div>
+                      <div class="small-muted mt-2">
+                        Minimum required: <strong>75%</strong>
+                      </div>
+                    </div>
 
-  <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
-    <div>
-      <h3 class="fw-bold mb-1">My Attendance</h3>
-      <div class="small-muted">
-        View your daily attendance records and monthly summary.
-      </div>
-    </div>
-    <a href="Student_Leaves.html" class="btn btn-primary mt-2 mt-md-0">
-      <i class="bi bi-calendar-plus me-1"></i> Apply for Leave
-    </a>
-  </div>
+                    <div class="col-md-8">
+                      <div class="row g-3">
+                        <div class="col-6 col-md-4">
+                          <div class="mini-stat">
+                            <div class="small-muted mb-1">
+                              <span class="badge-dot dot-present"></span>
+                              Present Days
+                            </div>
+                            <div class="fw-bold fs-5 text-success">135</div>
+                            <div class="small-muted">out of 180</div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                          <div class="mini-stat">
+                            <div class="small-muted mb-1">
+                              <span class="badge-dot dot-absent"></span>
+                              Absent Days
+                            </div>
+                            <div class="fw-bold fs-5 text-danger">30</div>
+                            <div class="small-muted">without leave</div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                          <div class="mini-stat">
+                            <div class="small-muted mb-1">
+                              <span class="badge-dot dot-leave"></span>
+                              On Leave
+                            </div>
+                            <div class="fw-bold fs-5 text-primary">15</div>
+                            <div class="small-muted">approved</div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-4">
+                          <div class="mini-stat">
+                            <div class="small-muted mb-1">
+                              <span class="badge-dot dot-late"></span>
+                              Late Arrivals
+                            </div>
+                            <div class="fw-bold fs-5 text-warning">6</div>
+                            <div class="small-muted">this term</div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-md-8">
+                          <div class="mini-stat">
+                            <div class="small-muted mb-1">
+                              Status
+                            </div>
+                            <div class="fw-semibold">
+                              You are <span class="text-success">on track</span>
+                              with minimum attendance.
+                            </div>
+                            <div class="small-muted">
+                              Avoid unnecessary absences to stay above 75%.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-  <div class="row g-4">
-    <!-- LEFT: Summary + table -->
-    <div class="col-lg-8">
-      <!-- Summary cards -->
-      <div class="row g-3 mb-3">
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm card-rounded">
-            <div class="card-body">
-              <div class="small-muted">This Month</div>
-              <div class="fw-bold fs-4 text-primary">78%</div>
-              <div class="small-muted">Attendance</div>
+              <!-- Today's timetable & status -->
+              <div class="card border-0 shadow-sm card-rounded mb-4">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-2"
+                  >
+                    <div>
+                      <h6 class="fw-semibold mb-1">Today’s Status & Timetable</h6>
+                      <div class="small-muted">
+                        Your attendance status and classes for today.
+                      </div>
+                    </div>
+                    <span class="status-chip status-present">
+                      Present today
+                    </span>
+                  </div>
+
+                  <div class="row g-3 align-items-start">
+                    <div class="col-md-5">
+                      <div class="small-muted mb-1">Today’s Attendance</div>
+                      <div class="d-flex align-items-center mb-2">
+                        <span class="status-chip status-present me-2">
+                          Present
+                        </span>
+                        <span class="small-muted">
+                          Marked by: <strong>Class Teacher</strong>
+                        </span>
+                      </div>
+                      <div class="small-muted">
+                        If you see any mistake, please speak to your class
+                        teacher or the school office.
+                      </div>
+
+                      <div class="mt-3">
+                        <a
+                          href="Student_My_Attendance.html"
+                          class="btn btn-sm btn-outline-primary"
+                        >
+                          <i class="bi bi-clock-history me-1"></i> View last 10
+                          days
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="col-md-7">
+                      <div class="small-muted mb-2">Today’s Timetable</div>
+                      <div class="vstack gap-2">
+                        <div class="period-pill d-flex justify-content-between">
+                          <div>
+                            <div class="small text-muted">08:00 – 08:45</div>
+                            <div class="fw-semibold">Math</div>
+                          </div>
+                          <div class="text-end small-muted">
+                            <div>Teacher: S. Karki</div>
+                          </div>
+                        </div>
+
+                        <div class="period-pill d-flex justify-content-between">
+                          <div>
+                            <div class="small text-muted">08:45 – 09:30</div>
+                            <div class="fw-semibold">Science</div>
+                          </div>
+                          <div class="text-end small-muted">
+                            <div>Teacher: R. Gurung</div>
+                          </div>
+                        </div>
+
+                        <div class="period-pill d-flex justify-content-between">
+                          <div>
+                            <div class="small text-muted">09:30 – 10:15</div>
+                            <div class="fw-semibold">English</div>
+                          </div>
+                          <div class="text-end small-muted">
+                            <div>Teacher: B. Adhikari</div>
+                          </div>
+                        </div>
+
+                        <div class="period-pill d-flex justify-content-between">
+                          <div>
+                            <div class="small text-muted">10:30 – 11:15</div>
+                            <div class="fw-semibold">Social Studies</div>
+                          </div>
+                          <div class="text-end small-muted">
+                            <div>Teacher: M. Thapa</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="small-muted mt-2">
+                        Schedule managed by school admin.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm card-rounded">
-            <div class="card-body">
-              <div class="small-muted">Present</div>
-              <div class="fw-bold fs-4 text-success">18</div>
-              <div class="small-muted">days</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm card-rounded">
-            <div class="card-body">
-              <div class="small-muted">Absent</div>
-              <div class="fw-bold fs-4 text-danger">2</div>
-              <div class="small-muted">days</div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-3">
-          <div class="card border-0 shadow-sm card-rounded">
-            <div class="card-body">
-              <div class="small-muted">On Leave</div>
-              <div class="fw-bold fs-4 text-primary">1</div>
-              <div class="small-muted">approved</div>
-            </div>
-          </div>
-        </div>
-      </div>
+            
 
-      <!-- History table -->
-      <div class="card border-0 shadow-sm card-rounded">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div>
-              <h6 class="fw-semibold mb-0">Attendance History</h6>
-              <div class="small-muted">
-                Last few weeks (you can filter by month later).
+            <!-- RIGHT COLUMN -->
+            <div class="col-lg-4">
+              <!-- Quick actions -->
+              <div class="card border-0 shadow-sm card-rounded mb-3">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-2">Quick Actions</h6>
+                  <div class="small-muted mb-3">
+                    Frequently used actions for your account.
+                  </div>
+                  <div class="d-grid gap-2">
+                    <a
+                      href="Student_My_Attendance.html"
+                      class="btn btn-outline-primary fw-semibold"
+                    >
+                      <i class="bi bi-clipboard-check me-1"></i> View My Attendance
+                    </a>
+                    <a
+                      href="Student_Leave.html"
+                      class="btn btn-outline-primary fw-semibold"
+                    >
+                      <i class="bi bi-calendar-plus me-1"></i> Apply for Leave
+                    </a>
+                    <a
+                      href="Student_Notifications.html"
+                      class="btn btn-outline-primary fw-semibold"
+                    >
+                      <i class="bi bi-bell me-1"></i> See Notifications
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Recent notifications -->
+              <div class="card border-0 shadow-sm card-rounded mb-3">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-2">Recent Notifications</h6>
+                  <div class="small-muted mb-2">
+                    Latest updates about your attendance and leaves.
+                  </div>
+
+                  <div class="mb-2 d-flex">
+                    <div class="me-3 cardbox">
+                      <div class="fw-bold">Now</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold small">
+                        Attendance marked as Present today
+                      </div>
+                      <div class="small-muted">
+                        Grade 10 - A | Marked by Class Teacher
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-2 d-flex">
+                    <div class="me-3 cardbox">
+                      <div class="fw-bold">Yest</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold small">
+                        Sick leave approved (Nov 03–04)
+                      </div>
+                      <div class="small-muted">
+                        Status: <span class="notif-pill bg-success-subtle text-success">Approved</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-2 d-flex">
+                    <div class="me-3 cardbox">
+                      <div class="fw-bold">3 d</div>
+                    </div>
+                    <div>
+                      <div class="fw-semibold small">
+                        Low attendance warning
+                      </div>
+                      <div class="small-muted">
+                        Your attendance is <strong>75%</strong>. Avoid
+                        unnecessary absences.
+                      </div>
+                    </div>
+                  </div>
+
+                  <a
+                    href="Student_Notifications.html"
+                    class="small text-decoration-none"
+                  >
+                    View all notifications
+                    <i class="bi bi-arrow-right-short"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Leave summary -->
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-2">Leave Summary</h6>
+                  <div class="small-muted mb-2">
+                    Overview of your leave requests this year.
+                  </div>
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="small-muted">Total leave days</span>
+                    <span class="fw-semibold text-primary">15</span>
+                  </div>
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="small-muted">Approved requests</span>
+                    <span class="fw-semibold text-success">5</span>
+                  </div>
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="small-muted">Pending requests</span>
+                    <span class="fw-semibold text-warning">1</span>
+                  </div>
+                  <div class="d-flex justify-content-between small mb-1">
+                    <span class="small-muted">Rejected requests</span>
+                    <span class="fw-semibold text-danger">1</span>
+                  </div>
+                  <a
+                    href="Student_Leave.html"
+                    class="small text-decoration-none d-block mt-2"
+                  >
+                    Go to My Leaves
+                    <i class="bi bi-arrow-right-short"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          <div class="table-responsive mt-2">
-            <table class="table table-hover table-sm mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Date</th>
-                  <th>Day</th>
-                  <th>Status</th>
-                  <th>Remarks</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Nov 16, 2025</td>
-                  <td>Sunday</td>
-                  <td><span class="badge bg-success-subtle text-success">Present</span></td>
-                  <td>On time</td>
-                </tr>
-                <tr>
-                  <td>Nov 15, 2025</td>
-                  <td>Saturday</td>
-                  <td><span class="badge bg-warning-subtle text-warning">Late</span></td>
-                  <td>Bus delay</td>
-                </tr>
-                <tr>
-                  <td>Nov 14, 2025</td>
-                  <td>Friday</td>
-                  <td><span class="badge bg-danger-subtle text-danger">Absent</span></td>
-                  <td>Fever</td>
-                </tr>
-                <tr>
-                  <td>Nov 13, 2025</td>
-                  <td>Thursday</td>
-                  <td><span class="badge bg-primary-subtle text-primary">On Leave</span></td>
-                  <td>Sick leave (approved)</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: Calendar -->
-    <div class="col-lg-4">
-      <div class="card border-0 shadow-sm card-rounded">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="fw-semibold">Monthly Calendar</div>
-            <div class="small-muted">Nov 2025</div>
-          </div>
-
-          <!-- Simple static calendar grid (you can replace by JS later) -->
-          <div class="small-muted mb-1">
-            <span class="badge bg-success-subtle text-success">P</span> Present
-            <span class="badge bg-warning-subtle text-warning ms-1">L</span> Late
-            <span class="badge bg-primary-subtle text-primary ms-1">Lv</span> Leave
-            <span class="badge bg-danger-subtle text-danger ms-1">A</span> Absent
-          </div>
-
-          <div class="table-responsive">
-            <table class="table table-bordered text-center mb-0" style="font-size: 0.8rem">
-              <thead class="table-light">
-                <tr>
-                  <th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td></td><td></td><td></td><td></td><td>1</td><td>2</td><td>3</td>
-                </tr>
-                <tr>
-                  <td class="bg-success-subtle">4</td>
-                  <td class="bg-success-subtle">5</td>
-                  <td class="bg-success-subtle">6</td>
-                  <td class="bg-success-subtle">7</td>
-                  <td class="bg-success-subtle">8</td>
-                  <td class="bg-success-subtle">9</td>
-                  <td class="bg-primary-subtle">10</td>
-                </tr>
-                <tr>
-                  <td class="bg-success-subtle">11</td>
-                  <td class="bg-success-subtle">12</td>
-                  <td class="bg-success-subtle">13</td>
-                  <td class="bg-primary-subtle">14</td>
-                  <td class="bg-danger-subtle">15</td>
-                  <td class="bg-warning-subtle">16</td>
-                  <td>17</td>
-                </tr>
-                <!-- continue as needed -->
-              </tbody>
-            </table>
-          </div>
-
-          <div class="small-muted mt-2">
-            This calendar is for viewing only. Attendance is marked by your teachers.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"

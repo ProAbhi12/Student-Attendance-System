@@ -125,22 +125,6 @@
         object-fit: cover;
       }
 
-      .btn-primary {
-        background-color: #4a90e2;
-        border-color: #4a90e2;
-      }
-
-      .btn-outline-primary {
-        border-color: #c9ddff;
-        background-color: #dbe9f9;
-        color: #3c90e2;
-      }
-
-      .btn-outline-primary:hover {
-        background-color: #2d6cdf;
-        color: #fff;
-      }
-
       .card-rounded {
         border-radius: 10px;
       }
@@ -148,6 +132,109 @@
       .small-muted {
         font-size: 0.8rem;
         color: #6b7280;
+      }
+
+      .circle-progress {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: conic-gradient(#22c55e 0 270deg, #e5e7eb 270deg 360deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        position: relative;
+      }
+
+      .circle-progress-inner {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .circle-progress-inner h2 {
+        margin: 0;
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #16a34a;
+      }
+
+      .mini-stat {
+        padding: 0.7rem 0.9rem;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+        height: 100%;
+      }
+
+      .badge-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+
+      .dot-present {
+        background-color: #22c55e;
+      }
+      .dot-absent {
+        background-color: #ef4444;
+      }
+      .dot-leave {
+        background-color: #2563eb;
+      }
+      .dot-late {
+        background-color: #f97316;
+      }
+
+      .period-pill {
+        border-radius: 10px;
+        padding: 0.6rem 0.8rem;
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+      }
+
+      .status-chip {
+        font-size: 0.7rem;
+        border-radius: 999px;
+        padding: 0.15rem 0.5rem;
+      }
+
+      .status-present {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+      .status-absent {
+        background-color: #fee2e2;
+        color: #b91c1c;
+      }
+      .status-late {
+        background-color: #fef3c7;
+        color: #92400e;
+      }
+      .status-leave {
+        background-color: #dbeafe;
+        color: #1d4ed8;
+      }
+
+      .notif-pill {
+        border-radius: 999px;
+        padding: 0.2rem 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      .cardbox {
+        padding: 4px 16px;
+        border-radius: 6px;
+        background-color: #e5e7eb;
+        text-align: center;
       }
     </style>
   </head>
@@ -187,13 +274,17 @@
           <a class="nav-link" href="Student_Profile.html">
             <i class="bi bi-person"></i> My Profile
           </a>
+          <a class="nav-link" href="Student_Notifications.html">
+            <i class="bi bi-bell"></i> Notifications
+          </a>
+          
           <a class="nav-link" href="Student_Settings.html">
             <i class="bi bi-gear"></i> Settings
           </a>
         </nav>
 
         <div class="mt-auto pt-3">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="../login.html">
             <i class="bi bi-box-arrow-right"></i> Logout
           </a>
         </div>
@@ -209,26 +300,12 @@
             </div>
 
             <div class="d-flex align-items-center ms-auto">
-              <form
-                class="d-none d-md-flex me-3 search-form-large"
-                role="search"
-              >
-                <div class="input-group">
-                  <input
-                    type="search"
-                    class="form-control custom-search-input"
-                    placeholder="Search..."
-                  />
-                  <button class="btn custom-search-btn" type="submit">
-                    <i class="bi bi-search"></i>
-                  </button>
-                </div>
-              </form>
+              
 
               <div class="icon-group me-3">
-                <button class="btn icon-btn">
+                <a href="Student_Notifications.html" class="btn icon-btn">
                   <i class="bi bi-bell-fill"></i>
-                </button>
+                </a>
               </div>
 
               <div class="dropdown">
@@ -248,17 +325,25 @@
                   >
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
-                  <li><a class="dropdown-item" href="Student_Profile.html">Profile</a></li>
-                  <li><a class="dropdown-item" href="Student_Settings.html">Settings</a></li>
+                  <li>
+                    <a class="dropdown-item" href="Student_Profile.html"
+                      >Profile</a
+                    >
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="Student_Settings.html"
+                      >Settings</a
+                    >
+                  </li>
                   <li><hr class="dropdown-divider" /></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                  <li><a class="dropdown-item" href="../login.html">Logout</a></li>
                 </ul>
               </div>
             </div>
           </div>
         </nav>
 
-        <!-- ========== PAGE CONTENT ========== -->
+        <!-- CONTENT -->
         <div class="container-fluid py-3 px-4">
           <div
             class="d-flex flex-wrap justify-content-between align-items-center mb-3"
@@ -266,50 +351,288 @@
             <div>
               <h3 class="fw-bold mb-1">My Attendance</h3>
               <div class="small-muted">
-                View your attendance history and monthly summary.
+                View your overall attendance, monthly breakdown and recent
+                absences.
               </div>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-2 mt-md-0">
+              <select class="form-select form-select-sm">
+                <option selected>Academic Year 2081/82</option>
+                <option>2080/81</option>
+              </select>
+              <select class="form-select form-select-sm">
+                <option selected>November 2025</option>
+                <option>October 2025</option>
+                <option>September 2025</option>
+              </select>
             </div>
           </div>
 
-          <div class="card border-0 shadow-sm card-rounded mb-3">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="fw-semibold mb-0">Attendance History</h6>
-                    <div>
-                        <input type="month" class="form-control form-control-sm" value="2025-11">
+          <div class="row g-4">
+            <!-- LEFT COLUMN -->
+            <div class="col-lg-8">
+              <!-- Summary cards -->
+              <div class="row g-3 mb-3">
+                <div class="col-6 col-md-3">
+                  <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                      <div class="small-muted">Overall</div>
+                      <div class="fw-bold fs-4 text-primary">75%</div>
+                      <div class="small-muted">Attendance</div>
+                      <div class="progress mt-2">
+                        <div
+                          class="progress-bar bg-primary"
+                          style="width: 75%"
+                        ></div>
+                      </div>
                     </div>
+                  </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered table-sm text-center">
-                        <thead>
-                            <tr>
-                                <th>Sun</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Calendar days will be dynamically generated here -->
-                        </tbody>
+                <div class="col-6 col-md-3">
+                  <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                      <div class="small-muted">This Month</div>
+                      <div class="fw-bold fs-4 text-success">78%</div>
+                      <div class="small-muted">Attendance</div>
+                      <div class="progress mt-2">
+                        <div
+                          class="progress-bar bg-success"
+                          style="width: 78%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                      <div class="small-muted">Present</div>
+                      <div class="fw-bold fs-4 text-success">18</div>
+                      <div class="small-muted">days this month</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="card border-0 shadow-sm summary-card">
+                    <div class="card-body">
+                      <div class="small-muted">Absent / Leave</div>
+                      <div class="fw-bold fs-5">
+                        <span class="text-danger">2</span>
+                        <span class="text-primary"> / 1</span>
+                      </div>
+                      <div class="small-muted">Absent / On Leave</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- History table -->
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-2"
+                  >
+                    <div>
+                      <h6 class="fw-semibold mb-0">Recent Attendance</h6>
+                      <div class="small-muted">
+                        Last 10 days attendance status.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="table-responsive mt-2">
+                    <table class="table table-hover table-sm mb-0">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Date</th>
+                          <th>Day</th>
+                          <th>Status</th>
+                          <th>Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Nov 16, 2025</td>
+                          <td>Sunday</td>
+                          <td>
+                            <span class="badge bg-success-subtle text-success"
+                              >Present</span
+                            >
+                          </td>
+                          <td>On time</td>
+                        </tr>
+                        <tr>
+                          <td>Nov 15, 2025</td>
+                          <td>Saturday</td>
+                          <td>
+                            <span class="badge bg-warning-subtle text-warning"
+                              >Late</span
+                            >
+                          </td>
+                          <td>Bus delay</td>
+                        </tr>
+                        <tr>
+                          <td>Nov 14, 2025</td>
+                          <td>Friday</td>
+                          <td>
+                            <span class="badge bg-danger-subtle text-danger"
+                              >Absent</span
+                            >
+                          </td>
+                          <td>Fever (no leave)</td>
+                        </tr>
+                        <tr>
+                          <td>Nov 13, 2025</td>
+                          <td>Thursday</td>
+                          <td>
+                            <span class="badge bg-primary-subtle text-primary"
+                              >On Leave</span
+                            >
+                          </td>
+                          <td>Sick leave (approved)</td>
+                        </tr>
+                        <tr>
+                          <td>Nov 12, 2025</td>
+                          <td>Wednesday</td>
+                          <td>
+                            <span class="badge bg-success-subtle text-success"
+                              >Present</span
+                            >
+                          </td>
+                          <td>On time</td>
+                        </tr>
+                        <!-- more static rows or later bound from DB -->
+                      </tbody>
                     </table>
+                  </div>
+
+                  <div class="small-muted mt-2">
+                    For any mistakes, contact your class teacher or school
+                    office.
+                  </div>
                 </div>
-                <div class="d-flex justify-content-center small-muted mt-2">
-                    <span class="me-3"><i class="bi bi-circle-fill text-success"></i> Present</span>
-                    <span class="me-3"><i class="bi bi-circle-fill text-danger"></i> Absent</span>
-                    <span class="me-3"><i class="bi bi-circle-fill text-warning"></i> On Leave</span>
-                    <span><i class="bi bi-circle-fill text-secondary"></i> Holiday</span>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Calendar + breakdown -->
+            <div class="col-lg-4">
+              <div class="card border-0 shadow-sm card-rounded mb-3">
+                <div class="card-body">
+                  <div
+                    class="d-flex justify-content-between align-items-center mb-2"
+                  >
+                    <div class="fw-semibold">Monthly Calendar</div>
+                    <div class="small-muted">Nov 2025</div>
+                  </div>
+
+                  <div class="small-muted mb-1">
+                    <span class="badge bg-success-subtle text-success">P</span>
+                    Present
+                    <span class="badge bg-warning-subtle text-warning ms-1"
+                      >L</span
+                    >
+                    Late
+                    <span class="badge bg-primary-subtle text-primary ms-1"
+                      >Lv</span
+                    >
+                    Leave
+                    <span class="badge bg-danger-subtle text-danger ms-1"
+                      >A</span
+                    >
+                    Absent
+                  </div>
+
+                  <div class="table-responsive">
+                    <table
+                      class="table table-bordered text-center mb-0"
+                      style="font-size: 0.8rem"
+                    >
+                      <thead class="table-light">
+                        <tr>
+                          <th>Su</th>
+                          <th>Mo</th>
+                          <th>Tu</th>
+                          <th>We</th>
+                          <th>Th</th>
+                          <th>Fr</th>
+                          <th>Sa</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>1</td>
+                          <td>2</td>
+                          <td class="bg-success-subtle">3</td>
+                        </tr>
+                        <tr>
+                          <td class="bg-success-subtle">4</td>
+                          <td class="bg-success-subtle">5</td>
+                          <td class="bg-success-subtle">6</td>
+                          <td class="bg-success-subtle">7</td>
+                          <td class="bg-success-subtle">8</td>
+                          <td class="bg-success-subtle">9</td>
+                          <td class="bg-primary-subtle">10</td>
+                        </tr>
+                        <tr>
+                          <td class="bg-success-subtle">11</td>
+                          <td class="bg-success-subtle">12</td>
+                          <td class="bg-success-subtle">13</td>
+                          <td class="bg-primary-subtle">14</td>
+                          <td class="bg-danger-subtle">15</td>
+                          <td class="bg-warning-subtle">16</td>
+                          <td>17</td>
+                        </tr>
+                        <!-- more rows as needed -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="small-muted mt-2">
+                    This calendar is read‑only. All attendance is marked by your
+                    teachers.
+                  </div>
                 </div>
+              </div>
+
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-2">Absence Breakdown</h6>
+                  <div class="small-muted mb-1">
+                    Why you were not present this month.
+                  </div>
+
+                  <ul class="list-unstyled small mb-0">
+                    <li class="mb-1">
+                      <span class="badge bg-primary-subtle text-primary me-1"
+                        >3</span
+                      >
+                      days on approved leave (sick, personal).
+                    </li>
+                    <li class="mb-1">
+                      <span class="badge bg-danger-subtle text-danger me-1"
+                        >2</span
+                      >
+                      days absent without leave.
+                    </li>
+                    <li class="mb-1">
+                      <span class="badge bg-warning-subtle text-warning me-1"
+                        >1</span
+                      >
+                      day marked late.
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"

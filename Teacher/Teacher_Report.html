@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Students</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    <title>Reports</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
         rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous">
@@ -140,7 +140,7 @@
     background-color: #dddbdb;
 }
 
-.summary-card {
+      .summary-card {
             background-color: #ffffff;
             border-radius: 10px;
             padding: 16px 20px;
@@ -148,7 +148,6 @@
 
         .summary-label {
             font-size: 1rem;
-            color: black;
             letter-spacing: 0.06em;
         }
 
@@ -160,17 +159,17 @@
 
         .status-badge {
             padding: 6px 12px;
-            font-size: 0.75rem;
-            border-radius: 999px;
+            font-size: 0.9rem;
+            border-radius: 999px; /* pill shape */
         }
 
-        .badge-good {
-            background-color: #dcfce7;   
+        .badge-present {
+            background-color: #dcfce7;
             color: #166534;
         }
 
-        .badge-risk {
-            background-color: #fee2e2;   
+        .badge-absent {
+            background-color: #fee2e2;
             color: #b91c1c;
         }
   </style>
@@ -195,7 +194,7 @@
       </div>
 
       <nav class="nav flex-column mb-3">
-        <a class="nav-link" href="teacherdashboard.html">
+        <a class="nav-link" href="Teacher_Dashboard.html">
           <i class="bi bi-grid-1x2"></i> Dashboard
         </a>
         <a class="nav-link" href="Teacher_Self_Attendance.html">
@@ -210,10 +209,10 @@
         <a class="nav-link" href="Classes.html">
           <i class="bi bi-collection"></i> Classes
         </a>
-        <a class="nav-link active" href="Students.html">
+        <a class="nav-link" href="Students.html">
           <i class="bi bi-people"></i> Students
         </a>
-        <a class="nav-link" href="Teacher_Report.html">
+        <a class="nav-link active" href="Teacher_Report.html">
           <i class="bi bi-bar-chart"></i> Reports
         </a>
         <a class="nav-link" href="Teacher_Leave.html">
@@ -225,7 +224,7 @@
       </nav>
 
       <div class="mt-auto pt-3">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="../login.html">
           <i class="bi bi-box-arrow-right"></i> Logout
         </a>
       </div>
@@ -236,9 +235,9 @@
       <!-- TOP NAVBAR -->
       <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
         <div class="container-fluid">
-
+      
           <div class="d-none d-lg-block">
-            <h5 class="mb-0 fw-bold">Students Report</h5>
+            <h5 class="mb-0 fw-bold">Attendance Report</h5>
           </div>
 
           <div class="d-flex align-items-center ms-auto">
@@ -276,71 +275,77 @@
       </nav>
 
 <!-- <div class="container-fluid py-3 px-4">
-  <div class="row g-4"> -->
-    <main class="p-4">
-                <!-- Page title + class selector + add button -->
-                <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="row g-4">
+   
+
+
+</div> -->
+<main class="p-4">
+<div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h1 class="h4 fw-bold mb-1">Students</h1>
+                        <h1 class="h4 fw-bold mb-1">Attendance Report Generator</h1>
                         <p class="text-muted mb-0">
-                            View and manage students in your classes and monitor their attendance.
+                            Generate various attendance reports for students and classes.
                         </p>
                     </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <select class="form-select form-select-sm" style="width: 180px;">
-                            <option>Grade 10</option>
-                            <option>Grade 9</option>
-                            <option>Grade 8</option>
-                        </select>
-<!-- 
-                        <button class="btn btn-primary btn-sm d-flex align-items-center gap-1">
-                            <i class="bi bi-person-plus"></i>
-                            Add Student
-                        </button> -->
-                    </div>
+                    <a href="#" class="btn btn-primary d-flex align-items-center gap-2">
+                        <i class="bi bi-download"></i>
+                        Export as CSV
+                    </a>
                 </div>
-                <div class="card border-0 shadow-sm mb-4">
+ <div class="card border-0 shadow-sm mb-4">
                     <div class="card-body">
-                        <form class="row g-3 align-items-end">
-                            <!-- Search -->
-                            <div class="col-md-4">
-                                <label class="form-label small fw-semibold">Search Student</label>
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Name or Student ID">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <h6 class="mb-1">Customize your Report</h6>
+                                <p class="text-muted small mb-0">
+                                    Select the criteria below to generate a detailed attendance report.
+                                </p>
+                            </div>
+                            <div>
+                                <button class="btn btn-light btn-sm me-2">Reset Filters</button>
+                                <button class="btn btn-outline-primary btn-sm">Generate Report</button>
+                            </div>
+                        </div>
+
+             <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Report Type</label>
+                                <select class="form-select">
+                                    <option>Daily Summary</option>
+                                    <option>Weekly Summary</option>
+                                    <option>Monthly Summary</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Date</label>
+                                <input type="date" class="form-control" value="2025-11-17">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label small fw-semibold">Select Class</label>
+                                <select class="form-select">
+                                    <option>Grade 10</option>
+                                    <option>Grade 9</option>
+                                    <option>Grade 8</option>
+                                </select>
                             </div>
 
                             <div class="col-md-3">
                                 <label class="form-label small fw-semibold">Attendance Status</label>
                                 <select class="form-select">
-                                    <option>All</option>
-                                    <option>Good (≥ 90%)</option>
-                                    <option>At Risk (&lt; 75%)</option>
+                                    <option>All Statuses</option>
+                                    <option>Present</option>
+                                    <option>Absent</option>
                                 </select>
                             </div>
-
-                            <div class="col-md-3">
-                                <label class="form-label small fw-semibold">Sort By</label>
-                                <select class="form-select">
-                                    <option>Name (A–Z)</option>
-                                    <option>Highest Attendance</option>
-                                    <option>Lowest Attendance</option>
-                                    <option>Roll Number</option>
-                                </select>
-                            </div>
-
-                            <div class="col-md-2 d-flex justify-content-end gap-2">
-                                <button type="reset" class="btn btn-light btn-sm">Clear</button>
-                                <button type="submit" class="btn btn-outline-primary btn-sm">
-                                    Apply
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row g-3 mb-4">
-                    <div class="col-md-4">
+                <div class="row g-3 mb-4 ">
+                    <div class="col-md-4 ">
                         <div class="summary-card">
                             <div class="summary-label fw-bold">Total Students</div>
                             <div class="summary-value">42</div>
@@ -348,122 +353,69 @@
                     </div>
                     <div class="col-md-4">
                         <div class="summary-card">
-                            <div class="summary-label fw-bold">Average Attendance</div>
-                            <div class="summary-value text-success">93.5%</div>
+                            <div class="summary-label fw-bold">Overall Attendance</div>
+                            <div class="summary-value text-success">95.2%</div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="summary-card fw-bold">
-                            <div class="summary-label">Students At Risk</div>
-                            <div class="summary-value text-danger">4</div>
+                        <div class="summary-card">
+                            <div class="summary-label fw-bold">Total Absences</div>
+                            <div class="summary-value text-danger">2</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="card border-0 shadow-sm">
+    <div class="card border-0 shadow-sm">
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table align-middle mb-0">
                                 <thead class="table-light">
                                     <tr>
-                                        <th>Roll</th>
+                                        <th>Student Roll</th>
                                         <th>Student Name</th>
-                                        <th>Student ID</th>
-                                        <th>Class</th>
-                                        <th>Attendance</th>
+                                        <th>Date</th>
                                         <th>Status</th>
-                                        <th>Contact</th>
-                                        <th>Actions</th>
+                                        <th>Remarks</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
                                         <td>Abhisekh Shakya</td>
-                                        <td>STU-1001</td>
-                                        <td>Grade 10</td>
-                                        <td>96%</td>
+                                        <td>2025-11-17</td>
                                         <td>
-                                            <span class="status-badge badge-good fw-bold">Good</span>
+                                            <span class="status-badge badge-present fw-bold">Present</span>
                                         </td>
-                                        <td>
-                                            Guardian: Mr. Shakya
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary btn-sm me-1">
-                                                View Attendance
-                                            </button>
-                                            <a href="Student_profile.html"><button class="btn btn-outline-secondary btn-sm">View Profile
-                                            </button></a>
-                                        </td>
+                                        <td>-</td>
                                     </tr>
-
                                     <tr>
                                         <td>2</td>
                                         <td>Aarav Shakya</td>
-                                        <td>STU-1002</td>
-                                        <td>Grade 10</td>
-                                        <td>68%</td>
+                                        <td>2025-11-17</td>
                                         <td>
-                                            <span class="status-badge badge-risk fw-bold">At Risk</span>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
                                         </td>
-                                        <td>
-                                            Guardian: Mrs. Shakya
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary btn-sm me-1">
-                                                View Attendance
-                                            </button>
-                                            <button class="btn btn-outline-secondary btn-sm">
-                                                View Profile
-                                            </button>
-                                        </td>
+                                        <td>Sick Leave</td>
                                     </tr>
-
                                     <tr>
                                         <td>3</td>
                                         <td>James Tamang</td>
-                                        <td>STU-1003</td>
-                                        <td>Grade 10</td>
-                                        <td>91%</td>
+                                        <td>2025-11-18</td>
                                         <td>
-                                            <span class="status-badge badge-good fw-bold">Good</span>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
                                         </td>
-                                        <td>
-                                            Guardian: Mr. Tamang
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary btn-sm me-1">
-                                                View Attendance
-                                            </button>
-                                            <button class="btn btn-outline-secondary btn-sm">
-                                                View Profile
-                                            </button>
-                                        </td>
+                                        <td>Sick Leave</td>
                                     </tr>
-
                                     <tr>
                                         <td>4</td>
-                                        <td>Sita Karki</td>
-                                        <td>STU-1004</td>
-                                        <td>Grade 10</td>
-                                        <td>52%</td>
+                                        <td>Ram Tamang</td>
+                                        <td>2025-11-18</td>
                                         <td>
-                                            <span class="status-badge badge-risk fw-bold">At Risk</span>
+                                            <span class="status-badge badge-absent fw-bold">Absent</span>
                                         </td>
-                                        <td>
-                                            Guardian: Mrs. Karki
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary btn-sm me-1">
-                                                View Attendance
-                                            </button>
-                                            <button class="btn btn-outline-secondary btn-sm">
-                                                View Profile
-                                            </button>
-                                        </td>
+                                        <td>Sick Leave</td>
                                     </tr>
-
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -473,10 +425,8 @@
             </main>
         </div>
     </div>
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
 </body>
 </html>
