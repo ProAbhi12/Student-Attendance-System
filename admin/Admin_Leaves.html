@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaves Management | Admin - Attendance Nepal</title>
+
+    <!-- Bootstrap + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body {
+        background-color: #f4f6fb;
+        margin: 0;
+        overflow: hidden;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+      }
+
+      .large-text {
+        font-size: 20px;
+      }
+
+      .sidebar {
+        width: 260px;
+        background-color: #ffffff;
+        border-right: 1px solid #e3e7f0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+        flex-shrink: 0;
+        height: 100vh;
+      }
+
+      .sidebar-brand {
+        font-weight: 700;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding-top: 5px;
+      }
+
+      .sidebar-brand-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: #4a90e2;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.9rem;
+      }
+
+      .profile-img-circle {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .sidebar .nav-link {
+        color: black;
+        font-weight: 500;
+        border-radius: 10px;
+        padding: 0.55rem 0.75rem;
+        margin-bottom: 0.2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.05rem;
+      }
+
+      .sidebar .nav-link.active {
+        background-color: #dbe9f9;
+        color: #629fe6;
+      }
+
+      .custom-topbar {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e7f0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .custom-search-input {
+        border-top: 20px;
+        border-bottom: 20px;
+        border-right: none;
+        border-color: #f0f2f5;
+        background-color: #f0f2f5;
+        padding-left: 15px;
+      }
+
+      .custom-search-btn {
+        border-top: 20px;
+        border-bottom: 20px;
+        background-color: #f0f2f5;
+        border: none;
+        color: #888;
+      }
+
+      .search-form-large {
+        width: 60%;
+        max-width: 700px;
+      }
+
+      .icon-btn {
+        color: #555;
+        font-size: 1.2rem;
+        padding: 0.5rem;
+      }
+
+      .topbar-profile-img {
+        height: 48px;
+        width: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .card-rounded {
+        border-radius: 10px;
+      }
+
+      .small-muted {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+
+      .pill-status {
+        border-radius: 999px;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.55rem;
+      }
+
+      .table thead th {
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+
+      .table-sm td {
+        vertical-align: middle;
+      }
+
+      .stat-card {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+      }
+
+      .stat-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex vh-100">
+      <!-- ========== SIDEBAR (Admin) ========== -->
+      <div class="sidebar d-flex flex-column p-3">
+        <div class="sidebar-brand text-center">
+          <span class="sidebar-brand-icon"><i class="bi bi-box"></i></span>
+          <span class="large-text">Attendance Nepal</span>
+        </div>
+
+        <div class="user-card">
+          <div class="text-center mb-4">
+            <img
+              src="../admin.png"
+              alt="Admin profile"
+              class="profile-img-circle mb-2"
+            />
+            <div class="fw-semibold small">System Admin</div>
+            <div class="text-muted" style="font-size: 0.8rem">
+              Principal / Admin
+            </div>
+          </div>
+        </div>
+
+        <nav class="nav flex-column mb-3">
+          <a class="nav-link" href="Admin_Dashboard.html">
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+          <a class="nav-link" href="Admin_Teachers.html">
+            <i class="bi bi-person-badge"></i> Teachers
+          </a>
+          <a class="nav-link" href="Admin_Students.html">
+            <i class="bi bi-people"></i> Students
+          </a>
+          <a class="nav-link" href="Admin_Attendance.html">
+            <i class="bi bi-clipboard-check"></i> Attendance
+          </a>
+          <a class="nav-link active" href="Admin_Leaves.html">
+            <i class="bi bi-calendar-check"></i> Leaves
+          </a>
+          <a class="nav-link" href="Admin_Reports.html">
+            <i class="bi bi-bar-chart"></i> Reports
+          </a>
+          <a class="nav-link" href="Admin_Settings.html">
+            <i class="bi bi-gear"></i> Settings
+          </a>
+        </nav>
+
+        <div class="mt-auto pt-3">
+          <a class="nav-link" href="../login.html">
+            <i class="bi bi-box-arrow-right"></i> Logout
+          </a>
+        </div>
+      </div>
+
+      <!-- ========== MAIN AREA ========== -->
+      <div class="flex-grow-1 d-flex flex-column overflow-auto">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand-lg sticky-top custom-topbar">
+          <div class="container-fluid">
+            <div class="d-none d-lg-block">
+              <h5 class="mb-0 fw-bold">Leaves Management</h5>
+            </div>
+
+            <div class="d-flex align-items-center ms-auto">
+              <form
+                class="d-none d-md-flex me-3 search-form-large"
+                role="search"
+              >
+                <div class="input-group">
+                  <input
+                    type="search"
+                    class="form-control custom-search-input"
+                    placeholder="Search by name, ID, reason..."
+                  />
+                  <button class="btn custom-search-btn" type="submit">
+                    <i class="bi bi-search"></i>
+                  </button>
+                </div>
+              </form>
+
+              <div class="icon-group me-3">
+                <button class="btn icon-btn">
+                  <i class="bi bi-bell-fill"></i>
+                </button>
+              </div>
+
+              <div class="dropdown">
+                <a
+                  class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                >
+                  <img
+                    src="../admin.png"
+                    alt="Profile"
+                    class="topbar-profile-img me-2"
+                  />
+                  <span class="d-none d-md-block fw-semibold"
+                    >System Admin</span
+                  >
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="Admin_Profile.html">Profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="Admin_Settings.html"
+                      >Settings</a
+                    >
+                  </li>
+                  <li><hr class="dropdown-divider" /></li>
+                  <li>
+                    <a class="dropdown-item" href="../login.html">Logout</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- PAGE CONTENT -->
+        <div class="container-fluid py-3 px-4">
+          <!-- Header row -->
+          <div
+            class="d-flex flex-wrap justify-content-between align-items-center mb-3"
+          >
+            <div>
+              <h3 class="fw-bold mb-1">Leave Requests & History</h3>
+              <div class="small-muted">
+                View all teacher and student leaves. Approve or reject pending
+                requests.
+              </div>
+            </div>
+          </div>
+
+          <!-- Filters -->
+          <div class="card border-0 shadow-sm card-rounded mb-3">
+            <div class="card-body">
+              <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >From Date</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control form-control-sm"
+                    id="filterFromDate"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >To Date</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control form-control-sm"
+                    id="filterToDate"
+                  />
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >Role</label
+                  >
+                  <select
+                    class="form-select form-select-sm"
+                    id="filterRole"
+                  >
+                    <option selected>All</option>
+                    <option>Teacher</option>
+                    <option>Student</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >Status</label
+                  >
+                  <select
+                    class="form-select form-select-sm"
+                    id="filterStatus"
+                  >
+                    <option selected>All</option>
+                    <option>Pending</option>
+                    <option>Approved</option>
+                    <option>Rejected</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row g-3 mt-3">
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >Leave Type</label
+                  >
+                  <select
+                    class="form-select form-select-sm"
+                    id="filterLeaveType"
+                  >
+                    <option selected>All Types</option>
+                    <option>Sick Leave</option>
+                    <option>Casual Leave</option>
+                    <option>Emergency</option>
+                    <option>Training / Seminar</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >Student Class</label
+                  >
+                  <select
+                    class="form-select form-select-sm"
+                    id="filterClass"
+                  >
+                    <option selected>All Classes</option>
+                    <option>Grade 1</option>
+                    <option>Grade 2</option>
+                    <option>Grade 3</option>
+                    <option>Grade 4</option>
+                    <option>Grade 5</option>
+                    <option>Grade 6</option>
+                    <option>Grade 7</option>
+                    <option>Grade 8</option>
+                    <option>Grade 9</option>
+                    <option>Grade 10</option>
+                    <option>Grade 11</option>
+                    <option>Grade 12</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label small-muted fw-semibold"
+                    >Teacher Department</label
+                  >
+                  <select
+                    class="form-select form-select-sm"
+                    id="filterDept"
+                  >
+                    <option selected>All Departments</option>
+                    <option>Science</option>
+                    <option>Mathematics</option>
+                    <option>English</option>
+                    <option>Social Studies</option>
+                    <option>Computer</option>
+                  </select>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                  <button class="btn btn-primary btn-sm w-100" type="button">
+                    <i class="bi bi-funnel me-1"></i> Apply Filters
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top stats -->
+          <div class="row g-3 mb-3">
+            <div class="col-6 col-md-3">
+              <div class="card stat-card">
+                <div class="card-body d-flex align-items-center">
+                  <div
+                    class="stat-icon me-3"
+                    style="background-color:#dbeafe;color:#1d4ed8;"
+                  >
+                    <i class="bi bi-person-badge"></i>
+                  </div>
+                  <div>
+                    <div class="small-muted">Pending Teacher Leaves</div>
+                    <div class="fw-bold fs-5">4</div>
+                    <div class="small-muted">Awaiting admin decision</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="card stat-card">
+                <div class="card-body d-flex align-items-center">
+                  <div
+                    class="stat-icon me-3"
+                    style="background-color:#dcfce7;color:#166534;"
+                  >
+                    <i class="bi bi-people"></i>
+                  </div>
+                  <div>
+                    <div class="small-muted">Pending Student Leaves</div>
+                    <div class="fw-bold fs-5">6</div>
+                    <div class="small-muted">Mostly sickness</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="card stat-card">
+                <div class="card-body d-flex align-items-center">
+                  <div
+                    class="stat-icon me-3"
+                    style="background-color:#fef3c7;color:#92400e;"
+                  >
+                    <i class="bi bi-check2-circle"></i>
+                  </div>
+                  <div>
+                    <div class="small-muted">Approved Today</div>
+                    <div class="fw-bold fs-5">5</div>
+                    <div class="small-muted">3 teachers, 2 students</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div class="card stat-card">
+                <div class="card-body d-flex align-items-center">
+                  <div
+                    class="stat-icon me-3"
+                    style="background-color:#fee2e2;color:#b91c1c;"
+                  >
+                    <i class="bi bi-x-circle"></i>
+                  </div>
+                  <div>
+                    <div class="small-muted">Rejected This Month</div>
+                    <div class="fw-bold fs-5">3</div>
+                    <div class="small-muted">Policy violations</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Leaves tabs -->
+          <div class="card border-0 shadow-sm card-rounded">
+            <div class="card-body">
+              <ul class="nav nav-tabs mb-3" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tab-pending"
+                    type="button"
+                    role="tab"
+                  >
+                    Pending Approval
+                    <span class="badge bg-warning text-dark ms-1">10</span>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tab-teacher-leaves"
+                    type="button"
+                    role="tab"
+                  >
+                    Teacher Leaves
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    data-bs-toggle="tab"
+                    data-bs-target="#tab-student-leaves"
+                    type="button"
+                    role="tab"
+                  >
+                    Student Leaves
+                  </button>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <!-- PENDING TAB -->
+                <div
+                  class="tab-pane fade show active"
+                  id="tab-pending"
+                  role="tabpanel"
+                >
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-2"
+                  >
+                    <div class="small-muted">
+                      Approve or reject pending leave requests from teachers and
+                      students.
+                    </div>
+                    <div class="small-muted">
+                      Actions here will update the status (demo only).
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0 align-middle">
+                      <thead class="table-light">
+                        <tr>
+                          <th>#</th>
+                          <th>Applicant</th>
+                          <th>Role</th>
+                          <th>ID / Class</th>
+                          <th>Leave Type</th>
+                          <th>Dates</th>
+                          <th>Reason</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Pending Teacher -->
+                        <tr id="leave-row-1">
+                          <td>1</td>
+                          <td>
+                            <div class="fw-semibold">Rina Gurung</div>
+                            <div class="small-muted">
+                              rina.gurung@example.com
+                            </div>
+                          </td>
+                          <td>Teacher</td>
+                          <td>
+                            TCH-001<br />
+                            <span class="small-muted">Science Dept.</span>
+                          </td>
+                          <td>Sick Leave</td>
+                          <td>2079-05-12 to 2079-05-13</td>
+                          <td>
+                            <div class="small">
+                              Fever and doctor appointment.
+                            </div>
+                          </td>
+                          <td>
+                            <span
+                              class="pill-status leave-status"
+                              style="background:#fef3c7;color:#92400e;"
+                              >Pending</span
+                            >
+                          </td>
+                          <td class="leave-actions">
+                            <div class="btn-group btn-group-sm">
+                              <button
+                                type="button"
+                                class="btn btn-success"
+                                onclick="handleLeaveAction('leave-row-1','approve')"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="handleLeaveAction('leave-row-1','reject')"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <!-- Pending Student -->
+                        <tr id="leave-row-2">
+                          <td>2</td>
+                          <td>
+                            <div class="fw-semibold">Aarav Sharma</div>
+                            <div class="small-muted">
+                              aarav.sharma@example.com
+                            </div>
+                          </td>
+                          <td>Student</td>
+                          <td>
+                            ST-2105<br />
+                            <span class="small-muted">Grade 10 - A</span>
+                          </td>
+                          <td>Casual Leave</td>
+                          <td>2079-05-15</td>
+                          <td>
+                            <div class="small">
+                              Family function outside city.
+                            </div>
+                          </td>
+                          <td>
+                            <span
+                              class="pill-status leave-status"
+                              style="background:#fef3c7;color:#92400e;"
+                              >Pending</span
+                            >
+                          </td>
+                          <td class="leave-actions">
+                            <div class="btn-group btn-group-sm">
+                              <button
+                                type="button"
+                                class="btn btn-success"
+                                onclick="handleLeaveAction('leave-row-2','approve')"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="handleLeaveAction('leave-row-2','reject')"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <!-- Another Teacher -->
+                        <tr id="leave-row-3">
+                          <td>3</td>
+                          <td>
+                            <div class="fw-semibold">Sanjay Karki</div>
+                            <div class="small-muted">
+                              s.karki@example.com
+                            </div>
+                          </td>
+                          <td>Teacher</td>
+                          <td>
+                            TCH-002<br />
+                            <span class="small-muted">Math Dept.</span>
+                          </td>
+                          <td>Training / Seminar</td>
+                          <td>2079-05-20 to 2079-05-21</td>
+                          <td>
+                            <div class="small">
+                              Attending curriculum workshop.
+                            </div>
+                          </td>
+                          <td>
+                            <span
+                              class="pill-status leave-status"
+                              style="background:#fef3c7;color:#92400e;"
+                              >Pending</span
+                            >
+                          </td>
+                          <td class="leave-actions">
+                            <div class="btn-group btn-group-sm">
+                              <button
+                                type="button"
+                                class="btn btn-success"
+                                onclick="handleLeaveAction('leave-row-3','approve')"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="handleLeaveAction('leave-row-3','reject')"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+
+                        <!-- Another Student -->
+                        <tr id="leave-row-4">
+                          <td>4</td>
+                          <td>
+                            <div class="fw-semibold">Sita Lama</div>
+                            <div class="small-muted">
+                              sita.lama@example.com
+                            </div>
+                          </td>
+                          <td>Student</td>
+                          <td>
+                            ST-2106<br />
+                            <span class="small-muted">Grade 10 - A</span>
+                          </td>
+                          <td>Sick Leave</td>
+                          <td>2079-05-10 to 2079-05-11</td>
+                          <td>
+                            <div class="small">Doctor prescribed rest.</div>
+                          </td>
+                          <td>
+                            <span
+                              class="pill-status leave-status"
+                              style="background:#fef3c7;color:#92400e;"
+                              >Pending</span
+                            >
+                          </td>
+                          <td class="leave-actions">
+                            <div class="btn-group btn-group-sm">
+                              <button
+                                type="button"
+                                class="btn btn-success"
+                                onclick="handleLeaveAction('leave-row-4','approve')"
+                              >
+                                Accept
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-outline-danger"
+                                onclick="handleLeaveAction('leave-row-4','reject')"
+                              >
+                                Reject
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- more pending rows from DB later -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center small-muted mt-2"
+                  >
+                    <span>Showing 1–10 of 10 pending requests (sample)</span>
+                    <nav aria-label="Pending leaves pagination">
+                      <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">»</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+                <!-- TEACHER LEAVES TAB -->
+                <div
+                  class="tab-pane fade"
+                  id="tab-teacher-leaves"
+                  role="tabpanel"
+                >
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-2"
+                  >
+                    <div class="small-muted">
+                      All teacher leave history (approved, rejected, pending).
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0 align-middle">
+                      <thead class="table-light">
+                        <tr>
+                          <th>#</th>
+                          <th>Teacher</th>
+                          <th>Code</th>
+                          <th>Department</th>
+                          <th>Leave Type</th>
+                          <th>Dates</th>
+                          <th>Status</th>
+                          <th>Approved By</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <div class="fw-semibold">Rina Gurung</div>
+                            <div class="small-muted">
+                              rina.gurung@example.com
+                            </div>
+                          </td>
+                          <td>TCH-001</td>
+                          <td>Science</td>
+                          <td>Sick Leave</td>
+                          <td>2079-04-01 to 2079-04-02</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#dcfce7;color:#166534;"
+                              >Approved</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">System Admin</div>
+                            <div class="small-muted">2079-03-30</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>
+                            <div class="fw-semibold">Sanjay Karki</div>
+                            <div class="small-muted">
+                              s.karki@example.com
+                            </div>
+                          </td>
+                          <td>TCH-002</td>
+                          <td>Mathematics</td>
+                          <td>Training / Seminar</td>
+                          <td>2079-03-15</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#dcfce7;color:#166534;"
+                              >Approved</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">Vice Principal</div>
+                            <div class="small-muted">2079-03-10</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>
+                            <div class="fw-semibold">Meera Thapa</div>
+                            <div class="small-muted">
+                              m.thapa@example.com
+                            </div>
+                          </td>
+                          <td>TCH-003</td>
+                          <td>English</td>
+                          <td>Casual Leave</td>
+                          <td>2079-02-05</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#fee2e2;color:#b91c1c;"
+                              >Rejected</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">System Admin</div>
+                            <div class="small-muted">Reason logged</div>
+                          </td>
+                        </tr>
+                        <!-- more rows later from DB -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center small-muted mt-2"
+                  >
+                    <span>Showing 1–10 of 120 teacher leave records (sample)</span>
+                    <nav aria-label="Teacher leaves pagination">
+                      <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">»</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+
+                <!-- STUDENT LEAVES TAB -->
+                <div
+                  class="tab-pane fade"
+                  id="tab-student-leaves"
+                  role="tabpanel"
+                >
+                  <div
+                    class="d-flex flex-wrap justify-content-between align-items-center mb-2"
+                  >
+                    <div class="small-muted">
+                      All student leave history (approved, rejected, pending).
+                    </div>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="table table-hover table-sm mb-0 align-middle">
+                      <thead class="table-light">
+                        <tr>
+                          <th>#</th>
+                          <th>Student</th>
+                          <th>Student ID</th>
+                          <th>Class / Section</th>
+                          <th>Leave Type</th>
+                          <th>Dates</th>
+                          <th>Status</th>
+                          <th>Approved By</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>
+                            <div class="fw-semibold">Aarav Sharma</div>
+                            <div class="small-muted">
+                              aarav.sharma@example.com
+                            </div>
+                          </td>
+                          <td>ST-2105</td>
+                          <td>Grade 10 - A</td>
+                          <td>Sick Leave</td>
+                          <td>2079-02-10</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#dcfce7;color:#166534;"
+                              >Approved</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">Class Teacher</div>
+                            <div class="small-muted">Verified by Admin</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>
+                            <div class="fw-semibold">Sita Lama</div>
+                            <div class="small-muted">
+                              sita.lama@example.com
+                            </div>
+                          </td>
+                          <td>ST-2106</td>
+                          <td>Grade 10 - A</td>
+                          <td>Casual Leave</td>
+                          <td>2079-02-20</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#fee2e2;color:#b91c1c;"
+                              >Rejected</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">System Admin</div>
+                            <div class="small-muted">Attendance policy</div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>
+                            <div class="fw-semibold">Rahul Singh</div>
+                            <div class="small-muted">
+                              rahul.singh@example.com
+                            </div>
+                          </td>
+                          <td>ST-2107</td>
+                          <td>Grade 9 - B</td>
+                          <td>Emergency</td>
+                          <td>2079-03-01 to 2079-03-03</td>
+                          <td>
+                            <span
+                              class="pill-status"
+                              style="background:#dcfce7;color:#166534;"
+                              >Approved</span
+                            >
+                          </td>
+                          <td>
+                            <div class="small">System Admin</div>
+                            <div class="small-muted">Verified</div>
+                          </td>
+                        </tr>
+                        <!-- more rows later from DB -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div
+                    class="d-flex justify-content-between align-items-center small-muted mt-2"
+                  >
+                    <span>Showing 1–10 of 200 student leave records (sample)</span>
+                    <nav aria-label="Student leaves pagination">
+                      <ul class="pagination pagination-sm mb-0">
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#">«</a>
+                        </li>
+                        <li class="page-item active">
+                          <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item">
+                          <a class="page-link" href="#">»</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info card -->
+          <div class="row mt-3">
+            <div class="col-lg-6">
+              <div class="card border-0 shadow-sm card-rounded">
+                <div class="card-body">
+                  <h6 class="fw-semibold mb-2">How this fits the project scope</h6>
+                  <div class="small-muted">
+                    • Admin can <strong>view all teacher and student leaves</strong>
+                    in one place. <br />
+                    • From the <strong>Pending Approval</strong> tab, admin can
+                    <strong>Accept</strong> or <strong>Reject</strong> requests. <br />
+                    • Accepted leaves will integrate with
+                    <strong>Attendance</strong> and
+                    <strong>Reports</strong> modules for accurate stats.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      // Simple UI-only handler to approve/reject pending leaves
+      function handleLeaveAction(rowId, action) {
+        const row = document.getElementById(rowId);
+        if (!row) return;
+
+        const statusSpan = row.querySelector(".leave-status");
+        const actionCell = row.querySelector(".leave-actions");
+        if (!statusSpan) return;
+
+        if (action === "approve") {
+          statusSpan.textContent = "Approved";
+          statusSpan.style.background = "#dcfce7";
+          statusSpan.style.color = "#166534";
+        } else if (action === "reject") {
+          statusSpan.textContent = "Rejected";
+          statusSpan.style.background = "#fee2e2";
+          statusSpan.style.color = "#b91c1c";
+        }
+
+        if (actionCell) {
+          actionCell.innerHTML =
+            '<span class="small-muted">Updated by Admin</span>';
+        }
+      }
+    </script>
+  </body>
+</html>
